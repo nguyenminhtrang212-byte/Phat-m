@@ -79,6 +79,8 @@ th{background:var(--pri2)}
 .blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
 a{color:var(--pri)}
+select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
+details.card summary{cursor:pointer}
 </style></head><body>
 <div class="wrap">
 <header class="hero"><span class="stamp">Tự học · A2-B1</span><h1>Phát âm /l/ và Consonant Blends với L</h1><p class="sub">Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi mới sang bước tiếp theo.</p></header>
@@ -100,11 +102,17 @@ function pickVoice() {
   } catch (e) {}
 }
 if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const PREF = (() => { try { return JSON.parse(localStorage.getItem('lpage:voice')) || {}; } catch (e) { return {}; } })();
+function savePref() { try { localStorage.setItem('lpage:voice', JSON.stringify(PREF)); } catch (e) {} }
+function currentVoice() {
+  try { const vs = speechSynthesis.getVoices(); return (PREF.voice && vs.find(v => v.name === PREF.voice)) || VOICE; } catch (e) { return VOICE; }
+}
 function speak(t, rate) {
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(t);
-    u.lang = 'en-US'; if (VOICE) u.voice = VOICE; u.rate = rate || 0.85;
+    const v = currentVoice();
+    u.lang = v ? v.lang : 'en-US'; if (v) u.voice = v; u.rate = (rate || 0.85) * (PREF.mult || 1);
     speechSynthesis.speak(u);
   } catch (e) {}
 }

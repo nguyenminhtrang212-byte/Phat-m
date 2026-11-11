@@ -79,10 +79,15 @@ th{background:var(--pri2)}
 .blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
 .foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
 a{color:var(--pri)}
+select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
+details.card summary{cursor:pointer}
 </style></head><body>
 <div class="wrap">
 <header class="hero"><span class="stamp">Bài tập · A2-B1</span><h1>Âm /l/, blends và L vô thanh</h1><p class="sub">7 phần: nghe, phân loại, điền blend, tập đọc L vô thanh, cụm cuối, đọc đoạn văn, nói và ghi âm.</p></header>
 <div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
+<details class="card" id="vp"><summary><b>🔊 Chọn người đọc (giọng đọc mẫu)</b></summary>
+<p class="x">Chọn giọng cho các phần nghe và đọc mẫu. Danh sách tuỳ theo máy của em (thường có giọng Mỹ, Anh, nam, nữ).</p>
+<select id="vsel"></select> <select id="vspd"><option value="0.8">Chậm</option><option value="1">Vừa</option><option value="1.15">Nhanh</option></select> <button class="btn sm" id="vtry">Nghe thử</button></details>
 <main id="main"></main>
 <div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
 <p class="foot">Dùng Chrome hoặc Safari để nghe mẫu và ghi âm. Bản ghi chỉ nằm trên máy em, trừ khi em bấm tải về hoặc gửi.</p>
@@ -100,11 +105,17 @@ function pickVoice() {
   } catch (e) {}
 }
 if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const PREF = (() => { try { return JSON.parse(localStorage.getItem('lpage:voice')) || {}; } catch (e) { return {}; } })();
+function savePref() { try { localStorage.setItem('lpage:voice', JSON.stringify(PREF)); } catch (e) {} }
+function currentVoice() {
+  try { const vs = speechSynthesis.getVoices(); return (PREF.voice && vs.find(v => v.name === PREF.voice)) || VOICE; } catch (e) { return VOICE; }
+}
 function speak(t, rate) {
   try {
     speechSynthesis.cancel();
     const u = new SpeechSynthesisUtterance(t);
-    u.lang = 'en-US'; if (VOICE) u.voice = VOICE; u.rate = rate || 0.85;
+    const v = currentVoice();
+    u.lang = v ? v.lang : 'en-US'; if (v) u.voice = v; u.rate = (rate || 0.85) * (PREF.mult || 1);
     speechSynthesis.speak(u);
   } catch (e) {}
 }
@@ -466,6 +477,19 @@ function render() {
 }
 $('#next').onclick = () => go(cur + 1);
 $('#prev').onclick = () => go(cur - 1);
-gate(st => { S = st; cur = 0; render(); chrome(); });
+function voicePanel() {
+  const sel = $('#vsel'), spd = $('#vspd');
+  const fill = () => {
+    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
+    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
+    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  };
+  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
+  spd.value = String(PREF.mult || 1);
+  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
+  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
+  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
+}
+gate(st => { voicePanel(); S = st; cur = 0; render(); chrome(); });
 </script>
 </body></html>
