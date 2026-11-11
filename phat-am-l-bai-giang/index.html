@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Âm /l/ và Consonant Blends · Bài giảng tự học</title>
+<style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px 96px}
+.hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;padding:20px 16px 16px;border-radius:0 0 22px 22px;margin:0 -12px 10px}
+.hero h1{margin:0 0 4px;font-size:22px;line-height:1.25}
+.hero .sub{margin:0;opacity:.92;font-size:14px}
+.stamp{display:inline-block;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px;font-size:12px;margin-bottom:8px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.pbar{height:8px;background:var(--pri2);border-radius:99px;overflow:hidden}
+.pbar>i{display:block;height:100%;width:0;background:var(--pri);transition:width .3s}
+.ptxt{font-size:12px;color:var(--mut);margin:3px 0 6px;display:flex;justify-content:space-between}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.chip.done::after{content:" ✅"}
+.chip.lock{opacity:.55}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.card h2{margin:0 0 8px;font-size:19px}
+.card h3{margin:14px 0 6px;font-size:16px}
+p{margin:.45em 0}
+ul,ol{margin:.4em 0;padding-left:1.25em}
+li{margin:.2em 0}
+.tip{background:var(--pri2);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+.warn{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--pri2)}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--pri);border:1px solid var(--pri)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:5px 11px;font-size:13px;border-radius:10px}
+.w{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:3px 9px;margin:2px 3px 2px 0;font-size:15px;cursor:pointer}
+.w i{font-style:normal;color:var(--mut);font-size:12.5px}
+.w:before{content:"🔊";font-size:12px}
+.w:active{background:var(--pri2)}
+.qz{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.q{margin:10px 0}
+.q .qt{font-weight:600;margin-bottom:5px}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;margin:5px 0;font-size:15px;cursor:pointer}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt[disabled]{cursor:default}
+.x{font-size:14px;color:var(--mut);margin:4px 0 0}
+.tick{display:flex;gap:8px;align-items:flex-start;background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:12px 0;font-size:15px}
+.tick input{margin-top:4px;width:18px;height:18px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:14px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal>div{background:var(--card);color:var(--ink);border-radius:16px;padding:16px;max-width:420px;width:100%;max-height:85vh;overflow:auto}
+.modal h3{margin:0 0 8px}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.modal input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);font-size:16px;background:var(--bg);color:var(--ink)}
+.rec{border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}
+.rec .rt{font-weight:600;margin-bottom:6px}
+.rec .rrow{display:flex;gap:6px;flex-wrap:wrap}
+.rec .rst{font-size:13px;color:var(--mut);margin:6px 0}
+.rec label{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:4px 0}
+.rec label input{margin-top:3px}
+.rec.ok{border-color:var(--ok);background:var(--okbg)}
+.score{display:inline-block;background:var(--pri2);border-radius:10px;padding:2px 9px;font-size:13px;font-weight:600}
+.big{font-size:17px}
+.hl{background:var(--hl);border-radius:4px;padding:0 2px}
+.tw{font-size:17px;line-height:1.9}
+.tw span{cursor:pointer;border-radius:5px;padding:0 1px}
+.tw span.sel{background:var(--hl)}
+.tw span.good{background:var(--okbg);color:var(--ok)}
+.tw span.miss{outline:2px dashed var(--bad)}
+.tw span.wrongsel{background:var(--badbg);color:var(--bad)}
+.sortrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.sortrow .wd{min-width:92px}
+.sortrow .ob{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:5px 9px;font-size:14px;cursor:pointer}
+.sortrow .ob.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.sortrow .ob.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.sortrow .fb{font-size:13px;color:var(--mut);flex-basis:100%}
+.blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
+a{color:var(--pri)}
+</style></head><body>
+<div class="wrap">
+<header class="hero"><span class="stamp">Tự học · A2-B1</span><h1>Phát âm /l/ và Consonant Blends với L</h1><p class="sub">Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi mới sang bước tiếp theo.</p></header>
+<div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
+<main id="main"></main>
+<div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
+<p class="foot">Tiến độ lưu trên trình duyệt này. Dùng Chrome hoặc Safari để nghe mẫu và ghi âm.</p>
+</div>
+<script>/* ===== shared helpers ===== */
+const SCRIPT_URL = ''; // để trống = chỉ nghe lại/tải về; điền URL cổng nhận bài (Apps Script) để bật nút "Gửi cho cô"
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let VOICE = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    VOICE = vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (e) {}
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(t, rate) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = 'en-US'; if (VOICE) u.voice = VOICE; u.rate = rate || 0.85;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+const Store = {
+  key: 'l-x',
+  load() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch (e) { return {}; } },
+  save(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }
+};
+function W(word, ipa) { return `<button class="w" data-s="${esc(word)}">${esc(word)}${ipa ? ' <i>' + esc(ipa) + '</i>' : ''}</button>`; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-s]');
+  if (b) speak(b.dataset.s, +b.dataset.r || 0.85);
+});
+function modal(title, html, buttons) {
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.innerHTML = `<div><h3>${title}</h3><div>${html}</div><div class="row"></div></div>`;
+  const row = $('.row', m);
+  (buttons || [{ t: 'Đã hiểu' }]).forEach(b => {
+    const x = document.createElement('button');
+    x.className = 'btn' + (b.ghost ? ' ghost' : '');
+    x.textContent = b.t;
+    x.onclick = () => { m.remove(); b.f && b.f(); };
+    row.appendChild(x);
+  });
+  document.body.appendChild(m);
+  return m;
+}
+function gate(cb) {
+  const st = Store.load();
+  if (st.name) { cb(st); return; }
+  const m = modal('Chào em! 👋', '<p>Em gõ tên để lưu tiến độ học nhé:</p><input type="text" id="gname" placeholder="Tên của em" autocomplete="name">', [{ t: 'Bắt đầu', f: () => { } }]);
+  const inp = $('#gname', m), btn = $('.row .btn', m);
+  btn.onclick = () => {
+    const v = inp.value.trim().slice(0, 40);
+    if (!v) { inp.focus(); return; }
+    const s = Store.load(); s.name = v; Store.save(s); m.remove(); cb(s);
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+  setTimeout(() => inp.focus(), 50);
+}
+/* Quiz: items [{q,o:[],a,x,say}] ; first-try scoring ; done when all correct */
+function Quiz(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const d = document.createElement('div');
+    d.className = 'q';
+    d.innerHTML = `<div class="qt">${i + 1}. ${it.say ? `<button class="btn sm ghost" data-s="${esc(it.say)}" data-r="0.8">🔊 Nghe</button> ` : ''}${esc(it.q)}</div>` +
+      it.o.map((o, j) => `<button class="opt" data-j="${j}">${esc(o)}</button>`).join('') + '<div class="x" hidden></div>';
+    host.appendChild(d);
+    $$('.opt', d).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const j = +b.dataset.j, x = $('.x', d);
+      if (j === it.a) {
+        b.classList.add('ok');
+        $$('.opt', d).forEach(z => z.disabled = true);
+        if (!st.tried[i]) st.first++;
+        st.ok++;
+        if (it.x) { x.hidden = false; x.textContent = it.x; }
+        if (it.say2) speak(it.say2);
+        onChange && onChange(st);
+      } else {
+        b.classList.add('bad'); b.disabled = true; st.tried[i] = true;
+        x.hidden = false; x.textContent = 'Chưa đúng, thử lại nhé.';
+      }
+    });
+  });
+  st.done = () => st.ok === st.total;
+  return st;
+}
+/* Recorder */
+function Recorder(host, opt, onChange) {
+  const checks = opt.checks || [];
+  const st = { rec: false, checked: checks.map(() => false), sent: false };
+  host.className = 'rec';
+  host.innerHTML = `<div class="rt">${opt.target}</div>
+    <div class="rrow"><button class="btn rb">🎙 Ghi âm</button><button class="btn ghost rp" disabled>▶ Nghe lại</button>
+    ${opt.sample ? `<button class="btn ghost" data-s="${esc(opt.sample)}" data-r="0.8">🔊 Nghe mẫu</button>` : ''}
+    <a class="btn ghost rd" hidden>⬇ Tải</a>${SCRIPT_URL ? '<button class="btn ghost rs" disabled>📤 Gửi cho cô</button>' : ''}</div>
+    <div class="rst">Bấm 🎙, đọc to, bấm lần nữa để dừng. Cho phép micro nếu trình duyệt hỏi.</div>
+    ${checks.map((c, i) => `<label><input type="checkbox" data-c="${i}"> ${esc(c)}</label>`).join('')}`;
+  const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
+  let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
+  const upd = () => {
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent || true);
+    host.classList.toggle('ok', st.done);
+    onChange && onChange(st);
+  };
+  rb.onclick = async () => {
+    if (mr && mr.state === 'recording') { mr.stop(); return; }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) { rst.textContent = '⚠️ Chưa có micro. Em bấm "Cho phép" micro cho trang này rồi thử lại nhé.'; return; }
+    const mt = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+    chunks = [];
+    mr = new MediaRecorder(stream, mt ? { mimeType: mt } : undefined);
+    mr.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+    mr.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const dur = Math.round((Date.now() - t0) / 1000);
+      blob = new Blob(chunks, { type: mr.mimeType || 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      audio = new Audio(url);
+      rp.disabled = false; rd.hidden = false; rd.href = url;
+      rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
+      if (rs) rs.disabled = false;
+      rb.textContent = '🎙 Ghi lại';
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại rồi tự chấm bên dưới.`;
+      st.rec = true; st.dur = dur; upd();
+    };
+    t0 = Date.now(); mr.start();
+    rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
+  };
+  rp.onclick = () => audio && audio.play();
+  if (rs) rs.onclick = async () => {
+    if (!blob) return;
+    rs.disabled = true; rst.textContent = 'Đang gửi…';
+    try {
+      const b64 = await new Promise(r => { const f = new FileReader(); f.onload = () => r(String(f.result).split(',')[1]); f.readAsDataURL(blob); });
+      await sendGateway({ type: 'audio', name: Store.load().name || 'Không tên', lesson: LESSON, file: (opt.id || 'GhiAm') + '_01.' + (/mp4/.test(blob.type) ? 'm4a' : 'webm'), mime: blob.type, audio: b64, label: opt.label || '', dur: st.dur || '', target: opt.sample || '' });
+      st.sent = true; rst.textContent = '✅ Đã gửi cho cô'; upd();
+    } catch (e) { rs.disabled = false; rst.textContent = '⚠️ Chưa gửi được, thử lại nhé.'; }
+  };
+  $$('input[data-c]', host).forEach(c => c.onchange = () => { st.checked[+c.dataset.c] = c.checked; upd(); });
+  st.done = false;
+  return st;
+}
+async function sendGateway(payload) {
+  if (!SCRIPT_URL) return { ok: false };
+  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+</script>
+<script>const LESSON = 'GIANG_PHAT_AM_L';
+Store.key = 'lpage:' + LESSON;
+const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+const STEPS = [
+ { id: 'goal', t: '1. Mục tiêu', read: true,
+   html: `<h2>Em sẽ học gì?</h2>
+   <p>Sau bài này em có thể phát âm /l/ ở đầu, giữa và cuối từ; đọc các cụm bl, cl, fl, gl, pl, sl trong <b>một</b> âm tiết; và đọc cụm cuối như milk, help, cold mà không thêm "ờ".</p>
+   <p>Bấm vào từng từ để nghe mẫu:</p>
+   <p>${W('light', '/laɪt/')}${W('feel', '/fiːl/')}${W('blue', '/bluː/')}${W('play', '/pleɪ/')}${W('milk', '/mɪlk/')}</p>
+   <div class="tip">/l/ là phụ âm <b>hữu thanh</b>: đầu lưỡi chạm lợi trên, hơi thoát ra <b>hai bên</b> lưỡi, dây thanh rung.</div>`,
+   quiz: [
+     { q: 'Âm /l/ được tạo ra thế nào?', o: ['Đầu lưỡi chạm lợi trên, hơi thoát hai bên lưỡi, dây thanh rung', 'Đầu lưỡi đưa ra giữa hai hàm răng, không rung', 'Môi tròn, lưỡi không chạm đâu cả'], a: 0, x: 'Đúng: đó là phụ âm bên (lateral), hữu thanh.' },
+     { q: 'Điều gì tiếng Anh có mà tiếng Việt KHÔNG có?', o: ['/l/ ở đầu âm tiết', '/l/ cuối âm tiết và cụm phụ âm đầu như bl, pl', 'Âm /n/'], a: 1, x: 'Tiếng Việt có /l/ đầu (la, lá) nhưng không có /l/ cuối âm tiết và không có cụm phụ âm đầu.' }] },
+ { id: 'clear', t: '2. Clear L / Dark L', read: true,
+   html: `<h2>Hai kiểu /l/</h2>
+   ${T([['Vị trí', 'Trước nguyên âm (đầu từ, đầu âm tiết)', 'Sau nguyên âm (cuối từ, cuối âm tiết)'], ['Ví dụ', W('light') + W('leaf') + W('yellow') + W('police'), W('feel') + W('full') + W('milk') + W('help')], ['Lưỡi', 'Đầu lưỡi chạm lợi, thân lưỡi phẳng', 'Đầu lưỡi chạm lợi + phần sau lưỡi nâng về vòm mềm'], ['Nghe như', '/l/ nhẹ, sáng', '/l/ "trầm", hơi pha /u/']], ['', 'Clear L [l]', 'Dark L [ɫ]'])}
+   <p><b>Syllabic L</b>: ở cuối little, table, people, apple, /l/ tự thành âm tiết. Đầu lưỡi chạm lợi và giữ, <b>không</b> thêm nguyên âm đầy đủ. ${W('little', '/ˈlɪtl/')}${W('table', '/ˈteɪbl/')}${W('people', '/ˈpiːpl/')}</p>`,
+   quiz: [
+     { q: 'Trong từ feel, /l/ là loại nào?', o: ['Clear L', 'Dark L', 'Silent L'], a: 1, x: 'L đứng sau nguyên âm nên là dark L.' },
+     { q: 'Trong từ light, /l/ là loại nào?', o: ['Clear L', 'Dark L'], a: 0, x: 'L đứng trước nguyên âm nên là clear L.' },
+     { q: 'Khi đọc table, em nên làm gì ở cuối từ?', o: ['Thêm "ờ" thành ta-bơ-lờ', 'Giữ đầu lưỡi chạm lợi, không thêm nguyên âm đầy đủ', 'Bỏ âm L'], a: 1, x: 'Syllabic L: giữ lưỡi ở lợi.' }] },
+ { id: 'how', t: '3. Cách phát âm', read: true,
+   html: `<h2>Phát âm /l/ từng bước</h2>
+   <h3>Clear L (light, love, leaf)</h3>
+   <ol><li>Môi thả lỏng, hơi mở, không chu môi.</li><li>Nâng đầu lưỡi chạm phần lợi gồ ngay sau răng cửa trên.</li><li>Hạ hai bên lưỡi để hơi thoát ra hai bên.</li><li>Bật tiếng (đặt tay lên cổ thấy rung).</li><li>Hạ đầu lưỡi và chuyển sang nguyên âm.</li></ol>
+   <h3>Dark L (feel, milk, school)</h3>
+   <ol><li>Phát nguyên âm trước đó (/iː/ trong feel).</li><li>Đầu lưỡi chạm lợi, đồng thời kéo phần sau lưỡi lên và lùi về vòm mềm.</li><li>Giữ nguyên vị trí rồi dừng. Không thả lưỡi, không thêm "ờ".</li></ol>
+   <div class="tip"><b>Tự kiểm tra:</b> dùng gương nhìn đầu lưỡi; bịt mũi khi đọc (/l/ vẫn rõ, /n/ bị tắc); kéo dài "llll" rồi hít vào, thấy mát ở hai bên lưỡi là đúng. Nếu đầu lưỡi không chạm gì mà môi tròn thì đó là /r/.</div>
+   <p>${W('light')}${W('love')}${W('leaf')}${W('feel')}${W('milk')}${W('school')}</p>`,
+   quiz: [
+     { q: 'Đầu lưỡi chạm đâu khi nói /l/?', o: ['Lợi trên, ngay sau răng cửa trên', 'Giữa hai hàm răng', 'Vòm họng, cuộn ra sau'], a: 0, x: 'Lợi trên (alveolar ridge). Đưa ra giữa răng là âm /θ/.' },
+     { q: 'Bịt mũi và đọc: âm nào vẫn rõ?', o: ['/l/', '/n/'], a: 0, x: '/n/ cần hơi qua mũi nên bị tắc; /l/ thoát hai bên lưỡi.' },
+     { q: 'Ở cuối từ feel, lưỡi làm gì?', o: ['Giữ chạm lợi đến hết âm', 'Thả xuống rồi nói "ờ"', 'Hạ thấp, không chạm'], a: 0, x: 'Giữ lưỡi chạm lợi để người nghe thấy /l/.' }] },
+ { id: 'err', t: '4. Lỗi hay gặp', read: true,
+   html: `<h2>Lỗi thường gặp của người Việt</h2>
+   ${T([
+     ['Bỏ /l/ cuối', 'feel → "fi", milk → "mik"', 'Giữ đầu lưỡi chạm lợi đến hết âm'],
+     ['Đọc /l/ cuối thành /u/', 'full → "fu-u", bell → "beo"', 'Đầu lưỡi phải chạm lợi; luyện feel-fill-full-fool'],
+     ['Nhầm l/n', 'light → night, tell → ten', 'Bịt mũi: /l/ rõ, /n/ tắc'],
+     ['Nhầm l/r', 'light / right, play / pray', 'L: lưỡi chạm lợi. R: lưỡi không chạm, môi tròn'],
+     ['Tách blend', 'blue → "bờ-lu", play → "pờ-lây"', 'Đặt lưỡi sẵn ở vị trí /l/ khi nói phụ âm đầu'],
+     ['Thêm "ờ" sau cụm cuối', 'milk → "mil-cờ", help → "hel-pờ"', 'Dừng hơi ngay sau phụ âm cuối']
+   ], ['Lỗi', 'Ví dụ', 'Cách sửa'])}
+   <div class="warn">Sửa mỗi lần một lỗi. Lỗi bỏ /l/ cuối từ làm người nghe hiểu nhầm nhiều nhất (feel/fee).</div>`,
+   quiz: [
+     { q: 'milk đọc thành "mik" là lỗi gì?', o: ['Bỏ /l/ cuối', 'Nhầm l/r', 'Thêm "ờ"'], a: 0, x: 'Cần giữ lưỡi chạm lợi rồi chuyển sang /k/.' },
+     { q: 'blue đọc thành "bờ-lu" là lỗi gì?', o: ['Bỏ /l/', 'Tách blend thành hai âm tiết', 'Nhầm l/n'], a: 1, x: 'blue chỉ có 1 âm tiết.' },
+     { q: 'Cách tốt để tách /l/ và /n/?', o: ['Bịt mũi khi đọc', 'Đọc nhanh hơn', 'Chu môi'], a: 0, x: '/l/ vẫn rõ khi bịt mũi.' }] },
+ { id: 'pos', t: '5. /l/ trong từ', read: true,
+   html: `<h2>/l/ theo vị trí trong từ</h2>
+   ${T([
+     ['Đầu từ', 'Clear', W('light', '/laɪt/') + W('leaf', '/liːf/') + W('lemon', '/ˈlemən/') + W('listen', '/ˈlɪsn/')],
+     ['Giữa từ, đầu âm tiết', 'Clear', W('yellow', '/ˈjeloʊ/') + W('police', '/pəˈliːs/') + W('belong', '/bɪˈlɔːŋ/')],
+     ['Giữa từ, cuối âm tiết', 'Dark', W('help', '/help/') + W('silver', '/ˈsɪlvər/') + W('always', '/ˈɔːlweɪz/')],
+     ['Cuối từ', 'Dark', W('feel', '/fiːl/') + W('ball', '/bɔːl/') + W('school', '/skuːl/') + W('full', '/fʊl/')],
+     ['Syllabic L', 'Dark', W('little', '/ˈlɪtl/') + W('table', '/ˈteɪbl/') + W('apple', '/ˈæpl/')]
+   ], ['Vị trí', 'Loại L', 'Từ ví dụ'])}
+   <ul><li>Chữ <b>ll</b> chỉ là một âm /l/ (hello, ball), không đọc kép.</li><li><b>Silent L</b> (không đọc): ${W('walk', '/wɔːk/')}${W('talk')}${W('half', '/hæf/')}${W('calm', '/kɑːm/')}${W('would', '/wʊd/')}${W('salmon', '/ˈsæmən/')}${W('folk')}</li></ul>`,
+   quiz: [
+     { q: 'Từ nào có chữ L nhưng KHÔNG đọc /l/?', o: ['milk', 'walk', 'help'], a: 1, x: 'walk /wɔːk/.' },
+     { q: 'Trong yellow /ˈjeloʊ/, /l/ là loại nào?', o: ['Clear L (đầu âm tiết thứ hai)', 'Dark L'], a: 0, x: 'L đứng trước nguyên âm /oʊ/.' },
+     { q: 'Chữ ll trong hello đọc thế nào?', o: ['Một âm /l/', 'Hai âm /l/ kéo dài'], a: 0, x: 'll = một /l/.' }] },
+ { id: 'blend', t: '6. Blends đầu từ', read: true,
+   html: `<h2>Consonant blends với L ở đầu từ</h2>
+   <p>Mỗi blend là hai phụ âm liền nhau trong <b>một</b> âm tiết: blue có 1 âm tiết, không phải 2.</p>
+   ${T([
+     ['bl /bl/', W('black', '/blæk/') + W('blue', '/bluː/') + W('blood') + W('blow') + W('blanket')],
+     ['cl /kl/', W('clean', '/kliːn/') + W('clock') + W('class') + W('clever') + W('climb', '/klaɪm/')],
+     ['fl /fl/', W('fly', '/flaɪ/') + W('flower') + W('floor') + W('flat') + W('flag')],
+     ['gl /ɡl/', W('glad', '/ɡlæd/') + W('glass') + W('glow') + W('glove') + W('glue')],
+     ['pl /pl/', W('play', '/pleɪ/') + W('plan') + W('plate') + W('please') + W('plenty')],
+     ['sl /sl/', W('sleep', '/sliːp/') + W('slow', '/sloʊ/') + W('slim') + W('slide') + W('slip')],
+     ['spl /spl/', W('split', '/splɪt/') + W('splash', '/splæʃ/') + W('splendid', '/ˈsplendɪd/')]
+   ], ['Blend', 'Từ ví dụ'])}
+   <h3>4 bước để không tách blend</h3>
+   <ol><li>Đặt đầu lưỡi sẵn ở lợi trên khi bắt đầu phụ âm đầu (b, p, k, g, f).</li><li>Chuyển thẳng sang /l/, không có "ờ" ở giữa.</li><li>Luyện từ sau ra trước: ay → lay → play.</li><li>Vỗ tay đếm âm tiết: play và blue chỉ vỗ 1 tiếng.</li></ol>
+   <div class="tip"><b>L vô thanh:</b> sau /p/, /k/, /f/, /s/ (play, clean, fly, slow), /l/ bị vô thanh một phần: hơi thoát ra trước, dây thanh rung khi sang nguyên âm. Sau /b/, /ɡ/ (blue, glad) /l/ vẫn hữu thanh. Không cần cố gắng làm vô thanh; chỉ cần để /l/ ra ngay và đúng chỗ.</div>`,
+   quiz: [
+     { q: 'blue có mấy âm tiết?', o: ['1', '2'], a: 0, x: 'Blend nằm trong một âm tiết.' },
+     { q: 'Cách tránh đọc play thành "pờ-lây"?', o: ['Đặt lưỡi sẵn ở vị trí /l/ khi bắt đầu /p/ rồi chuyển thẳng sang /l/', 'Đọc chậm từng âm tách rời', 'Bỏ âm /p/'], a: 0, x: 'Chuẩn bị lưỡi trước khi nói phụ âm đầu.' },
+     { q: 'Sau /p/, /k/, /f/, /s/, âm /l/ thường…', o: ['bị vô thanh một phần', 'bị bỏ hẳn', 'đổi thành /n/'], a: 0, x: 'Ví dụ play, clean, fly, slow.' },
+     { q: 'Từ nào bắt đầu bằng cụm ba phụ âm spl?', o: ['splash', 'slash', 'smash'], a: 0, x: 'splash /splæʃ/.' }] },
+ { id: 'final', t: '7. Cụm cuối từ', read: true,
+   html: `<h2>Cụm phụ âm có L ở cuối từ</h2>
+   <p>Giữ dark L (đầu lưỡi ở lợi), rồi chuyển thẳng sang phụ âm kế tiếp, không thêm "ờ".</p>
+   ${T([
+     ['-lk', W('milk', '/mɪlk/') + W('silk')],
+     ['-lp', W('help', '/help/') + W('gulp')],
+     ['-lt', W('belt', '/belt/') + W('melt') + W('salt', '/sɔːlt/')],
+     ['-ld', W('cold', '/koʊld/') + W('old') + W('field', '/fiːld/') + W('world', '/wɜːrld/') + W('build', '/bɪld/')],
+     ['-lf', W('self', '/self/') + W('shelf', '/ʃelf/') + W('golf', '/ɡɑːlf/')],
+     ['-lm', W('film', '/fɪlm/') + W('realm')],
+     ['-lv', W('solve', '/sɑːlv/') + W('twelve', '/twelv/') + W('valve')],
+     ['-lθ', W('health', '/helθ/') + W('wealth', '/welθ/')]
+   ], ['Cụm', 'Từ ví dụ'])}
+   <h3>Thêm -s hoặc -ed</h3>
+   <p>${W('belts', '/belts/')}${W('holds', '/hoʊldz/')}${W('helps', '/helps/')}${W('films', '/fɪlmz/')}</p>
+   <p>${W('helped', '/helpt/')}${W('milked', '/mɪlkt/')}${W('called', '/kɔːld/')}${W('filmed', '/fɪlmd/')}${W('solved', '/sɑːlvd/')}</p>
+   <div class="tip">Quy tắc -ed: sau âm vô thanh (/p/, /k/) đọc /t/ (helped, milked); sau âm hữu thanh (/l/, /m/, /v/) đọc /d/ (called, filmed, solved).</div>`,
+   quiz: [
+     { q: 'Với milk, sau /l/ em làm gì?', o: ['Chuyển thẳng sang /k/, không thêm "ờ"', 'Thêm nguyên âm rồi mới đọc /k/', 'Bỏ /l/'], a: 0, x: 'Giữ lưỡi ở lợi, rồi bật /k/ bằng cuống lưỡi.' },
+     { q: '-ed trong helped đọc là gì?', o: ['/d/', '/t/', '/ɪd/'], a: 1, x: 'Sau /p/ (vô thanh) đọc /t/.' },
+     { q: 'Từ nào có chữ L không đọc?', o: ['film', 'belt', 'half'], a: 2, x: 'half /hæf/.' }] },
+ { id: 'pairs', t: '8. Nghe và chọn', game: true,
+   html: `<h2>Nghe và chọn từ</h2><p>Bấm 🔊, nghe, rồi chọn từ em nghe được. Phải chọn đúng cả 6 câu để qua bước.</p>`,
+   quiz: [
+     { say: 'right', q: 'Em nghe thấy từ nào?', o: ['light', 'right'], a: 1 },
+     { say: 'low', q: 'Em nghe thấy từ nào?', o: ['low', 'no'], a: 0 },
+     { say: 'play', q: 'Em nghe thấy từ nào?', o: ['pay', 'play'], a: 1 },
+     { say: 'fry', q: 'Em nghe thấy từ nào?', o: ['fly', 'fry'], a: 1 },
+     { say: 'feel', q: 'Em nghe thấy từ nào?', o: ['feel', 'fee'], a: 0 },
+     { say: 'glass', q: 'Em nghe thấy từ nào?', o: ['grass', 'glass'], a: 1 }] },
+ { id: 'say', t: '9. Đọc to', rec: true,
+   html: `<h2>Đọc to và ghi âm</h2><p>Nghe mẫu, đọc to từng câu, ghi âm, nghe lại rồi tự chấm. Cần ghi đủ 3 câu và tích đủ các mục tự chấm.</p>`,
+   recs: [
+     { id: 'bl', target: 'Blue blankets blow on the black balcony.', sample: 'Blue blankets blow on the black balcony.', checks: ['Đầu lưỡi chạm lợi ở các /l/', 'Blend bl đọc trong 1 âm tiết, không "ờ"'] },
+     { id: 'sl', target: 'Slow sleds slide on slippery slopes.', sample: 'Slow sleds slide on slippery slopes.', checks: ['Blend sl đọc trong 1 âm tiết, không "ờ"', 'Lưỡi không đưa ra giữa răng ở /s/ và /l/'] },
+     { id: 'fin', target: 'The old wolf held cold milk and helped himself.', sample: 'The old wolf held cold milk and helped himself.', checks: ['/l/ cuối từ vẫn nghe được (old, wolf, held, cold, milk)', 'Cụm cuối không có "ờ" thừa'] }] },
+ { id: 'done', t: '10. Tổng kết', end: true,
+   html: `<h2>Tổng kết</h2><div id="sum"></div>
+   <div class="tip">Bước tiếp theo: làm <a href="../phat-am-l-bai-tap/">phiếu bài tập A2-B1</a> (nghe, điền blend, tập đọc L vô thanh, đọc đoạn văn, ghi âm).</div>
+   <p><button class="btn" id="copy">📋 Chép kết quả để gửi cô</button></p><p class="x" id="cm"></p>` }
+];
+let S = {}, cur = 0;
+const live = {}; // per-step live state
+function isDone(i) { return !!(S.done && S.done[STEPS[i].id]); }
+function firstOpen() { for (let i = 0; i < STEPS.length; i++) if (!isDone(i)) return i; return STEPS.length - 1; }
+function maxOpen() { return Math.min(firstOpen(), STEPS.length - 1); }
+function setDone(i) {
+  S.done = S.done || {}; S.done[STEPS[i].id] = true; Store.save(S); chrome();
+}
+function chrome() {
+  const n = STEPS.filter((s, i) => isDone(i)).length;
+  const pct = Math.round(n / STEPS.length * 100);
+  $('#pb').style.width = pct + '%'; $('#pt').textContent = `Tiến độ ${pct}% (${n}/${STEPS.length} bước)`;
+  $('#who').textContent = S.name ? '👤 ' + S.name : '';
+  const mo = maxOpen();
+  $('#chips').innerHTML = STEPS.map((s, i) => `<button class="chip${i === cur ? ' on' : ''}${isDone(i) ? ' done' : ''}${i > mo ? ' lock' : ''}" data-i="${i}">${i > mo ? '🔒 ' : ''}${s.t}</button>`).join('');
+  $$('#chips .chip').forEach(b => b.onclick = () => go(+b.dataset.i, true));
+  $('#prev').disabled = cur === 0;
+  $('#next').style.display = cur === STEPS.length - 1 ? 'none' : '';
+}
+function go(i, fromChip) {
+  if (i > maxOpen()) {
+    const m = maxOpen();
+    modal('Bước này đang khoá 🔒', `<p>Em hãy hoàn thành <b>${STEPS[m].t}</b> trước nhé.</p>`);
+    return;
+  }
+  cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function missing(i) {
+  const s = STEPS[i], out = [];
+  if (s.end || isDone(i)) return out;
+  const L = live[s.id] || {};
+  if (s.read && !(S.ticks && S.ticks[s.id])) out.push('Em chưa tích "Em đã đọc kỹ phần lý thuyết".');
+  else if (s.quiz && !(L.quiz && L.quiz.done())) out.push(`Còn ${L.quiz ? L.quiz.total - L.quiz.ok : s.quiz.length} câu hỏi chưa trả lời đúng.`);
+  if (s.recs) (L.recs || []).forEach((r, k) => { if (!r.done) out.push(`Bản ghi ${k + 1} chưa ghi âm hoặc chưa tự chấm xong.`); });
+  return out;
+}
+function checkDone(i) {
+  if (isDone(i)) return;
+  const s = STEPS[i];
+  if (missing(i).length === 0 && !s.end) {
+    if (s.quiz) { const L = live[s.id]; S.score = S.score || {}; S.score[s.id] = [L.quiz.first, L.quiz.total]; }
+    setDone(i);
+    const st = $('#status'); if (st) st.innerHTML = '<div class="tip">✅ Em đã hoàn thành bước này. Bấm "Tiếp tục ▶".</div>';
+  }
+}
+function render() {
+  const s = STEPS[cur], main = $('#main');
+  main.innerHTML = `<section class="card">${s.html}<div id="quizhost"></div><div id="rechost"></div><div id="status"></div></section>`;
+  live[s.id] = live[s.id] || {};
+  const L = live[s.id];
+  if (s.read) {
+    const ticked = S.ticks && S.ticks[s.id];
+    const q = $('#quizhost');
+    const tk = document.createElement('label');
+    tk.className = 'tick'; tk.innerHTML = `<input type="checkbox"${ticked ? ' checked' : ''}> <span>Em đã đọc kỹ phần lý thuyết này</span>`;
+    q.parentNode.insertBefore(tk, q);
+    const show = () => {
+      q.innerHTML = '';
+      if (S.ticks && S.ticks[s.id]) {
+        q.innerHTML = '<div class="qz"><b>Câu hỏi kiểm tra</b><div id="qb"></div></div>';
+        L.quiz = Quiz($('#qb'), s.quiz, () => checkDone(cur));
+      }
+    };
+    $('input', tk).onchange = e => { S.ticks = S.ticks || {}; S.ticks[s.id] = e.target.checked; Store.save(S); show(); };
+    show();
+  } else if (s.game) {
+    $('#quizhost').innerHTML = '<div id="qb"></div>';
+    L.quiz = Quiz($('#qb'), s.quiz, () => checkDone(cur));
+  } else if (s.rec) {
+    L.recs = [];
+    s.recs.forEach((r, k) => {
+      const d = document.createElement('div'); $('#rechost').appendChild(d);
+      L.recs[k] = Recorder(d, { id: r.id, target: esc(r.target), sample: r.sample, checks: r.checks, label: 'Bài giảng - ' + r.id }, () => checkDone(cur));
+    });
+  } else if (s.end) {
+    const rows = STEPS.filter(x => x.quiz && S.score && S.score[x.id]).map(x => `<tr><td>${x.t}</td><td>${S.score[x.id][0]}/${S.score[x.id][1]}</td></tr>`).join('');
+    const n = STEPS.filter((x, i) => isDone(i)).length;
+    $('#sum').innerHTML = `<p>Em đã hoàn thành <b>${n}/${STEPS.length - 1}</b> bước học.</p><table><tr><th>Bước</th><th>Đúng ngay lần đầu</th></tr>${rows}</table>`;
+    const txt = `Bài giảng phát âm /l/ - ${S.name || ''}\n` + STEPS.filter(x => x.quiz && S.score && S.score[x.id]).map(x => `${x.t}: ${S.score[x.id][0]}/${S.score[x.id][1]}`).join('\n');
+    $('#copy').onclick = () => { try { navigator.clipboard.writeText(txt); $('#cm').textContent = 'Đã chép. Dán vào Zalo gửi cô nhé.'; } catch (e) { $('#cm').textContent = txt; } };
+    if (!isDone(cur)) setDone(cur);
+  }
+  if (isDone(cur) && !s.end) $('#status').innerHTML = '<div class="tip">✅ Bước này đã hoàn thành. Em có thể làm lại để luyện thêm.</div>';
+}
+$('#next').onclick = () => {
+  const m = missing(cur);
+  if (m.length) { modal('Em chưa xong bước này', '<ul>' + m.map(x => `<li>${x}</li>`).join('') + '</ul>'); return; }
+  go(cur + 1);
+};
+$('#prev').onclick = () => go(cur - 1);
+gate(st => { S = st; if (!S.ticks) S.ticks = {}; cur = Math.min(firstOpen(), STEPS.length - 1); render(); chrome(); });
+</script>
+</body></html>

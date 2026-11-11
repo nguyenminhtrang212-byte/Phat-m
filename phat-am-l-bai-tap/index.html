@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Phiếu bài tập A2-B1 · Âm /l/, blends và L vô thanh</title>
+<style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px 96px}
+.hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;padding:20px 16px 16px;border-radius:0 0 22px 22px;margin:0 -12px 10px}
+.hero h1{margin:0 0 4px;font-size:22px;line-height:1.25}
+.hero .sub{margin:0;opacity:.92;font-size:14px}
+.stamp{display:inline-block;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px;font-size:12px;margin-bottom:8px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.pbar{height:8px;background:var(--pri2);border-radius:99px;overflow:hidden}
+.pbar>i{display:block;height:100%;width:0;background:var(--pri);transition:width .3s}
+.ptxt{font-size:12px;color:var(--mut);margin:3px 0 6px;display:flex;justify-content:space-between}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.chip.done::after{content:" ✅"}
+.chip.lock{opacity:.55}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.card h2{margin:0 0 8px;font-size:19px}
+.card h3{margin:14px 0 6px;font-size:16px}
+p{margin:.45em 0}
+ul,ol{margin:.4em 0;padding-left:1.25em}
+li{margin:.2em 0}
+.tip{background:var(--pri2);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+.warn{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--pri2)}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--pri);border:1px solid var(--pri)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:5px 11px;font-size:13px;border-radius:10px}
+.w{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:3px 9px;margin:2px 3px 2px 0;font-size:15px;cursor:pointer}
+.w i{font-style:normal;color:var(--mut);font-size:12.5px}
+.w:before{content:"🔊";font-size:12px}
+.w:active{background:var(--pri2)}
+.qz{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.q{margin:10px 0}
+.q .qt{font-weight:600;margin-bottom:5px}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;margin:5px 0;font-size:15px;cursor:pointer}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt[disabled]{cursor:default}
+.x{font-size:14px;color:var(--mut);margin:4px 0 0}
+.tick{display:flex;gap:8px;align-items:flex-start;background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:12px 0;font-size:15px}
+.tick input{margin-top:4px;width:18px;height:18px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:14px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal>div{background:var(--card);color:var(--ink);border-radius:16px;padding:16px;max-width:420px;width:100%;max-height:85vh;overflow:auto}
+.modal h3{margin:0 0 8px}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.modal input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);font-size:16px;background:var(--bg);color:var(--ink)}
+.rec{border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}
+.rec .rt{font-weight:600;margin-bottom:6px}
+.rec .rrow{display:flex;gap:6px;flex-wrap:wrap}
+.rec .rst{font-size:13px;color:var(--mut);margin:6px 0}
+.rec label{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:4px 0}
+.rec label input{margin-top:3px}
+.rec.ok{border-color:var(--ok);background:var(--okbg)}
+.score{display:inline-block;background:var(--pri2);border-radius:10px;padding:2px 9px;font-size:13px;font-weight:600}
+.big{font-size:17px}
+.hl{background:var(--hl);border-radius:4px;padding:0 2px}
+.tw{font-size:17px;line-height:1.9}
+.tw span{cursor:pointer;border-radius:5px;padding:0 1px}
+.tw span.sel{background:var(--hl)}
+.tw span.good{background:var(--okbg);color:var(--ok)}
+.tw span.miss{outline:2px dashed var(--bad)}
+.tw span.wrongsel{background:var(--badbg);color:var(--bad)}
+.sortrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.sortrow .wd{min-width:92px}
+.sortrow .ob{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:5px 9px;font-size:14px;cursor:pointer}
+.sortrow .ob.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.sortrow .ob.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.sortrow .fb{font-size:13px;color:var(--mut);flex-basis:100%}
+.blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
+a{color:var(--pri)}
+</style></head><body>
+<div class="wrap">
+<header class="hero"><span class="stamp">Bài tập · A2-B1</span><h1>Âm /l/, blends và L vô thanh</h1><p class="sub">7 phần: nghe, phân loại, điền blend, tập đọc L vô thanh, cụm cuối, đọc đoạn văn, nói và ghi âm.</p></header>
+<div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
+<main id="main"></main>
+<div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
+<p class="foot">Dùng Chrome hoặc Safari để nghe mẫu và ghi âm. Bản ghi chỉ nằm trên máy em, trừ khi em bấm tải về hoặc gửi.</p>
+</div>
+<script>/* ===== shared helpers ===== */
+const SCRIPT_URL = ''; // để trống = chỉ nghe lại/tải về; điền URL cổng nhận bài (Apps Script) để bật nút "Gửi cho cô"
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let VOICE = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    VOICE = vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (e) {}
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+function speak(t, rate) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang = 'en-US'; if (VOICE) u.voice = VOICE; u.rate = rate || 0.85;
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+const Store = {
+  key: 'l-x',
+  load() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch (e) { return {}; } },
+  save(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }
+};
+function W(word, ipa) { return `<button class="w" data-s="${esc(word)}">${esc(word)}${ipa ? ' <i>' + esc(ipa) + '</i>' : ''}</button>`; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-s]');
+  if (b) speak(b.dataset.s, +b.dataset.r || 0.85);
+});
+function modal(title, html, buttons) {
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.innerHTML = `<div><h3>${title}</h3><div>${html}</div><div class="row"></div></div>`;
+  const row = $('.row', m);
+  (buttons || [{ t: 'Đã hiểu' }]).forEach(b => {
+    const x = document.createElement('button');
+    x.className = 'btn' + (b.ghost ? ' ghost' : '');
+    x.textContent = b.t;
+    x.onclick = () => { m.remove(); b.f && b.f(); };
+    row.appendChild(x);
+  });
+  document.body.appendChild(m);
+  return m;
+}
+function gate(cb) {
+  const st = Store.load();
+  if (st.name) { cb(st); return; }
+  const m = modal('Chào em! 👋', '<p>Em gõ tên để lưu tiến độ học nhé:</p><input type="text" id="gname" placeholder="Tên của em" autocomplete="name">', [{ t: 'Bắt đầu', f: () => { } }]);
+  const inp = $('#gname', m), btn = $('.row .btn', m);
+  btn.onclick = () => {
+    const v = inp.value.trim().slice(0, 40);
+    if (!v) { inp.focus(); return; }
+    const s = Store.load(); s.name = v; Store.save(s); m.remove(); cb(s);
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+  setTimeout(() => inp.focus(), 50);
+}
+/* Quiz: items [{q,o:[],a,x,say}] ; first-try scoring ; done when all correct */
+function Quiz(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const d = document.createElement('div');
+    d.className = 'q';
+    d.innerHTML = `<div class="qt">${i + 1}. ${it.say ? `<button class="btn sm ghost" data-s="${esc(it.say)}" data-r="0.8">🔊 Nghe</button> ` : ''}${esc(it.q)}</div>` +
+      it.o.map((o, j) => `<button class="opt" data-j="${j}">${esc(o)}</button>`).join('') + '<div class="x" hidden></div>';
+    host.appendChild(d);
+    $$('.opt', d).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const j = +b.dataset.j, x = $('.x', d);
+      if (j === it.a) {
+        b.classList.add('ok');
+        $$('.opt', d).forEach(z => z.disabled = true);
+        if (!st.tried[i]) st.first++;
+        st.ok++;
+        if (it.x) { x.hidden = false; x.textContent = it.x; }
+        if (it.say2) speak(it.say2);
+        onChange && onChange(st);
+      } else {
+        b.classList.add('bad'); b.disabled = true; st.tried[i] = true;
+        x.hidden = false; x.textContent = 'Chưa đúng, thử lại nhé.';
+      }
+    });
+  });
+  st.done = () => st.ok === st.total;
+  return st;
+}
+/* Recorder */
+function Recorder(host, opt, onChange) {
+  const checks = opt.checks || [];
+  const st = { rec: false, checked: checks.map(() => false), sent: false };
+  host.className = 'rec';
+  host.innerHTML = `<div class="rt">${opt.target}</div>
+    <div class="rrow"><button class="btn rb">🎙 Ghi âm</button><button class="btn ghost rp" disabled>▶ Nghe lại</button>
+    ${opt.sample ? `<button class="btn ghost" data-s="${esc(opt.sample)}" data-r="0.8">🔊 Nghe mẫu</button>` : ''}
+    <a class="btn ghost rd" hidden>⬇ Tải</a>${SCRIPT_URL ? '<button class="btn ghost rs" disabled>📤 Gửi cho cô</button>' : ''}</div>
+    <div class="rst">Bấm 🎙, đọc to, bấm lần nữa để dừng. Cho phép micro nếu trình duyệt hỏi.</div>
+    ${checks.map((c, i) => `<label><input type="checkbox" data-c="${i}"> ${esc(c)}</label>`).join('')}`;
+  const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
+  let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
+  const upd = () => {
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent || true);
+    host.classList.toggle('ok', st.done);
+    onChange && onChange(st);
+  };
+  rb.onclick = async () => {
+    if (mr && mr.state === 'recording') { mr.stop(); return; }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) { rst.textContent = '⚠️ Chưa có micro. Em bấm "Cho phép" micro cho trang này rồi thử lại nhé.'; return; }
+    const mt = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+    chunks = [];
+    mr = new MediaRecorder(stream, mt ? { mimeType: mt } : undefined);
+    mr.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+    mr.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const dur = Math.round((Date.now() - t0) / 1000);
+      blob = new Blob(chunks, { type: mr.mimeType || 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      audio = new Audio(url);
+      rp.disabled = false; rd.hidden = false; rd.href = url;
+      rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
+      if (rs) rs.disabled = false;
+      rb.textContent = '🎙 Ghi lại';
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại rồi tự chấm bên dưới.`;
+      st.rec = true; st.dur = dur; upd();
+    };
+    t0 = Date.now(); mr.start();
+    rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
+  };
+  rp.onclick = () => audio && audio.play();
+  if (rs) rs.onclick = async () => {
+    if (!blob) return;
+    rs.disabled = true; rst.textContent = 'Đang gửi…';
+    try {
+      const b64 = await new Promise(r => { const f = new FileReader(); f.onload = () => r(String(f.result).split(',')[1]); f.readAsDataURL(blob); });
+      await sendGateway({ type: 'audio', name: Store.load().name || 'Không tên', lesson: LESSON, file: (opt.id || 'GhiAm') + '_01.' + (/mp4/.test(blob.type) ? 'm4a' : 'webm'), mime: blob.type, audio: b64, label: opt.label || '', dur: st.dur || '', target: opt.sample || '' });
+      st.sent = true; rst.textContent = '✅ Đã gửi cho cô'; upd();
+    } catch (e) { rs.disabled = false; rst.textContent = '⚠️ Chưa gửi được, thử lại nhé.'; }
+  };
+  $$('input[data-c]', host).forEach(c => c.onchange = () => { st.checked[+c.dataset.c] = c.checked; upd(); });
+  st.done = false;
+  return st;
+}
+async function sendGateway(payload) {
+  if (!SCRIPT_URL) return { ok: false };
+  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+</script>
+<script>const LESSON = 'BAITAP_PHAT_AM_L';
+Store.key = 'lpage:' + LESSON;
+const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+let S = {}, cur = 0;
+const live = {};
+function save() { Store.save(S); chrome(); }
+function setScore(k, first, total) { S.sc = S.sc || {}; if (!S.sc[k]) S.sc[k] = [first, total]; save(); }
+function markPart(p) { S.pd = S.pd || {}; S.pd[p] = true; save(); }
+function partDone(p) { const need = PARTS.find(x => x.id === p).tasks; return need.every(k => S.sc && S.sc[k]); }
+function recFlag(id, st) { S.rc = S.rc || {}; if (st.done && !S.rc[id]) { S.rc[id] = true; save(); } }
+
+/* Sort: items [{w,say?,a,x}], opts[] */
+function Sort(host, items, opts, cb) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  st.done = () => st.ok === st.total;
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const r = document.createElement('div'); r.className = 'sortrow';
+    r.innerHTML = `<button class="w wd" data-s="${esc(it.say || it.w)}">${esc(it.w)}</button>` + opts.map((o, j) => `<button class="ob" data-j="${j}">${esc(o)}</button>`).join('') + '<div class="fb" hidden></div>';
+    host.appendChild(r);
+    $$('.ob', r).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const j = +b.dataset.j, fb = $('.fb', r);
+      if (j === it.a) {
+        b.classList.add('ok'); $$('.ob', r).forEach(z => z.disabled = true);
+        if (!st.tried[i]) st.first++; st.ok++;
+        fb.hidden = false; fb.textContent = it.x || '';
+        cb && cb(st);
+      } else { b.classList.add('bad'); b.disabled = true; st.tried[i] = true; fb.hidden = false; fb.textContent = 'Chưa đúng, thử lại nhé.'; }
+    });
+  });
+  return st;
+}
+/* Fill blend */
+function Fill(host, items, opts, cb) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  st.done = () => st.ok === st.total;
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const r = document.createElement('div'); r.className = 'q';
+    r.innerHTML = `<div class="qt">${i + 1}. ${esc(it.pre)}<span class="blank">__</span>${esc(it.suf)}</div><div class="sortrow">` + opts.map(o => `<button class="ob" data-o="${o}">${o}</button>`).join('') + '<div class="fb" hidden></div></div>';
+    host.appendChild(r);
+    $$('.ob', r).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const fb = $('.fb', r);
+      if (b.dataset.o === it.a) {
+        b.classList.add('ok'); $$('.ob', r).forEach(z => z.disabled = true);
+        $('.blank', r).textContent = it.a;
+        if (!st.tried[i]) st.first++; st.ok++;
+        fb.hidden = false; fb.textContent = it.pre + it.a + it.suf;
+        speak(it.pre + it.a + it.suf);
+        cb && cb(st);
+      } else { b.classList.add('bad'); b.disabled = true; st.tried[i] = true; fb.hidden = false; fb.textContent = 'Chưa đúng, thử lại nhé.'; }
+    });
+  });
+  return st;
+}
+/* Click words */
+function ClickWords(host, text, targets, cb) {
+  const tg = new Set(targets);
+  const words = text.split(/\s+/);
+  host.innerHTML = `<div class="tw">${words.map((w, i) => `<span data-i="${i}" data-w="${esc(w.toLowerCase().replace(/[^a-z']/g, ''))}">${esc(w)}</span>`).join(' ')}</div>
+  <div class="rrow" style="margin-top:8px"><button class="btn sm cw-check">Kiểm tra</button><button class="btn sm ghost cw-reset">Làm lại</button></div><div class="x cw-msg"></div>`;
+  const spans = $$('.tw span', host);
+  spans.forEach(s => s.onclick = () => { if (s.classList.contains('locked')) return; s.classList.toggle('sel'); });
+  $('.cw-check', host).onclick = () => {
+    let good = 0, wrong = 0, miss = 0;
+    spans.forEach(s => {
+      const isT = tg.has(s.dataset.w), sel = s.classList.contains('sel');
+      s.classList.remove('good', 'miss', 'wrongsel');
+      if (isT && sel) { s.classList.add('good'); good++; }
+      else if (isT && !sel) { s.classList.add('miss'); miss++; }
+      else if (!isT && sel) { s.classList.add('wrongsel'); wrong++; }
+    });
+    const total = spans.filter(s => tg.has(s.dataset.w)).length;
+    $('.cw-msg', host).textContent = `Đúng ${good}/${total} từ${wrong ? `, chọn thừa ${wrong} từ` : ''}${miss ? `, còn thiếu ${miss} từ (viền nét đứt)` : ''}.`;
+    cb && cb(Math.max(0, good - wrong), total);
+  };
+  $('.cw-reset', host).onclick = () => { spans.forEach(s => s.classList.remove('sel', 'good', 'miss', 'wrongsel')); $('.cw-msg', host).textContent = ''; };
+}
+function recs(host, list, prefix) {
+  list.forEach(r => {
+    const d = document.createElement('div'); host.appendChild(d);
+    const st = Recorder(d, { id: prefix + r.id, target: esc(r.target), sample: r.sample || r.target, checks: r.checks, label: 'Bài tập - ' + prefix + r.id }, s => { recFlag(prefix + r.id, s); });
+    (live.recs = live.recs || {})[prefix + r.id] = st;
+  });
+}
+const REC_IDS = ['D4a', 'D4b', 'D4c', 'D5', 'E1a', 'E1b', 'F', 'G'];
+const CHK_VL = ['Đầu lưỡi đã sẵn ở lợi khi nói phụ âm đầu (p, k, f, s)', 'Blend đọc trong 1 âm tiết, không có "ờ" ở giữa'];
+const CHK_FIN = ['/l/ cuối từ vẫn nghe được', 'Cụm cuối không có "ờ" thừa'];
+
+const PARTS = [
+ { id: 'A', t: 'A. Nghe', tasks: ['A'],
+   html: `<h2>Phần A. Nghe và chọn từ</h2><p>Bấm 🔊, nghe, chọn từ em nghe được. Mẹo: bịt mũi để tách /l/ và /n/.</p><div id="qa"></div>`,
+   init() {
+     const items = [['right', 'light', 'right'], ['low', 'low', 'no'], ['pay', 'play', 'pay'], ['glass', 'grass', 'glass'], ['so', 'slow', 'so'], ['feel', 'feel', 'fee'], ['fry', 'fly', 'fry'], ['ten', 'tell', 'ten'], ['flat', 'fat', 'flat'], ['black', 'black', 'back']]
+       .map(x => ({ say: x[0], q: 'Em nghe thấy từ nào?', o: [x[1], x[2]], a: x[1] === x[0] ? 0 : 1 }));
+     live.A = Quiz($('#qa'), items, st => { if (st.done()) { setScore('A', st.first, st.total); markPart('A'); } });
+   } },
+ { id: 'B', t: 'B. Phân loại L', tasks: ['B'],
+   html: `<h2>Phần B. Phân loại L</h2><p>Chọn loại L của từng từ: <b>Clear L</b> (L trước nguyên âm), <b>Dark L</b> (L sau nguyên âm hoặc syllabic) hoặc <b>Silent L</b> (không đọc).</p><div id="sb"></div>`,
+   init() {
+     const it = [
+       ['lemon', 0, 'L đầu từ, trước nguyên âm: clear.'], ['feel', 1, 'L cuối từ: dark.'], ['walk', 2, '/wɔːk/: L không đọc.'], ['yellow', 0, 'L đầu âm tiết thứ hai: clear.'],
+       ['milk', 1, 'L đứng trước /k/: dark.'], ['half', 2, '/hæf/: L không đọc.'], ['school', 1, 'L cuối từ: dark.'], ['belong', 0, '/bɪˈlɔːŋ/: L đầu âm tiết sau: clear.'],
+       ['would', 2, '/wʊd/: L không đọc.'], ['table', 1, 'Syllabic L cuối từ: dark.'], ['listen', 0, '/ˈlɪsn/: L đầu từ: clear.'], ['help', 1, 'L trước /p/: dark.']
+     ].map(x => ({ w: x[0], a: x[1], x: x[2] }));
+     live.B = Sort($('#sb'), it, ['Clear L', 'Dark L', 'Silent L'], st => { if (st.done()) { setScore('B', st.first, st.total); markPart('B'); } });
+   } },
+ { id: 'C', t: 'C. Điền blend', tasks: ['C'],
+   html: `<h2>Phần C. Điền blend</h2><p>Chọn blend đúng cho chỗ trống. Khi đúng, máy đọc cả câu: em đọc theo, mỗi blend chỉ một âm tiết.</p><div id="fc"></div>`,
+   init() {
+     const it = [['My bag is ', 'ack.', 'bl'], ['Please ', 'ose the door.', 'cl'], ['We took a ', 'ane to Da Nang.', 'pl'], ['Birds can ', 'y.', 'fl'], ['I am ', 'ad to see you.', 'gl'], ['The baby is ', 'eeping.', 'sl'], ['He is a ', 'ever student.', 'cl'], ['The sky is ', 'ue today.', 'bl']].map(x => ({ pre: x[0], suf: x[1], a: x[2] }));
+     live.C = Fill($('#fc'), it, ['bl', 'cl', 'fl', 'gl', 'pl', 'sl'], st => { if (st.done()) { setScore('C', st.first, st.total); markPart('C'); } });
+   } },
+ { id: 'D', t: 'D. L vô thanh', tasks: ['D3', 'D5'],
+   html: `<h2>Phần D. Tập đọc âm L vô thanh</h2>
+   <p>Sau /p/, /k/, /f/, /s/, âm /l/ bị vô thanh một phần: hơi thoát ra trước, dây thanh chỉ rung khi chuyển sang nguyên âm. Sau /b/ và /ɡ/, /l/ vẫn hữu thanh (rung ngay).</p>
+   ${T([['Sau b, g (hữu thanh)', W('blue', '/bluː/') + W('black', '/blæk/') + W('glad', '/ɡlæd/') + W('glass', '/ɡlæs/'), 'Đặt tay lên cổ: thấy rung ngay từ đầu'], ['Sau p, k, f, s (vô thanh một phần)', W('play', '/pleɪ/') + W('clean', '/kliːn/') + W('fly', '/flaɪ/') + W('slow', '/sloʊ/'), 'Tay lên cổ: chưa rung ở đầu, rung khi đến nguyên âm']], ['Nhóm', 'Ví dụ', 'Cảm nhận'])}
+   <h3>3 bước luyện</h3>
+   <ol><li>Đặt đầu lưỡi sẵn ở lợi trên ngay khi bắt đầu /p/, /k/, /f/ hoặc /s/.</li><li>Thổi hơi nhẹ qua hai bên lưỡi, chưa rung dây thanh.</li><li>Bật tiếng khi chuyển sang nguyên âm: p-l-ay, c-l-ean, f-l-y, s-l-ow.</li></ol>
+   <div class="tip">Mẹo: đặt tờ giấy nhỏ trước miệng; tờ giấy bật nhẹ ở p, k, f, s rồi em mới nghe tiếng nguyên âm.</div>
+   <h3>D1. Đọc to theo nhóm</h3>
+   ${T([['pl', W('play') + W('please') + W('plan') + W('plate') + W('plane')], ['cl', W('clean') + W('class') + W('clock') + W('clap') + W('clever')], ['fl', W('fly') + W('floor') + W('flower') + W('flat') + W('flag')], ['sl', W('slow') + W('sleep') + W('slide') + W('slim') + W('slip')]], ['Blend', 'Từ luyện'])}
+   <h3>D2. Đọc cặp từ, nghe L hữu thanh và L vô thanh</h3>
+   <p>${W('glass')}${W('class')} &nbsp; ${W('blue')}${W('clue')} &nbsp; ${W('blow')}${W('flow')} &nbsp; ${W('black')}${W('slack')}</p>
+   <h3>D3. Phân loại</h3><p>Mỗi từ có L hữu thanh hay L vô thanh một phần?</p><div id="sd"></div>
+   <h3>D4. Đọc câu và ghi âm</h3><div id="d4"></div>
+   <h3>D5. Đọc đoạn ngắn</h3>
+   <p>Trước tiên, chạm vào các từ có p, k, f, s + l (có 8 từ trong đoạn, tính cả plays hai lần):</p><div id="cw1"></div><div id="d5"></div>`,
+   init() {
+     const it = [['black', 0, 'Sau /b/: L hữu thanh.'], ['play', 1, 'Sau /p/: L vô thanh một phần.'], ['glad', 0, 'Sau /ɡ/: L hữu thanh.'], ['clean', 1, 'Sau /k/: L vô thanh một phần.'], ['blue', 0, 'Sau /b/: L hữu thanh.'], ['fly', 1, 'Sau /f/: L vô thanh một phần.'], ['slow', 1, 'Sau /s/: L vô thanh một phần.'], ['glass', 0, 'Sau /ɡ/: L hữu thanh.']].map(x => ({ w: x[0], a: x[1], x: x[2] }));
+     live.D3 = Sort($('#sd'), it, ['L hữu thanh', 'L vô thanh một phần'], st => { if (st.done()) { setScore('D3', st.first, st.total); if (partDone('D')) markPart('D'); } });
+     recs($('#d4'), [
+       { id: 'a', target: 'Please play with the plane. The class is clean and clever.', checks: CHK_VL },
+       { id: 'b', target: 'Fly the flag by the flower shop. Slow down on the slippery slide.', checks: CHK_VL },
+       { id: 'c', target: 'The slim cat sleeps slowly. A clean glass and a blue plate are on the black table.', checks: CHK_VL }], 'D4');
+     const para = 'Clara plays in the school band. On Friday, she plays a flute at the school flower show. Her class sits on the floor and claps. After the show, they eat plain cake and drink cold milk. It is a lovely day.';
+     ClickWords($('#cw1'), para, ['plays', 'flute', 'flower', 'class', 'claps', 'floor', 'plain'], (g, t) => { setScore('D5', g, t); if (partDone('D')) markPart('D'); });
+     recs($('#d5'), [{ id: '', target: esc(para), sample: para, checks: CHK_VL }], 'D5');
+   } },
+ { id: 'E', t: 'E. Cụm cuối', tasks: ['E2'],
+   html: `<h2>Phần E. Đọc cụm cuối từ</h2><p>Giữ đầu lưỡi chạm lợi ở /l/, rồi chuyển thẳng sang phụ âm cuối, không thêm "ờ".</p>
+   ${T([['-lk', W('milk') + W('silk')], ['-lp', W('help')], ['-lt', W('belt') + W('melt')], ['-ld', W('cold') + W('old') + W('field') + W('world') + W('build')], ['-lf', W('shelf') + W('self')]], ['Cụm', 'Từ luyện'])}
+   <h3>E1. Đọc câu và ghi âm</h3><div id="e1"></div>
+   <h3>E2. Đuôi -ed: nghe và chọn âm cuối</h3><div id="qe"></div>`,
+   init() {
+     recs($('#e1'), [
+       { id: 'a', target: 'My child drinks cold milk. Please help me build a shelf.', checks: CHK_FIN },
+       { id: 'b', target: 'The film is about the world. He held the old belt in his hands.', checks: CHK_FIN }], 'E1');
+     const it = [['helped', 0], ['milked', 0], ['called', 1], ['filmed', 1], ['solved', 1], ['pulled', 1]].map(x => ({ say: x[0], q: 'Âm cuối của từ này là gì?', o: ['/t/', '/d/', '/ɪd/'], a: x[1], x: x[1] === 0 ? 'Sau âm vô thanh (/p/, /k/) đọc /t/.' : 'Sau /l/, /m/, /v/ (hữu thanh) đọc /d/.' }));
+     live.E2 = Quiz($('#qe'), it, st => { if (st.done()) { setScore('E2', st.first, st.total); markPart('E'); } });
+   } },
+ { id: 'F', t: 'F. Đọc đoạn văn', tasks: ['F1', 'F2'],
+   html: `<h2>Phần F. Đọc đoạn văn</h2>
+   <p><b>A Lovely Day at the Lake</b></p>
+   <p class="big">Last Sunday, Linda and her family went to a lake. The weather was lovely: the sky was blue and clear, and a slow wind moved the leaves. Linda played games with her little brother, Luke, while her parents cooked lunch. They ate fresh fruit and drank cold milk. After lunch, Luke slept on a blanket, and Linda read a book about planets. In the evening, they felt happy and a little tired, and they all said, "Let's come back soon!"</p>
+   <p><button class="btn sm ghost" id="fp1">🔊 Nghe cả bài (chậm)</button> <button class="btn sm ghost" id="fp2">🔊 Nghe cả bài (bình thường)</button></p>
+   <h3>F1. Chạm vào 7 từ có blend với L (bl, cl, pl, sl)</h3><div id="cw2"></div>
+   <h3>F2. Trả lời câu hỏi</h3><div id="qf"></div>
+   <h3>F3. Đọc to cả đoạn và ghi âm</h3><div id="f3"></div>`,
+   init() {
+     const txt = 'Last Sunday, Linda and her family went to a lake. The weather was lovely: the sky was blue and clear, and a slow wind moved the leaves. Linda played games with her little brother, Luke, while her parents cooked lunch. They ate fresh fruit and drank cold milk. After lunch, Luke slept on a blanket, and Linda read a book about planets. In the evening, they felt happy and a little tired, and they all said, Let\'s come back soon!';
+     $('#fp1').onclick = () => speak(txt, 0.7); $('#fp2').onclick = () => speak(txt, 0.95);
+     ClickWords($('#cw2'), txt, ['blue', 'clear', 'slow', 'played', 'slept', 'blanket', 'planets'], (g, t) => { setScore('F1', g, t); if (partDone('F')) markPart('F'); });
+     live.F2 = Quiz($('#qf'), [
+       { q: 'Where did Linda go?', o: ['To a market', 'To a lake', 'To a school'], a: 1 },
+       { q: 'What did they drink?', o: ['Hot tea', 'Orange juice', 'Cold milk'], a: 2 },
+       { q: 'What did Luke do after lunch?', o: ['He read a book', 'He slept on a blanket', 'He played games'], a: 1 }],
+       st => { if (st.done()) { setScore('F2', st.first, st.total); if (partDone('F')) markPart('F'); } });
+     recs($('#f3'), [{ id: '', target: 'Đọc to cả đoạn "A Lovely Day at the Lake".', sample: txt, checks: ['Dark L cuối từ nghe được (all, while, little, cold)', 'Blend đọc trong 1 âm tiết', 'Cụm cuối (cold, milk, felt) không có "ờ" thừa'] }], 'F');
+   } },
+ { id: 'G', t: 'G. Nói', tasks: [],
+   html: `<h2>Phần G. Nói và ghi âm</h2>
+   <p>Chọn một đề, nói 30-45 giây và ghi âm. Dùng ít nhất 6 từ có /l/, 2 từ có blend (như play, clean, blue) và 1 từ có cụm cuối (như cold, milk, help).</p>
+   <ol><li>Describe a place you like (a park, a lake, a classroom).</li><li>Tell me about a day you enjoyed with your family or friends.</li><li>Describe your favourite food or drink and why you like it.</li></ol>
+   <div id="g1"></div>`,
+   init() {
+     recs($('#g1'), [{ id: '', target: 'Đề em chọn: nói 30-45 giây.', sample: '', checks: ['Đầu lưỡi chạm lợi ở /l/ đầu từ', '/l/ cuối từ nghe được', 'Blend đọc trong 1 âm tiết', 'L vô thanh sau p, k, f, s đọc tự nhiên', 'Cụm cuối không có "ờ" thừa'] }], 'G');
+   } },
+ { id: 'R', t: 'Kết quả', tasks: [], result: true, html: '<h2>Kết quả</h2><div id="rs"></div>' }
+];
+const TIPS = {
+  A: 'Nghe: luyện thêm các cặp l/r, l/n và có L/không L; bịt mũi để tách /l/ và /n/.',
+  B: 'Phân loại L: L trước nguyên âm là clear, sau nguyên âm là dark; nhớ silent L (walk, half, would).',
+  C: 'Blend: chuyển thẳng từ phụ âm sang /l/ trong một âm tiết, không thêm "ờ".',
+  D3: 'L vô thanh: sau p, k, f, s hơi thoát ra trước khi /l/ rung; sau b, g /l/ rung ngay.',
+  D5: 'Tìm các từ p, k, f, s + l trong đoạn rồi đọc lại chậm.',
+  E2: 'Đuôi -ed: sau /p/, /k/ đọc /t/; sau /l/, /m/, /v/ đọc /d/.',
+  F1: 'Tìm blend trong đoạn văn: bl, cl, pl, sl.',
+  F2: 'Đọc hiểu: đọc lại đoạn văn và tìm chi tiết.'
+};
+const LABEL = { A: 'A. Nghe', B: 'B. Phân loại L', C: 'C. Điền blend', D3: 'D3. L vô thanh', D5: 'D5. Chạm từ', E2: 'E2. Đuôi -ed', F1: 'F1. Chạm blend', F2: 'F2. Đọc hiểu' };
+function chrome() {
+  const n = PARTS.filter(p => p.tasks.length && S.pd && S.pd[p.id]).length, tot = PARTS.filter(p => p.tasks.length).length;
+  const pct = Math.round(n / tot * 100);
+  $('#pb').style.width = pct + '%'; $('#pt').textContent = `Tiến độ ${pct}% (${n}/${tot} phần có chấm điểm)`;
+  $('#who').textContent = S.name ? '👤 ' + S.name : '';
+  $('#chips').innerHTML = PARTS.map((p, i) => `<button class="chip${i === cur ? ' on' : ''}${S.pd && S.pd[p.id] ? ' done' : ''}" data-i="${i}">${p.t}</button>`).join('');
+  $$('#chips .chip').forEach(b => b.onclick = () => go(+b.dataset.i));
+  $('#prev').disabled = cur === 0; $('#next').style.display = cur === PARTS.length - 1 ? 'none' : '';
+}
+function resultText() {
+  let f = 0, t = 0; const lines = [];
+  Object.keys(LABEL).forEach(k => { const v = S.sc && S.sc[k]; if (v) { f += v[0]; t += v[1]; lines.push(`${LABEL[k]}: ${v[0]}/${v[1]}`); } });
+  const rc = REC_IDS.filter(id => S.rc && S.rc[id]).length;
+  return { f, t, lines, rc, txt: `Phiếu bài tập /l/ - ${S.name || ''}\n${lines.join('\n')}\nTổng: ${f}/${t}\nBản ghi đã làm: ${rc}/${REC_IDS.length}` };
+}
+function go(i) { cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function render() {
+  const p = PARTS[cur];
+  $('#main').innerHTML = `<section class="card">${p.html}</section>`;
+  if (p.init) p.init();
+  if (p.result) {
+    const r = resultText();
+    const weak = Object.keys(LABEL).filter(k => { const v = S.sc && S.sc[k]; return v && v[0] / v[1] < 0.7; });
+    const missing = Object.keys(LABEL).filter(k => !(S.sc && S.sc[k]));
+    $('#rs').innerHTML = `<table><tr><th>Phần</th><th>Đúng ngay lần đầu</th></tr>${Object.keys(LABEL).map(k => `<tr><td>${LABEL[k]}</td><td>${S.sc && S.sc[k] ? S.sc[k][0] + '/' + S.sc[k][1] : '—'}</td></tr>`).join('')}</table>
+    <p class="big"><b>Tổng: ${r.f}/${r.t}</b> · Bản ghi đã làm: ${r.rc}/${REC_IDS.length}</p>
+    ${missing.length ? `<div class="warn">Em chưa làm: ${missing.map(k => LABEL[k]).join(', ')}.</div>` : ''}
+    ${weak.length ? `<div class="tip"><b>Cần ôn lại:</b><ul>${weak.map(k => `<li>${TIPS[k]}</li>`).join('')}</ul></div>` : (r.t ? '<div class="tip">Em làm rất tốt! Hãy nghe lại các bản ghi để kiểm tra lần nữa.</div>' : '')}
+    <p><button class="btn" id="copy">📋 Chép kết quả để gửi cô</button></p><p class="x" id="cm"></p>`;
+    $('#copy').onclick = () => { try { navigator.clipboard.writeText(r.txt); $('#cm').textContent = 'Đã chép. Dán vào Zalo gửi cô nhé.'; } catch (e) { $('#cm').textContent = r.txt; } };
+  }
+}
+$('#next').onclick = () => go(cur + 1);
+$('#prev').onclick = () => go(cur - 1);
+gate(st => { S = st; cur = 0; render(); chrome(); });
+</script>
+</body></html>
