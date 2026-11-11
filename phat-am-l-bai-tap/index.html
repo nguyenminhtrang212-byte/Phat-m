@@ -81,6 +81,16 @@ th{background:var(--pri2)}
 a{color:var(--pri)}
 select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
 details.card summary{cursor:pointer}
+textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);min-height:150px;resize:vertical}
+input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:15px;background:var(--card);color:var(--ink);width:150px}
+.iss{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:6px 0}
+.iss .fx{font-size:15px}.iss .fx s{color:var(--bad)}.iss .fx b{color:var(--ok)}
+.need{display:inline-block;border-radius:999px;padding:3px 10px;font-size:13px;margin:2px 4px 2px 0;background:var(--pri2)}
+.need.ok{background:var(--okbg);color:var(--ok)}
+.vc{border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0;background:var(--card)}
+.vc .vh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.vc .vw{font-size:19px;font-weight:700}.vc .vp{font-size:12px;background:var(--pri2);border-radius:8px;padding:1px 7px}
+.vc .vi{color:var(--mut)}.vc .vm{font-weight:600;margin:3px 0}.vc .vn{font-size:13px;color:var(--mut)}
+.vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
 </style></head><body>
 <div class="wrap">
 <header class="hero"><span class="stamp">Bài tập · A2-B1</span><h1>Âm /l/, blends và L vô thanh</h1><p class="sub">7 phần: nghe, phân loại, điền blend, tập đọc L vô thanh, cụm cuối, đọc đoạn văn, nói và ghi âm.</p></header>
@@ -93,7 +103,7 @@ details.card summary{cursor:pointer}
 <p class="foot">Dùng Chrome hoặc Safari để nghe mẫu và ghi âm. Bản ghi chỉ nằm trên máy em, trừ khi em bấm tải về hoặc gửi.</p>
 </div>
 <script>/* ===== shared helpers ===== */
-const SCRIPT_URL = ''; // để trống = chỉ nghe lại/tải về; điền URL cổng nhận bài (Apps Script) để bật nút "Gửi cho cô"
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng nhận bài (Apps Script) của cô: ghi âm về Drive, kết quả về Sheet "Kết quả Speaking"
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -201,7 +211,7 @@ function Recorder(host, opt, onChange) {
   const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
   let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
   const upd = () => {
-    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent || true);
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent);
     host.classList.toggle('ok', st.done);
     onChange && onChange(st);
   };
@@ -224,8 +234,8 @@ function Recorder(host, opt, onChange) {
       rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
       if (rs) rs.disabled = false;
       rb.textContent = '🎙 Ghi lại';
-      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại rồi tự chấm bên dưới.`;
-      st.rec = true; st.dur = dur; upd();
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại, tự chấm bên dưới${SCRIPT_URL ? ', rồi bấm 📤 Gửi cho cô' : ''}.`;
+      st.rec = true; st.sent = false; st.dur = dur; upd();
     };
     t0 = Date.now(); mr.start();
     rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
@@ -249,8 +259,253 @@ async function sendGateway(payload) {
   const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
   return r.json();
 }
+
+function voicePanel() {
+  const sel = $('#vsel'), spd = $('#vspd'); if (!sel) return;
+  const fill = () => {
+    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
+    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
+    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  };
+  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
+  spd.value = String(PREF.mult || 1);
+  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
+  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
+  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
+}
+
+/* Nộp bài: kiểm tra, cảnh báo thiếu, gửi về cổng của cô */
+function submitFlow(host, o) {
+  host.innerHTML = '<p><button class="btn" id="sbtn">📨 Nộp bài cho cô</button> <button class="btn ghost sm" id="copy2">📋 Chép kết quả</button></p><p class="x" id="smsg"></p>';
+  const msg = $('#smsg', host);
+  const S = () => o.S();
+  async function doSend() {
+    const p = o.payload(), s = S(), ign = s.ign || 0;
+    p.summary.writes = [p.summary.writes, ign ? `đã bỏ qua cảnh báo ${ign} lần` : ''].filter(Boolean).join(' · ');
+    msg.textContent = 'Đang nộp bài…';
+    try {
+      const r = await sendGateway({ type: 'submit', name: s.name || 'Không tên', lesson: LESSON, summary: p.summary, details: p.details });
+      if (r && r.ok) { s.submitted = Date.now(); o.save(); msg.innerHTML = '✅ <b>Đã nộp bài cho cô.</b> Em có thể đóng trang. Cô sẽ xem bài và nhận xét.'; }
+      else msg.textContent = '⚠️ Chưa nộp được. Em kiểm tra mạng rồi bấm Nộp bài lại nhé.';
+    } catch (e) { msg.textContent = '⚠️ Chưa nộp được (mất mạng?). Bấm Nộp bài lại nhé.'; }
+  }
+  $('#sbtn', host).onclick = () => {
+    const w = o.warns();
+    if (!w.length) { doSend(); return; }
+    modal('Em chưa làm xong', '<ul>' + w.map(x => `<li>${esc(x)}</li>`).join('') + '</ul><p>Em muốn làm tiếp hay vẫn nộp?</p>', [
+      { t: 'Quay lại làm tiếp', ghost: true },
+      { t: 'Vẫn nộp', f: () => { const s = S(); s.ign = (s.ign || 0) + 1; o.save(); doSend(); } }]);
+  };
+  $('#copy2', host).onclick = () => { const t = o.text(); try { navigator.clipboard.writeText(t); msg.textContent = 'Đã chép. Em có thể dán vào Zalo gửi cô.'; } catch (e) { msg.textContent = t; } };
+  if (S().submitted) msg.innerHTML = '✅ Em đã nộp bài trước đó. Bấm Nộp bài lần nữa nếu em muốn nộp bản mới.';
+}
 </script>
-<script>const LESSON = 'BAITAP_PHAT_AM_L';
+<script>/* ===== Kiểm tra ngữ pháp theo luật (lỗi phổ biến của học sinh A2-B1) ===== */
+const G_VERBS = new Set(('go like have play live love want need eat drink read study work watch make take come see know think enjoy help use walk run speak write listen sleep wake cook visit swim learn teach buy meet say tell find leave feel get give do travel talk start finish open close call ask answer dance sing draw paint shop stay arrive look try wear drive ride fly sit stand win lose bring keep pay spend hope miss move clean brush wash carry cry laugh smile relax practise practice cycle fall grow build choose forget remember sell send show wait worry plan join invite dream decide change follow happen hear hold jump lend climb prefer hate').split(' '));
+const G_AMBIG = new Set(['read']);
+const G_IRR = { go: 'went', see: 'saw', eat: 'ate', come: 'came', have: 'had', make: 'made', take: 'took', give: 'gave', get: 'got', drink: 'drank', write: 'wrote', run: 'ran', buy: 'bought', meet: 'met', say: 'said', tell: 'told', find: 'found', leave: 'left', feel: 'felt', think: 'thought', know: 'knew', speak: 'spoke', sleep: 'slept', do: 'did', bring: 'brought', keep: 'kept', pay: 'paid', spend: 'spent', teach: 'taught', drive: 'drove', ride: 'rode', fly: 'flew', sit: 'sat', stand: 'stood', win: 'won', lose: 'lost', wear: 'wore', swim: 'swam', sing: 'sang', fall: 'fell', grow: 'grew', build: 'built', choose: 'chose', forget: 'forgot', sell: 'sold', send: 'sent', hear: 'heard', hold: 'held', lend: 'lent', wake: 'woke', draw: 'drew' };
+const G_P2B = {}; Object.keys(G_IRR).forEach(k => { G_P2B[G_IRR[k]] = k; });
+const G_DBL = new Set(['stop', 'plan', 'shop', 'drop', 'chat', 'jog', 'hug', 'clap', 'grab', 'skip']);
+const G_DBL_ING = new Set(['swim', 'run', 'sit', 'get', 'stop', 'plan', 'shop', 'chat', 'jog', 'cut', 'hug', 'clap', 'grab', 'skip', 'win']);
+const G_ADJ = new Set('big small tall short fast slow cheap old young new long high low hot cold warm cool nice easy happy busy noisy quiet clean near close safe late early hard strong weak thin fat sad wet dry rich poor kind lovely funny friendly healthy heavy light'.split(' '));
+function g_s3(v) { if (v === 'have') return 'has'; if (v === 'go') return 'goes'; if (v === 'do') return 'does'; if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + 'ies'; if (/(s|sh|ch|x|z)$/.test(v)) return v + 'es'; return v + 's'; }
+function g_baseFromS(w) {
+  if (w === 'has') return 'have'; if (w === 'goes') return 'go'; if (w === 'does') return 'do';
+  const c = []; if (/ies$/.test(w)) c.push(w.slice(0, -3) + 'y'); if (/es$/.test(w)) c.push(w.slice(0, -2)); if (/s$/.test(w)) c.push(w.slice(0, -1));
+  return c.find(x => G_VERBS.has(x)) || null;
+}
+function g_past(v) { if (G_IRR[v]) return G_IRR[v]; if (/e$/.test(v)) return v + 'd'; if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + 'ied'; if (G_DBL.has(v)) return v + v.slice(-1) + 'ed'; return v + 'ed'; }
+function g_basePast(w) {
+  if (G_P2B[w]) return G_P2B[w];
+  const c = []; if (/ied$/.test(w)) c.push(w.slice(0, -3) + 'y'); if (/ed$/.test(w)) { c.push(w.slice(0, -2)); c.push(w.slice(0, -1)); if (/(.)\1ed$/.test(w)) c.push(w.slice(0, -3)); }
+  return c.find(x => G_VERBS.has(x)) || null;
+}
+function g_ing(v) { if (/ie$/.test(v)) return v.slice(0, -2) + 'ying'; if (/[^aeoy]e$/.test(v)) return v.slice(0, -1) + 'ing'; if (G_DBL_ING.has(v)) return v + v.slice(-1) + 'ing'; return v + 'ing'; }
+function g_comp(a) { if (a === 'good') return 'better'; if (a === 'bad') return 'worse'; if (/[^aeiou]y$/.test(a)) return a.slice(0, -1) + 'ier'; if (/e$/.test(a)) return a + 'r'; if (['big', 'hot', 'thin', 'fat', 'sad', 'wet'].includes(a)) return a + a.slice(-1) + 'er'; return a + 'er'; }
+const G_COMPS = new Set([...G_ADJ].map(g_comp).concat(['better', 'worse']));
+function g_cap(orig, fix) { return /^[A-Z]/.test(orig) && /^[a-z]/.test(fix) ? fix[0].toUpperCase() + fix.slice(1) : fix; }
+const G_PM = /\b(yesterday|ago|last\s+(night|week|weekend|month|year|summer|winter|spring|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|when i was)\b/i;
+const G_CONTR = { dont: "don't", cant: "can't", im: "I'm", ive: "I've", didnt: "didn't", doesnt: "doesn't", isnt: "isn't", wont: "won't", arent: "aren't", wasnt: "wasn't", havent: "haven't", hasnt: "hasn't", couldnt: "couldn't", wouldnt: "wouldn't", shouldnt: "shouldn't" };
+const G_OVER = { goed: 'went', eated: 'ate', buyed: 'bought', maked: 'made', taked: 'took', gived: 'gave', comed: 'came', writed: 'wrote', runned: 'ran', drinked: 'drank', sleeped: 'slept', thinked: 'thought', knowed: 'knew', speaked: 'spoke', feeled: 'felt', finded: 'found', leaved: 'left', meeted: 'met', teached: 'taught', getted: 'got', haved: 'had', doed: 'did', sayed: 'said', payed: 'paid', telled: 'told' };
+const G_SPELL = { recieve: 'receive', beleive: 'believe', freind: 'friend', becuase: 'because', definately: 'definitely', seperate: 'separate', tommorow: 'tomorrow', tomorow: 'tomorrow', wich: 'which', teh: 'the', adress: 'address', libary: 'library', intresting: 'interesting', diffrent: 'different', beautifull: 'beautiful' };
+const G_PLU = { peoples: 'people', informations: 'information', advices: 'advice', homeworks: 'homework', furnitures: 'furniture', childrens: 'children' };
+const G_DAYS = 'monday|tuesday|wednesday|thursday|friday|saturday|sunday';
+const G_PHRASES = [
+  [/\blisten (music|songs?|radio|podcasts?)\b/gi, m => 'listen to ' + m[1], 'Nói "listen to + danh từ" (thêm "to").'],
+  [/\bdiscuss about\b/gi, () => 'discuss', '"discuss" không đi với "about".'],
+  [/\bam agree\b/gi, () => 'agree', 'Nói "I agree", không dùng "am" trước agree.'],
+  [new RegExp('\\bin (' + G_DAYS + ')s?\\b', 'gi'), m => 'on ' + m[1], 'Với thứ trong tuần dùng "on" (on Monday).'],
+  [/\b(?:on|at) (?:the )?(morning|afternoon|evening)\b(?! of)/gi, m => 'in the ' + m[1], 'Dùng "in the morning/afternoon/evening".'],
+  [/\bon (\d{1,2}(?::\d\d)?\s?(?:o'clock|am|pm))/gi, m => 'at ' + m[1], 'Với giờ cụ thể dùng "at" (at 7 o\'clock).'],
+  [/\bby foot\b/gi, () => 'on foot', 'Nói "on foot" (đi bộ).'],
+  [/\bvery (like|love|enjoy|hate)\b/gi, m => 'really ' + m[1], 'Nói "really like/love", không dùng "very" trước động từ.'],
+  [/\b(peoples|informations|advices|homeworks|furnitures|childrens)\b/gi, m => G_PLU[m[1].toLowerCase()], 'Từ này không thêm -s (hoặc là dạng số nhiều khác).'],
+  [/\bthere is (many|several|two|three|four|five|six|seven|eight|nine|ten)\b/gi, m => 'there are ' + m[1], 'Danh từ số nhiều dùng "there are".'],
+  [/\binteresting in\b/gi, () => 'interested in', 'Nói "interested in" (quan tâm đến).'],
+  [/\bmuch (people|friends|students|books|things|cars|children|flowers|trees)\b/gi, m => 'many ' + m[1], 'Danh từ đếm được số nhiều dùng "many".'],
+  [/\balot\b/gi, () => 'a lot', 'Viết tách: "a lot".'],
+  [/\b(dont|cant|im|ive|didnt|doesnt|isnt|wont|arent|wasnt|havent|hasnt|couldnt|wouldnt|shouldnt)\b/gi, m => G_CONTR[m[1].toLowerCase()], 'Thiếu dấu nháy đơn (apostrophe).'],
+  [/\b(goed|eated|buyed|maked|taked|gived|comed|writed|runned|drinked|sleeped|thinked|knowed|speaked|feeled|finded|leaved|meeted|teached|getted|haved|doed|sayed|payed|telled)\b/gi, m => G_OVER[m[1].toLowerCase()], 'Động từ bất quy tắc có dạng quá khứ riêng.'],
+  [/\b(recieve|beleive|freind|becuase|definately|seperate|tommorow|tomorow|wich|teh|adress|libary|intresting|diffrent|beautifull)\b/gi, m => G_SPELL[m[1].toLowerCase()], 'Sai chính tả.'],
+  [/\b(like|love|enjoy|hate|prefer) (swim|run|read|play|go|cook|dance|sing|walk|shop|travel|watch|listen|draw|paint|learn|study|eat|sleep|write|speak|talk|help|cycle|climb)\b(?! to\b)/gi, m => m[1] + ' ' + g_ing(m[2].toLowerCase()), 'Sau like/love/enjoy/hate dùng V-ing (hoặc to + V).'],
+  [/\benjoy to (\w+)\b/gi, m => 'enjoy ' + g_ing(m[1].toLowerCase()), 'Sau enjoy dùng V-ing, không dùng "to".'],
+  [/\b(it|he|she) were\b/gi, m => m[1] + ' was', 'Với it/he/she dùng "was".'],
+  [/\b(weather|food|music|homework|information|advice|traffic|pollution) are\b/gi, m => m[1] + ' is', '"' + 'weather, food, music, information…' + '" là danh từ không đếm được, dùng "is".'],
+  [/\b(last|next|every|on) (monday|tuesday|wednesday|thursday|friday|saturday|sunday|january|february|march|april|june|july|august|september|october|november|december)\b/gi, m => m[1] + ' ' + m[2][0].toUpperCase() + m[2].slice(1), 'Thứ và tháng trong tiếng Anh luôn viết hoa chữ cái đầu.'],
+  [/\b(i|he|she|we|they|you) have (\d{1,2}) years old\b/gi, m => { const s = m[1].toLowerCase(); return m[1] + ' ' + (s === 'i' ? 'am' : (s === 'he' || s === 'she') ? 'is' : 'are') + ' ' + m[2] + ' years old'; }, 'Nói tuổi dùng "am/is/are ... years old", không dùng "have".'],
+  [/\b(am|are|is) (live|go|study|work|play|want|need|eat|come|watch|listen)\b/gi, m => (m[1].toLowerCase() === 'is' ? g_s3(m[2].toLowerCase()) : m[2].toLowerCase()), 'Không dùng am/is/are trước động từ thường.'],
+  [/\b(?!had\b|that\b)(\w+) \1\b/gi, m => m[1], 'Lặp từ.']
+];
+function toksOf(text) {
+  const re = /[A-Za-z]+(?:['’][A-Za-z]+)*/g, out = []; let m;
+  while ((m = re.exec(text))) out.push({ w: m[0], lw: m[0].toLowerCase().replace(/’/g, "'"), s: m.index, e: m.index + m[0].length });
+  return out;
+}
+function grammarCheck(text) {
+  const issues = [], T = toksOf(text);
+  const segs = []; { const re = /[^.!?]+[.!?]*/g; let m; while ((m = re.exec(text))) segs.push({ s: m.index, e: m.index + m[0].length, pm: G_PM.test(m[0]) }); }
+  T.forEach(t => {
+    const sg = segs.find(x => t.s >= x.s && t.s < x.e); t.pm = !!(sg && sg.pm);
+    const b = text.slice(0, t.s).replace(/\s+$/, ''); t.first = !b.length || /[.!?]$/.test(b);
+  });
+  const adj = (a, b) => b && /^\s+$/.test(text.slice(a.e, b.s));
+  const push = (s, e, fix, msg) => { const found = text.slice(s, e); if (fix !== found) issues.push({ s, e, found, fix, msg }); };
+  T.forEach((t, i) => {
+    const n = T[i + 1], nn = T[i + 2];
+    let capDone = false;
+    if (t.lw === 'i' || /^i'(m|ll|ve|d)$/.test(t.lw)) { if (t.w[0] === 'i') { push(t.s, t.e, 'I' + t.w.slice(1), 'Chữ "I" (tôi) luôn viết hoa.'); capDone = true; } }
+    if (t.first && !capDone && /^[a-z]/.test(t.w)) push(t.s, t.e, t.w[0].toUpperCase() + t.w.slice(1), 'Đầu câu phải viết hoa.');
+    if ((t.lw === 'a' || t.lw === 'an') && adj(t, n) && !/^[A-Z]{2,}/.test(n.w)) {
+      const nw = n.lw; const vowel = /^(hour|honest|honou?r|heir)/.test(nw) ? true : /^(uni|use|usu|uten|eu|one|once|ubi)/.test(nw) ? false : /^[aeiou]/.test(nw);
+      if (t.lw === 'a' && vowel) push(t.s, t.e, g_cap(t.w, 'an'), 'Trước từ bắt đầu bằng âm nguyên âm dùng "an".');
+      if (t.lw === 'an' && !vowel) push(t.s, t.e, g_cap(t.w, 'a'), 'Trước từ bắt đầu bằng âm phụ âm dùng "a".');
+    }
+    if (!n || !adj(t, n)) return;
+    const S3 = ['he', 'she', 'it'], PL = ['i', 'you', 'we', 'they'];
+    if (t.pm && (S3.includes(t.lw) || PL.includes(t.lw))) {
+      if (n.lw === 'am' || n.lw === 'is' || n.lw === 'are') push(n.s, n.e, g_cap(n.w, (t.lw === 'i' || S3.includes(t.lw)) ? 'was' : 'were'), 'Câu kể chuyện quá khứ: dùng was/were.');
+      else if (!(n.lw === 'have' && nn && nn.lw === 'been')) {
+        let b = null; if (G_VERBS.has(n.lw) && !G_AMBIG.has(n.lw)) b = n.lw; else if (!G_AMBIG.has(n.lw)) b = g_baseFromS(n.lw);
+        if (b) push(n.s, n.e, g_cap(n.w, g_past(b)), 'Câu có dấu hiệu quá khứ (yesterday, last…, ago): động từ chia quá khứ.');
+      }
+    } else if (!t.pm) {
+      if (t.lw === 'i' && (n.lw === 'is' || n.lw === 'are')) push(n.s, n.e, 'am', 'Với "I" dùng "am".');
+      if (S3.includes(t.lw) && (n.lw === 'are' || n.lw === 'am')) push(n.s, n.e, 'is', 'Với he/she/it dùng "is".');
+      if ((t.lw === 'you' || t.lw === 'we' || t.lw === 'they') && (n.lw === 'is' || n.lw === 'am')) push(n.s, n.e, 'are', 'Với you/we/they dùng "are".');
+      if (S3.includes(t.lw) && G_VERBS.has(n.lw) && !G_AMBIG.has(n.lw)) push(n.s, n.e, g_cap(n.w, g_s3(n.lw)), 'Với he/she/it, động từ thêm -s/-es.');
+      if (PL.includes(t.lw) && /s$/.test(n.lw) && !G_AMBIG.has(n.lw)) { const b = g_baseFromS(n.lw); if (b) push(n.s, n.e, g_cap(n.w, b), 'Với I/you/we/they, động từ không thêm -s.'); }
+    }
+    if (['you', 'we', 'they'].includes(t.lw) && n.lw === 'was') push(n.s, n.e, 'were', 'Với you/we/they dùng "were".');
+    if (['he', 'she', 'it'].includes(t.lw) && (n.lw === 'dont' || n.lw === "don't")) push(n.s, n.e, "doesn't", 'Với he/she/it dùng "doesn\'t".');
+    if (['i', 'you', 'we', 'they'].includes(t.lw) && (n.lw === 'doesnt' || n.lw === "doesn't")) push(n.s, n.e, "don't", 'Với I/you/we/they dùng "don\'t".');
+    if (t.lw === 'more') {
+      if (G_ADJ.has(n.lw)) push(t.s, n.e, g_comp(n.lw), 'Tính từ ngắn: thêm -er, không dùng "more".');
+      else if (G_COMPS.has(n.lw)) push(t.s, n.e, n.w, 'Không dùng "more" cùng dạng so sánh -er.');
+    }
+    const AUX = ['did', "didn't", 'didnt', 'does', "doesn't", 'doesnt', 'do', "don't", 'dont', 'can', "can't", 'cannot', 'could', "couldn't", 'will', "won't", 'would', "wouldn't", 'should', "shouldn't", 'must', 'may', 'might'];
+    if (AUX.includes(t.lw)) {
+      let v = n, vi = i + 1; if (v.lw === 'not' && T[i + 2] && adj(v, T[i + 2])) { v = T[i + 2]; vi = i + 2; }
+      if (v.lw === 'to' && !['do', 'does', 'did', "don't", "doesn't", "didn't", 'dont', 'doesnt', 'didnt'].includes(t.lw) && !['will'].includes(t.lw) || (v.lw === 'to' && ['will', 'can', 'could', 'must', 'may', 'might', 'should', 'would'].includes(t.lw))) {
+        if (['can', "can't", 'could', "couldn't", 'will', "won't", 'would', "wouldn't", 'should', "shouldn't", 'must', 'may', 'might'].includes(t.lw)) push(t.s, v.e, t.w, 'Sau can/could/will/should/must không dùng "to".');
+      } else {
+        let b = null;
+        if (!G_AMBIG.has(v.lw) && !G_VERBS.has(v.lw)) b = g_basePast(v.lw) || g_baseFromS(v.lw);
+        if (b && b !== v.lw) push(v.s, v.e, g_cap(v.w, b), 'Sau did/does/do/can/will… dùng động từ nguyên mẫu (không -s, không quá khứ).');
+      }
+    }
+  });
+  G_PHRASES.forEach(([re, f, msg]) => { re.lastIndex = 0; let m; while ((m = re.exec(text))) { push(m.index, m.index + m[0].length, g_cap(m[0], f(m)), msg); if (m[0].length === 0) re.lastIndex++; } });
+  issues.sort((a, b) => a.s - b.s || b.e - a.e);
+  const out = []; let last = -1;
+  issues.forEach(x => { if (x.s >= last) { out.push(x); last = x.e; } });
+  return out;
+}
+function applyIssues(text, list) {
+  return [...list].filter(x => x.fix != null).sort((a, b) => b.s - a.s).reduce((t, x) => t.slice(0, x.s) + x.fix + t.slice(x.e), text);
+}
+const G_SILENT = new Set(['walk', 'talk', 'chalk', 'half', 'calm', 'palm', 'salmon', 'folk', 'yolk', 'would', 'could', 'should', 'calf', 'behalf']);
+function speakStats(text) {
+  const ws = (text.toLowerCase().match(/[a-z]+(?:'[a-z]+)*/g) || []);
+  const u = [...new Set(ws)];
+  return {
+    words: ws.length,
+    l: u.filter(w => /l/.test(w) && !G_SILENT.has(w)),
+    blend: u.filter(w => /^(bl|cl|fl|gl|pl|sl|spl)/.test(w)),
+    fin: u.filter(w => /(lk|lp|lt|ld|lf|lm|lv|lth|lch|lge|lve)s?$/.test(w) && !G_SILENT.has(w))
+  };
+}
+
+/* ===== Composer: chọn đề -> soạn bài -> kiểm tra ngữ pháp -> (ghi âm) ===== */
+function Composer(host, o) {
+  const S0 = o.S(); S0.comp = S0.comp || {};
+  const C = S0.comp[o.id] = S0.comp[o.id] || { checks: 0, applied: 0 };
+  const MIN = o.min || 40, id = o.id;
+  host.innerHTML = `<h3>① Chọn đề</h3><div class="cpr">${o.prompts.map((p, i) => `<label class="tick" style="background:var(--pri2);color:var(--ink)"><input type="radio" name="cp-${id}" value="${i}"${C.topic === i ? ' checked' : ''}> <span>${esc(p)}</span></label>`).join('')}</div>
+  <h3>② Soạn bài (ít nhất ${MIN} từ)</h3><textarea class="cta" placeholder="${esc(o.placeholder || 'Viết bài của em ở đây…')}"></textarea>
+  <div class="x cmeta"></div><div class="cneeds"></div>
+  <h3>③ Kiểm tra ngữ pháp</h3><p><button class="btn cchk">✅ Kiểm tra ngữ pháp</button> <button class="btn ghost sm cfix" hidden>Sửa tất cả gợi ý tự động</button></p><div class="cres"></div>
+  ${o.record ? '<h3>④ Ghi âm đọc đúng bài em đã soạn</h3><div class="clock warn"></div><div class="crec"></div>' : ''}`;
+  const ta = $('.cta', host), res = $('.cres', host), fixBtn = $('.cfix', host);
+  ta.value = C.text || '';
+  const words = t => (t.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || []).length;
+  const cur = () => ta.value.trim();
+  const save = () => o.save && o.save();
+  let issues = [];
+  function meta() {
+    const st = speakStats(ta.value);
+    $('.cmeta', host).textContent = `${st.words} từ · cần ít nhất ${MIN} từ`;
+    if (o.needs) $('.cneeds', host).innerHTML = o.needs(ta.value, st).map(n => `<span class="need${n.ok ? ' ok' : ''}">${n.ok ? '✅' : '⬜'} ${esc(n.t)}</span>`).join('');
+  }
+  function reason() {
+    const t = cur();
+    if (C.topic == null) return 'Em chọn đề ở bước ① trước.';
+    if (words(t) < MIN) return `Bài còn ngắn (${words(t)}/${MIN} từ). Em viết thêm rồi bấm Kiểm tra ngữ pháp.`;
+    if (!C.checkedText) return 'Em bấm "Kiểm tra ngữ pháp" ở bước ③ để mở phần ghi âm.';
+    if (C.checkedText !== t) return 'Em vừa sửa bài. Bấm "Kiểm tra ngữ pháp" lại để ghi âm bản mới.';
+    return '';
+  }
+  function unlock() {
+    if (!o.record) { o.onChange && o.onChange(); return; }
+    const lock = $('.clock', host), rec = $('.crec', host), why = reason(), t = cur();
+    if (why) {
+      lock.hidden = false; lock.textContent = why;
+      if (rec.dataset.t) { rec.dataset.t = ''; rec.innerHTML = ''; C.recDone = false; o.onRec && o.onRec({ done: false }); }
+    } else {
+      lock.hidden = false; lock.className = 'tip clock';
+      lock.textContent = issues.length ? `Còn ${issues.length} gợi ý chưa sửa. Em có thể sửa rồi kiểm tra lại, hoặc ghi âm luôn bản này.` : 'Bài đã kiểm tra. Em đọc to và ghi âm bài của mình nhé.';
+      if (rec.dataset.t !== t) {
+        rec.dataset.t = t; rec.innerHTML = '';
+        const dd = document.createElement('div'); rec.appendChild(dd);
+        Recorder(dd, { id, target: esc(t).replace(/\n/g, '<br>'), sample: t, checks: o.recChecks, label: o.label }, st => { C.recDone = st.done; C.sent = st.sent; save(); o.onRec && o.onRec(st); o.onChange && o.onChange(); });
+      }
+    }
+    if (why) lock.className = 'warn clock';
+    o.onChange && o.onChange();
+  }
+  function render() {
+    if (!issues.length) { res.innerHTML = '<div class="tip">✅ Máy không thấy lỗi ngữ pháp phổ biến. Máy chỉ bắt được các lỗi thường gặp, nên em vẫn đọc lại bài của mình thêm một lần nữa nhé.</div>'; fixBtn.hidden = true; return; }
+    res.innerHTML = `<p><b>Máy tìm thấy ${issues.length} chỗ có thể sửa:</b></p>` + issues.map((x, i) => `<div class="iss"><div class="fx"><s>${esc(x.found)}</s> → <b>${esc(x.fix)}</b></div><div class="x">${esc(x.msg)}</div><button class="btn sm ghost" data-i="${i}">Áp dụng</button></div>`).join('');
+    fixBtn.hidden = false;
+    $$('.iss .btn', res).forEach(b => b.onclick = () => { ta.value = applyIssues(cur(), [issues[+b.dataset.i]]); C.applied++; C.text = ta.value; run(false); });
+  }
+  function run(manual) {
+    const t = cur();
+    if (!t) { res.innerHTML = '<div class="warn">Em chưa viết gì. Hãy soạn bài trước.</div>'; return; }
+    issues = grammarCheck(t);
+    if (manual) { C.checks++; if (C.firstIssues == null) { C.firstText = t; C.firstIssues = issues.length; } }
+    C.lastIssues = issues.length; C.checkedText = t; C.text = ta.value;
+    render(); meta(); unlock(); save();
+  }
+  $('.cchk', host).onclick = () => run(true);
+  fixBtn.onclick = () => { ta.value = applyIssues(cur(), issues); C.applied += issues.length; C.text = ta.value; run(false); };
+  ta.oninput = () => { C.text = ta.value; meta(); if (C.checkedText !== cur()) { res.innerHTML = C.checkedText ? '<div class="x">Bài đã thay đổi. Bấm "Kiểm tra ngữ pháp" để máy xem lại.</div>' : ''; } unlock(); save(); };
+  $$('input[type=radio]', host).forEach(r => r.onchange = () => { C.topic = +r.value; save(); unlock(); });
+  meta(); if (C.checkedText && C.checkedText === cur()) { issues = grammarCheck(cur()); render(); }
+  unlock();
+  return { C, done: () => o.record ? !!(C.recDone && C.checkedText === cur()) : !!(C.checkedText && C.checkedText === cur() && words(cur()) >= MIN), words: () => words(cur()), text: () => cur() };
+}
+</script>
+<script>const LESSON = 'Phat am L - Bai tap A2-B1';
 Store.key = 'lpage:' + LESSON;
 const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
 let S = {}, cur = 0;
@@ -259,7 +514,7 @@ function save() { Store.save(S); chrome(); }
 function setScore(k, first, total) { S.sc = S.sc || {}; if (!S.sc[k]) S.sc[k] = [first, total]; save(); }
 function markPart(p) { S.pd = S.pd || {}; S.pd[p] = true; save(); }
 function partDone(p) { const need = PARTS.find(x => x.id === p).tasks; return need.every(k => S.sc && S.sc[k]); }
-function recFlag(id, st) { S.rc = S.rc || {}; if (st.done && !S.rc[id]) { S.rc[id] = true; save(); } }
+function recFlag(id, st) { S.rc = S.rc || {}; if (!!S.rc[id] !== !!st.done) { S.rc[id] = !!st.done; save(); } }
 
 /* Sort: items [{w,say?,a,x}], opts[] */
 function Sort(host, items, opts, cb) {
@@ -337,6 +592,7 @@ function recs(host, list, prefix) {
     (live.recs = live.recs || {})[prefix + r.id] = st;
   });
 }
+const PROMPTS_G = ['Describe a place you like (a park, a lake, a classroom).', 'Tell me about a day you enjoyed with your family or friends.', 'Describe your favourite food or drink and why you like it.'];
 const REC_IDS = ['D4a', 'D4b', 'D4c', 'D5', 'E1a', 'E1b', 'F', 'G'];
 const CHK_VL = ['Đầu lưỡi đã sẵn ở lợi khi nói phụ âm đầu (p, k, f, s)', 'Blend đọc trong 1 âm tiết, không có "ờ" ở giữa'];
 const CHK_FIN = ['/l/ cuối từ vẫn nghe được', 'Cụm cuối không có "ờ" thừa'];
@@ -423,14 +679,18 @@ const PARTS = [
      recs($('#f3'), [{ id: '', target: 'Đọc to cả đoạn "A Lovely Day at the Lake".', sample: txt, checks: ['Dark L cuối từ nghe được (all, while, little, cold)', 'Blend đọc trong 1 âm tiết', 'Cụm cuối (cold, milk, felt) không có "ờ" thừa'] }], 'F');
    } },
  { id: 'G', t: 'G. Nói', tasks: [],
-   html: `<h2>Phần G. Nói và ghi âm</h2>
-   <p>Chọn một đề, nói 30-45 giây và ghi âm. Dùng ít nhất 6 từ có /l/, 2 từ có blend (như play, clean, blue) và 1 từ có cụm cuối (như cold, milk, help).</p>
-   <ol><li>Describe a place you like (a park, a lake, a classroom).</li><li>Tell me about a day you enjoyed with your family or friends.</li><li>Describe your favourite food or drink and why you like it.</li></ol>
+   html: `<h2>Phần G. Soạn bài nói rồi ghi âm</h2>
+   <p>Em <b>soạn bài nói trước</b>, nhấn <b>Kiểm tra ngữ pháp</b> để máy gợi ý sửa lỗi, rồi mới ghi âm. Bài cần ít nhất 40 từ, có 6 từ chứa /l/, 2 từ có blend (như play, clean, blue) và 1 từ có cụm cuối (như cold, milk, help).</p>
    <div id="g1"></div>`,
    init() {
-     recs($('#g1'), [{ id: '', target: 'Đề em chọn: nói 30-45 giây.', sample: '', checks: ['Đầu lưỡi chạm lợi ở /l/ đầu từ', '/l/ cuối từ nghe được', 'Blend đọc trong 1 âm tiết', 'L vô thanh sau p, k, f, s đọc tự nhiên', 'Cụm cuối không có "ờ" thừa'] }], 'G');
+     live.G = Composer($('#g1'), {
+       id: 'G', S: () => S, save, min: 40, prompts: PROMPTS_G, record: true, label: 'Bài tập - G',
+       placeholder: 'Ví dụ: I like the lake near my school. It is clean and blue…',
+       needs: (t, st) => [{ t: `${st.l.length}/6 từ có /l/`, ok: st.l.length >= 6 }, { t: `${st.blend.length}/2 từ blend`, ok: st.blend.length >= 2 }, { t: `${st.fin.length}/1 cụm cuối`, ok: st.fin.length >= 1 }],
+       recChecks: ['Em đọc đúng bài mình đã soạn', 'Đầu lưỡi chạm lợi ở /l/ đầu từ', '/l/ cuối từ nghe được', 'Blend đọc trong 1 âm tiết', 'Cụm cuối không có "ờ" thừa'],
+       onRec: st => recFlag('G', st), onChange: chrome });
    } },
- { id: 'R', t: 'Kết quả', tasks: [], result: true, html: '<h2>Kết quả</h2><div id="rs"></div>' }
+ { id: 'R', t: 'Nộp bài', tasks: [], result: true, html: '<h2>Nộp bài cho cô</h2><div id="rs"></div><div id="sub"></div>' }
 ];
 const TIPS = {
   A: 'Nghe: luyện thêm các cặp l/r, l/n và có L/không L; bịt mũi để tách /l/ và /n/.',
@@ -452,11 +712,32 @@ function chrome() {
   $$('#chips .chip').forEach(b => b.onclick = () => go(+b.dataset.i));
   $('#prev').disabled = cur === 0; $('#next').style.display = cur === PARTS.length - 1 ? 'none' : '';
 }
+function gInfo() {
+  const C = (S.comp && S.comp.G) || {}, t = C.text || '', st = speakStats(t), cur = grammarCheck(t);
+  return { C, t, st, left: cur.length, words: st.words };
+}
 function resultText() {
   let f = 0, t = 0; const lines = [];
   Object.keys(LABEL).forEach(k => { const v = S.sc && S.sc[k]; if (v) { f += v[0]; t += v[1]; lines.push(`${LABEL[k]}: ${v[0]}/${v[1]}`); } });
   const rc = REC_IDS.filter(id => S.rc && S.rc[id]).length;
-  return { f, t, lines, rc, txt: `Phiếu bài tập /l/ - ${S.name || ''}\n${lines.join('\n')}\nTổng: ${f}/${t}\nBản ghi đã làm: ${rc}/${REC_IDS.length}` };
+  return { f, t, lines, rc, txt: `Phiếu bài tập /l/ - ${S.name || ''}\n${lines.join('\n')}\nTổng: ${f}/${t}\nBản ghi đã gửi: ${rc}/${REC_IDS.length}` };
+}
+function warnList() {
+  const w = [], g = gInfo();
+  const miss = Object.keys(LABEL).filter(k => !(S.sc && S.sc[k]));
+  if (miss.length) w.push('Chưa làm: ' + miss.map(k => LABEL[k]).join(', ') + '.');
+  const unsent = REC_IDS.filter(id => !(S.rc && S.rc[id]));
+  if (unsent.length) w.push(`Còn ${unsent.length} bản ghi âm chưa ghi hoặc chưa gửi (${unsent.join(', ')}). Bản ghi chỉ tính khi đã bấm 📤 Gửi.`);
+  if (!g.t) w.push('Phần G: em chưa soạn bài nói.');
+  else if (!g.C.checks) w.push('Phần G: em chưa bấm Kiểm tra ngữ pháp.');
+  else if (g.words < 40) w.push(`Phần G: bài nói mới ${g.words}/40 từ.`);
+  return w;
+}
+function submitPayload() {
+  const r = resultText(), g = gInfo(), C = g.C, rows = [];
+  Object.keys(LABEL).forEach(k => { const v = S.sc && S.sc[k]; rows.push({ part: 'Bài tập - ' + LABEL[k], question: LABEL[k], answer: v ? `${v[0]}/${v[1]}` : 'chưa làm', correct: v ? String(v[1]) : '', result: v ? (v[0] / v[1] >= 0.7 ? 'tốt' : 'cần ôn') : 'chưa làm' }); });
+  rows.push({ part: 'Bài tập - G Nói', question: 'Đề: ' + (C.topic != null ? PROMPTS_G[C.topic] : '(chưa chọn)'), answer: 'Bản soạn đã chốt: ' + g.t, correct: 'Bản gõ lần kiểm tra đầu: ' + (C.firstText || ''), result: `kiểm tra ${C.checks || 0} lần · lần đầu ${C.firstIssues == null ? '?' : C.firstIssues} gợi ý · đã áp dụng ${C.applied || 0} · còn ${g.left} gợi ý · ${g.words} từ · /l/ ${g.st.l.length} · blend ${g.st.blend.length} · cụm cuối ${g.st.fin.length} · ghi âm ${S.rc && S.rc.G ? 'đã gửi' : 'chưa gửi'}` });
+  return { summary: { recordings: r.rc, avg: null, full: g.t ? `G: ${g.words} từ` : 'G: chưa soạn', writes: `G: ${C.checks || 0} lần kiểm tra ngữ pháp, còn ${g.left} gợi ý`, quiz: r.lines.join(' · ') + ` · Tổng ${r.f}/${r.t}` }, details: rows };
 }
 function go(i) { cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function render() {
@@ -466,30 +747,17 @@ function render() {
   if (p.result) {
     const r = resultText();
     const weak = Object.keys(LABEL).filter(k => { const v = S.sc && S.sc[k]; return v && v[0] / v[1] < 0.7; });
-    const missing = Object.keys(LABEL).filter(k => !(S.sc && S.sc[k]));
+    const w = warnList(), g = gInfo();
     $('#rs').innerHTML = `<table><tr><th>Phần</th><th>Đúng ngay lần đầu</th></tr>${Object.keys(LABEL).map(k => `<tr><td>${LABEL[k]}</td><td>${S.sc && S.sc[k] ? S.sc[k][0] + '/' + S.sc[k][1] : '—'}</td></tr>`).join('')}</table>
-    <p class="big"><b>Tổng: ${r.f}/${r.t}</b> · Bản ghi đã làm: ${r.rc}/${REC_IDS.length}</p>
-    ${missing.length ? `<div class="warn">Em chưa làm: ${missing.map(k => LABEL[k]).join(', ')}.</div>` : ''}
-    ${weak.length ? `<div class="tip"><b>Cần ôn lại:</b><ul>${weak.map(k => `<li>${TIPS[k]}</li>`).join('')}</ul></div>` : (r.t ? '<div class="tip">Em làm rất tốt! Hãy nghe lại các bản ghi để kiểm tra lần nữa.</div>' : '')}
-    <p><button class="btn" id="copy">📋 Chép kết quả để gửi cô</button></p><p class="x" id="cm"></p>`;
-    $('#copy').onclick = () => { try { navigator.clipboard.writeText(r.txt); $('#cm').textContent = 'Đã chép. Dán vào Zalo gửi cô nhé.'; } catch (e) { $('#cm').textContent = r.txt; } };
+    <p class="big"><b>Tổng: ${r.f}/${r.t}</b> · Bản ghi đã gửi: ${r.rc}/${REC_IDS.length}</p>
+    <p>Phần G: ${g.t ? `${g.words} từ, đã kiểm tra ngữ pháp ${g.C.checks || 0} lần, còn ${g.left} gợi ý` : 'chưa soạn'}.</p>
+    ${w.length ? `<div class="warn"><b>Còn thiếu:</b><ul>${w.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '<div class="tip">✅ Em đã làm đủ. Bấm Nộp bài.</div>'}
+    ${weak.length ? `<div class="tip"><b>Cần ôn lại:</b><ul>${weak.map(k => `<li>${TIPS[k]}</li>`).join('')}</ul></div>` : ''}`;
+    submitFlow($('#sub'), { S: () => S, save, warns: warnList, payload: submitPayload, text: () => r.txt });
   }
 }
 $('#next').onclick = () => go(cur + 1);
 $('#prev').onclick = () => go(cur - 1);
-function voicePanel() {
-  const sel = $('#vsel'), spd = $('#vspd');
-  const fill = () => {
-    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
-    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
-    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
-  };
-  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
-  spd.value = String(PREF.mult || 1);
-  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
-  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
-  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
-}
 gate(st => { voicePanel(); S = st; cur = 0; render(); chrome(); });
 </script>
 </body></html>

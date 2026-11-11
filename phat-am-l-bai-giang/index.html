@@ -81,6 +81,16 @@ th{background:var(--pri2)}
 a{color:var(--pri)}
 select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
 details.card summary{cursor:pointer}
+textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);min-height:150px;resize:vertical}
+input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:15px;background:var(--card);color:var(--ink);width:150px}
+.iss{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:6px 0}
+.iss .fx{font-size:15px}.iss .fx s{color:var(--bad)}.iss .fx b{color:var(--ok)}
+.need{display:inline-block;border-radius:999px;padding:3px 10px;font-size:13px;margin:2px 4px 2px 0;background:var(--pri2)}
+.need.ok{background:var(--okbg);color:var(--ok)}
+.vc{border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0;background:var(--card)}
+.vc .vh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.vc .vw{font-size:19px;font-weight:700}.vc .vp{font-size:12px;background:var(--pri2);border-radius:8px;padding:1px 7px}
+.vc .vi{color:var(--mut)}.vc .vm{font-weight:600;margin:3px 0}.vc .vn{font-size:13px;color:var(--mut)}
+.vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
 </style></head><body>
 <div class="wrap">
 <header class="hero"><span class="stamp">Tự học · A2-B1</span><h1>Phát âm /l/ và Consonant Blends với L</h1><p class="sub">Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi mới sang bước tiếp theo.</p></header>
@@ -90,7 +100,7 @@ details.card summary{cursor:pointer}
 <p class="foot">Tiến độ lưu trên trình duyệt này. Dùng Chrome hoặc Safari để nghe mẫu và ghi âm.</p>
 </div>
 <script>/* ===== shared helpers ===== */
-const SCRIPT_URL = ''; // để trống = chỉ nghe lại/tải về; điền URL cổng nhận bài (Apps Script) để bật nút "Gửi cho cô"
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng nhận bài (Apps Script) của cô: ghi âm về Drive, kết quả về Sheet "Kết quả Speaking"
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
@@ -198,7 +208,7 @@ function Recorder(host, opt, onChange) {
   const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
   let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
   const upd = () => {
-    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent || true);
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent);
     host.classList.toggle('ok', st.done);
     onChange && onChange(st);
   };
@@ -221,8 +231,8 @@ function Recorder(host, opt, onChange) {
       rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
       if (rs) rs.disabled = false;
       rb.textContent = '🎙 Ghi lại';
-      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại rồi tự chấm bên dưới.`;
-      st.rec = true; st.dur = dur; upd();
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại, tự chấm bên dưới${SCRIPT_URL ? ', rồi bấm 📤 Gửi cho cô' : ''}.`;
+      st.rec = true; st.sent = false; st.dur = dur; upd();
     };
     t0 = Date.now(); mr.start();
     rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
@@ -246,8 +256,48 @@ async function sendGateway(payload) {
   const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
   return r.json();
 }
+
+function voicePanel() {
+  const sel = $('#vsel'), spd = $('#vspd'); if (!sel) return;
+  const fill = () => {
+    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
+    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
+    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  };
+  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
+  spd.value = String(PREF.mult || 1);
+  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
+  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
+  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
+}
+
+/* Nộp bài: kiểm tra, cảnh báo thiếu, gửi về cổng của cô */
+function submitFlow(host, o) {
+  host.innerHTML = '<p><button class="btn" id="sbtn">📨 Nộp bài cho cô</button> <button class="btn ghost sm" id="copy2">📋 Chép kết quả</button></p><p class="x" id="smsg"></p>';
+  const msg = $('#smsg', host);
+  const S = () => o.S();
+  async function doSend() {
+    const p = o.payload(), s = S(), ign = s.ign || 0;
+    p.summary.writes = [p.summary.writes, ign ? `đã bỏ qua cảnh báo ${ign} lần` : ''].filter(Boolean).join(' · ');
+    msg.textContent = 'Đang nộp bài…';
+    try {
+      const r = await sendGateway({ type: 'submit', name: s.name || 'Không tên', lesson: LESSON, summary: p.summary, details: p.details });
+      if (r && r.ok) { s.submitted = Date.now(); o.save(); msg.innerHTML = '✅ <b>Đã nộp bài cho cô.</b> Em có thể đóng trang. Cô sẽ xem bài và nhận xét.'; }
+      else msg.textContent = '⚠️ Chưa nộp được. Em kiểm tra mạng rồi bấm Nộp bài lại nhé.';
+    } catch (e) { msg.textContent = '⚠️ Chưa nộp được (mất mạng?). Bấm Nộp bài lại nhé.'; }
+  }
+  $('#sbtn', host).onclick = () => {
+    const w = o.warns();
+    if (!w.length) { doSend(); return; }
+    modal('Em chưa làm xong', '<ul>' + w.map(x => `<li>${esc(x)}</li>`).join('') + '</ul><p>Em muốn làm tiếp hay vẫn nộp?</p>', [
+      { t: 'Quay lại làm tiếp', ghost: true },
+      { t: 'Vẫn nộp', f: () => { const s = S(); s.ign = (s.ign || 0) + 1; o.save(); doSend(); } }]);
+  };
+  $('#copy2', host).onclick = () => { const t = o.text(); try { navigator.clipboard.writeText(t); msg.textContent = 'Đã chép. Em có thể dán vào Zalo gửi cô.'; } catch (e) { msg.textContent = t; } };
+  if (S().submitted) msg.innerHTML = '✅ Em đã nộp bài trước đó. Bấm Nộp bài lần nữa nếu em muốn nộp bản mới.';
+}
 </script>
-<script>const LESSON = 'GIANG_PHAT_AM_L';
+<script>const LESSON = 'Phat am L - Bai giang';
 Store.key = 'lpage:' + LESSON;
 const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
 const STEPS = [
@@ -368,7 +418,7 @@ const STEPS = [
  { id: 'done', t: '10. Tổng kết', end: true,
    html: `<h2>Tổng kết</h2><div id="sum"></div>
    <div class="tip">Bước tiếp theo: làm <a href="../phat-am-l-bai-tap/">phiếu bài tập A2-B1</a> (nghe, điền blend, tập đọc L vô thanh, đọc đoạn văn, ghi âm).</div>
-   <p><button class="btn" id="copy">📋 Chép kết quả để gửi cô</button></p><p class="x" id="cm"></p>` }
+   <div id="sub"></div>` }
 ];
 let S = {}, cur = 0;
 const live = {}; // per-step live state
@@ -448,8 +498,15 @@ function render() {
     const rows = STEPS.filter(x => x.quiz && S.score && S.score[x.id]).map(x => `<tr><td>${x.t}</td><td>${S.score[x.id][0]}/${S.score[x.id][1]}</td></tr>`).join('');
     const n = STEPS.filter((x, i) => isDone(i)).length;
     $('#sum').innerHTML = `<p>Em đã hoàn thành <b>${n}/${STEPS.length - 1}</b> bước học.</p><table><tr><th>Bước</th><th>Đúng ngay lần đầu</th></tr>${rows}</table>`;
-    const txt = `Bài giảng phát âm /l/ - ${S.name || ''}\n` + STEPS.filter(x => x.quiz && S.score && S.score[x.id]).map(x => `${x.t}: ${S.score[x.id][0]}/${S.score[x.id][1]}`).join('\n');
-    $('#copy').onclick = () => { try { navigator.clipboard.writeText(txt); $('#cm').textContent = 'Đã chép. Dán vào Zalo gửi cô nhé.'; } catch (e) { $('#cm').textContent = txt; } };
+    const sc = STEPS.filter(x => x.quiz && S.score && S.score[x.id]);
+    const txt = `Bài giảng phát âm /l/ - ${S.name || ''}\n` + sc.map(x => `${x.t}: ${S.score[x.id][0]}/${S.score[x.id][1]}`).join('\n');
+    submitFlow($('#sub'), { S: () => S, save: () => Store.save(S), text: () => txt,
+      warns: () => { const m = STEPS.map((x, i) => (!x.end && !isDone(i)) ? x.t : null).filter(Boolean); return m.length ? ['Chưa hoàn thành: ' + m.join('; ') + '.'] : []; },
+      payload: () => {
+        const recs = STEPS.filter(x => x.recs).reduce((n, x) => n + x.recs.length, 0);
+        return { summary: { recordings: recs, avg: null, full: '', writes: `Hoàn thành ${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1} bước`, quiz: sc.map(x => `${x.t}: ${S.score[x.id][0]}/${S.score[x.id][1]}`).join(' · ') },
+          details: sc.map(x => ({ part: 'Bài giảng', question: x.t, answer: `${S.score[x.id][0]}/${S.score[x.id][1]}`, correct: String(S.score[x.id][1]), result: 'đúng ngay lần đầu' })) };
+      } });
     if (!isDone(cur)) setDone(cur);
   }
   if (isDone(cur) && !s.end) $('#status').innerHTML = '<div class="tip">✅ Bước này đã hoàn thành. Em có thể làm lại để luyện thêm.</div>';
