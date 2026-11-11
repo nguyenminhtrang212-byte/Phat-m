@@ -93,7 +93,7 @@ input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 
 .vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
 </style></head><body>
 <div class="wrap">
-<header class="hero"><span class="stamp">Bài tập · A2-B1</span><h1>Âm /l/, blends và L vô thanh</h1><p class="sub">7 phần: nghe, phân loại, điền blend, tập đọc L vô thanh, cụm cuối, đọc đoạn văn, nói và ghi âm.</p></header>
+<header class="hero"><span class="stamp">Bài tập · A2-B1</span><h1>Âm /l/, blends và L vô thanh</h1><p class="sub">5 phần: nghe, phân loại, điền blend, cụm cuối, soạn bài nói và ghi âm.</p></header>
 <div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
 <details class="card" id="vp"><summary><b>🔊 Chọn người đọc (giọng đọc mẫu)</b></summary>
 <p class="x">Chọn giọng cho các phần nghe và đọc mẫu. Danh sách tuỳ theo máy của em (thường có giọng Mỹ, Anh, nam, nữ).</p>
@@ -593,7 +593,7 @@ function recs(host, list, prefix) {
   });
 }
 const PROMPTS_G = ['Describe a place you like (a park, a lake, a classroom).', 'Tell me about a day you enjoyed with your family or friends.', 'Describe your favourite food or drink and why you like it.'];
-const REC_IDS = ['D4a', 'D4b', 'D4c', 'D5', 'E1a', 'E1b', 'F', 'G'];
+const REC_IDS = ['E1a', 'E1b', 'G'];
 const CHK_VL = ['Đầu lưỡi đã sẵn ở lợi khi nói phụ âm đầu (p, k, f, s)', 'Blend đọc trong 1 âm tiết, không có "ờ" ở giữa'];
 const CHK_FIN = ['/l/ cuối từ vẫn nghe được', 'Cụm cuối không có "ờ" thừa'];
 
@@ -621,37 +621,11 @@ const PARTS = [
      const it = [['My bag is ', 'ack.', 'bl'], ['Please ', 'ose the door.', 'cl'], ['We took a ', 'ane to Da Nang.', 'pl'], ['Birds can ', 'y.', 'fl'], ['I am ', 'ad to see you.', 'gl'], ['The baby is ', 'eeping.', 'sl'], ['He is a ', 'ever student.', 'cl'], ['The sky is ', 'ue today.', 'bl']].map(x => ({ pre: x[0], suf: x[1], a: x[2] }));
      live.C = Fill($('#fc'), it, ['bl', 'cl', 'fl', 'gl', 'pl', 'sl'], st => { if (st.done()) { setScore('C', st.first, st.total); markPart('C'); } });
    } },
- { id: 'D', t: 'D. L vô thanh', tasks: ['D3', 'D5'],
-   html: `<h2>Phần D. Tập đọc âm L vô thanh</h2>
-   <p>Sau /p/, /k/, /f/, /s/, âm /l/ bị vô thanh một phần: hơi thoát ra trước, dây thanh chỉ rung khi chuyển sang nguyên âm. Sau /b/ và /ɡ/, /l/ vẫn hữu thanh (rung ngay).</p>
-   ${T([['Sau b, g (hữu thanh)', W('blue', '/bluː/') + W('black', '/blæk/') + W('glad', '/ɡlæd/') + W('glass', '/ɡlæs/'), 'Đặt tay lên cổ: thấy rung ngay từ đầu'], ['Sau p, k, f, s (vô thanh một phần)', W('play', '/pleɪ/') + W('clean', '/kliːn/') + W('fly', '/flaɪ/') + W('slow', '/sloʊ/'), 'Tay lên cổ: chưa rung ở đầu, rung khi đến nguyên âm']], ['Nhóm', 'Ví dụ', 'Cảm nhận'])}
-   <h3>3 bước luyện</h3>
-   <ol><li>Đặt đầu lưỡi sẵn ở lợi trên ngay khi bắt đầu /p/, /k/, /f/ hoặc /s/.</li><li>Thổi hơi nhẹ qua hai bên lưỡi, chưa rung dây thanh.</li><li>Bật tiếng khi chuyển sang nguyên âm: p-l-ay, c-l-ean, f-l-y, s-l-ow.</li></ol>
-   <div class="tip">Mẹo: đặt tờ giấy nhỏ trước miệng; tờ giấy bật nhẹ ở p, k, f, s rồi em mới nghe tiếng nguyên âm.</div>
-   <h3>D1. Đọc to theo nhóm</h3>
-   ${T([['pl', W('play') + W('please') + W('plan') + W('plate') + W('plane')], ['cl', W('clean') + W('class') + W('clock') + W('clap') + W('clever')], ['fl', W('fly') + W('floor') + W('flower') + W('flat') + W('flag')], ['sl', W('slow') + W('sleep') + W('slide') + W('slim') + W('slip')]], ['Blend', 'Từ luyện'])}
-   <h3>D2. Đọc cặp từ, nghe L hữu thanh và L vô thanh</h3>
-   <p>${W('glass')}${W('class')} &nbsp; ${W('blue')}${W('clue')} &nbsp; ${W('blow')}${W('flow')} &nbsp; ${W('black')}${W('slack')}</p>
-   <h3>D3. Phân loại</h3><p>Mỗi từ có L hữu thanh hay L vô thanh một phần?</p><div id="sd"></div>
-   <h3>D4. Đọc câu và ghi âm</h3><div id="d4"></div>
-   <h3>D5. Đọc đoạn ngắn</h3>
-   <p>Trước tiên, chạm vào các từ có p, k, f, s + l (có 8 từ trong đoạn, tính cả plays hai lần):</p><div id="cw1"></div><div id="d5"></div>`,
-   init() {
-     const it = [['black', 0, 'Sau /b/: L hữu thanh.'], ['play', 1, 'Sau /p/: L vô thanh một phần.'], ['glad', 0, 'Sau /ɡ/: L hữu thanh.'], ['clean', 1, 'Sau /k/: L vô thanh một phần.'], ['blue', 0, 'Sau /b/: L hữu thanh.'], ['fly', 1, 'Sau /f/: L vô thanh một phần.'], ['slow', 1, 'Sau /s/: L vô thanh một phần.'], ['glass', 0, 'Sau /ɡ/: L hữu thanh.']].map(x => ({ w: x[0], a: x[1], x: x[2] }));
-     live.D3 = Sort($('#sd'), it, ['L hữu thanh', 'L vô thanh một phần'], st => { if (st.done()) { setScore('D3', st.first, st.total); if (partDone('D')) markPart('D'); } });
-     recs($('#d4'), [
-       { id: 'a', target: 'Please play with the plane. The class is clean and clever.', checks: CHK_VL },
-       { id: 'b', target: 'Fly the flag by the flower shop. Slow down on the slippery slide.', checks: CHK_VL },
-       { id: 'c', target: 'The slim cat sleeps slowly. A clean glass and a blue plate are on the black table.', checks: CHK_VL }], 'D4');
-     const para = 'Clara plays in the school band. On Friday, she plays a flute at the school flower show. Her class sits on the floor and claps. After the show, they eat plain cake and drink cold milk. It is a lovely day.';
-     ClickWords($('#cw1'), para, ['plays', 'flute', 'flower', 'class', 'claps', 'floor', 'plain'], (g, t) => { setScore('D5', g, t); if (partDone('D')) markPart('D'); });
-     recs($('#d5'), [{ id: '', target: esc(para), sample: para, checks: CHK_VL }], 'D5');
-   } },
- { id: 'E', t: 'E. Cụm cuối', tasks: ['E2'],
-   html: `<h2>Phần E. Đọc cụm cuối từ</h2><p>Giữ đầu lưỡi chạm lợi ở /l/, rồi chuyển thẳng sang phụ âm cuối, không thêm "ờ".</p>
+ { id: 'E', t: 'D. Cụm cuối', tasks: ['E2'],
+   html: `<h2>Phần D. Đọc cụm cuối từ</h2><p>Giữ đầu lưỡi chạm lợi ở /l/, rồi chuyển thẳng sang phụ âm cuối, không thêm "ờ".</p>
    ${T([['-lk', W('milk') + W('silk')], ['-lp', W('help')], ['-lt', W('belt') + W('melt')], ['-ld', W('cold') + W('old') + W('field') + W('world') + W('build')], ['-lf', W('shelf') + W('self')]], ['Cụm', 'Từ luyện'])}
-   <h3>E1. Đọc câu và ghi âm</h3><div id="e1"></div>
-   <h3>E2. Đuôi -ed: nghe và chọn âm cuối</h3><div id="qe"></div>`,
+   <h3>D1. Đọc câu và ghi âm</h3><div id="e1"></div>
+   <h3>D2. Đuôi -ed: nghe và chọn âm cuối</h3><div id="qe"></div>`,
    init() {
      recs($('#e1'), [
        { id: 'a', target: 'My child drinks cold milk. Please help me build a shelf.', checks: CHK_FIN },
@@ -659,32 +633,13 @@ const PARTS = [
      const it = [['helped', 0], ['milked', 0], ['called', 1], ['filmed', 1], ['solved', 1], ['pulled', 1]].map(x => ({ say: x[0], q: 'Âm cuối của từ này là gì?', o: ['/t/', '/d/', '/ɪd/'], a: x[1], x: x[1] === 0 ? 'Sau âm vô thanh (/p/, /k/) đọc /t/.' : 'Sau /l/, /m/, /v/ (hữu thanh) đọc /d/.' }));
      live.E2 = Quiz($('#qe'), it, st => { if (st.done()) { setScore('E2', st.first, st.total); markPart('E'); } });
    } },
- { id: 'F', t: 'F. Đọc đoạn văn', tasks: ['F1', 'F2'],
-   html: `<h2>Phần F. Đọc đoạn văn</h2>
-   <p><b>A Lovely Day at the Lake</b></p>
-   <p class="big">Last Sunday, Linda and her family went to a lake. The weather was lovely: the sky was blue and clear, and a slow wind moved the leaves. Linda played games with her little brother, Luke, while her parents cooked lunch. They ate fresh fruit and drank cold milk. After lunch, Luke slept on a blanket, and Linda read a book about planets. In the evening, they felt happy and a little tired, and they all said, "Let's come back soon!"</p>
-   <p><button class="btn sm ghost" id="fp1">🔊 Nghe cả bài (chậm)</button> <button class="btn sm ghost" id="fp2">🔊 Nghe cả bài (bình thường)</button></p>
-   <h3>F1. Chạm vào 7 từ có blend với L (bl, cl, pl, sl)</h3><div id="cw2"></div>
-   <h3>F2. Trả lời câu hỏi</h3><div id="qf"></div>
-   <h3>F3. Đọc to cả đoạn và ghi âm</h3><div id="f3"></div>`,
-   init() {
-     const txt = 'Last Sunday, Linda and her family went to a lake. The weather was lovely: the sky was blue and clear, and a slow wind moved the leaves. Linda played games with her little brother, Luke, while her parents cooked lunch. They ate fresh fruit and drank cold milk. After lunch, Luke slept on a blanket, and Linda read a book about planets. In the evening, they felt happy and a little tired, and they all said, Let\'s come back soon!';
-     $('#fp1').onclick = () => speak(txt, 0.7); $('#fp2').onclick = () => speak(txt, 0.95);
-     ClickWords($('#cw2'), txt, ['blue', 'clear', 'slow', 'played', 'slept', 'blanket', 'planets'], (g, t) => { setScore('F1', g, t); if (partDone('F')) markPart('F'); });
-     live.F2 = Quiz($('#qf'), [
-       { q: 'Where did Linda go?', o: ['To a market', 'To a lake', 'To a school'], a: 1 },
-       { q: 'What did they drink?', o: ['Hot tea', 'Orange juice', 'Cold milk'], a: 2 },
-       { q: 'What did Luke do after lunch?', o: ['He read a book', 'He slept on a blanket', 'He played games'], a: 1 }],
-       st => { if (st.done()) { setScore('F2', st.first, st.total); if (partDone('F')) markPart('F'); } });
-     recs($('#f3'), [{ id: '', target: 'Đọc to cả đoạn "A Lovely Day at the Lake".', sample: txt, checks: ['Dark L cuối từ nghe được (all, while, little, cold)', 'Blend đọc trong 1 âm tiết', 'Cụm cuối (cold, milk, felt) không có "ờ" thừa'] }], 'F');
-   } },
- { id: 'G', t: 'G. Nói', tasks: [],
-   html: `<h2>Phần G. Soạn bài nói rồi ghi âm</h2>
+ { id: 'G', t: 'E. Nói', tasks: [],
+   html: `<h2>Phần E. Soạn bài nói rồi ghi âm</h2>
    <p>Em <b>soạn bài nói trước</b>, nhấn <b>Kiểm tra ngữ pháp</b> để máy gợi ý sửa lỗi, rồi mới ghi âm. Bài cần ít nhất 40 từ, có 6 từ chứa /l/, 2 từ có blend (như play, clean, blue) và 1 từ có cụm cuối (như cold, milk, help).</p>
    <div id="g1"></div>`,
    init() {
      live.G = Composer($('#g1'), {
-       id: 'G', S: () => S, save, min: 40, prompts: PROMPTS_G, record: true, label: 'Bài tập - G',
+       id: 'G', S: () => S, save, min: 40, prompts: PROMPTS_G, record: true, label: 'Bài tập - E',
        placeholder: 'Ví dụ: I like the lake near my school. It is clean and blue…',
        needs: (t, st) => [{ t: `${st.l.length}/6 từ có /l/`, ok: st.l.length >= 6 }, { t: `${st.blend.length}/2 từ blend`, ok: st.blend.length >= 2 }, { t: `${st.fin.length}/1 cụm cuối`, ok: st.fin.length >= 1 }],
        recChecks: ['Em đọc đúng bài mình đã soạn', 'Đầu lưỡi chạm lợi ở /l/ đầu từ', '/l/ cuối từ nghe được', 'Blend đọc trong 1 âm tiết', 'Cụm cuối không có "ờ" thừa'],
@@ -696,13 +651,9 @@ const TIPS = {
   A: 'Nghe: luyện thêm các cặp l/r, l/n và có L/không L; bịt mũi để tách /l/ và /n/.',
   B: 'Phân loại L: L trước nguyên âm là clear, sau nguyên âm là dark; nhớ silent L (walk, half, would).',
   C: 'Blend: chuyển thẳng từ phụ âm sang /l/ trong một âm tiết, không thêm "ờ".',
-  D3: 'L vô thanh: sau p, k, f, s hơi thoát ra trước khi /l/ rung; sau b, g /l/ rung ngay.',
-  D5: 'Tìm các từ p, k, f, s + l trong đoạn rồi đọc lại chậm.',
-  E2: 'Đuôi -ed: sau /p/, /k/ đọc /t/; sau /l/, /m/, /v/ đọc /d/.',
-  F1: 'Tìm blend trong đoạn văn: bl, cl, pl, sl.',
-  F2: 'Đọc hiểu: đọc lại đoạn văn và tìm chi tiết.'
+  E2: 'Đuôi -ed: sau /p/, /k/ đọc /t/; sau /l/, /m/, /v/ đọc /d/.'
 };
-const LABEL = { A: 'A. Nghe', B: 'B. Phân loại L', C: 'C. Điền blend', D3: 'D3. L vô thanh', D5: 'D5. Chạm từ', E2: 'E2. Đuôi -ed', F1: 'F1. Chạm blend', F2: 'F2. Đọc hiểu' };
+const LABEL = { A: 'A. Nghe', B: 'B. Phân loại L', C: 'C. Điền blend', E2: 'D2. Đuôi -ed' };
 function chrome() {
   const n = PARTS.filter(p => p.tasks.length && S.pd && S.pd[p.id]).length, tot = PARTS.filter(p => p.tasks.length).length;
   const pct = Math.round(n / tot * 100);
@@ -728,16 +679,16 @@ function warnList() {
   if (miss.length) w.push('Chưa làm: ' + miss.map(k => LABEL[k]).join(', ') + '.');
   const unsent = REC_IDS.filter(id => !(S.rc && S.rc[id]));
   if (unsent.length) w.push(`Còn ${unsent.length} bản ghi âm chưa ghi hoặc chưa gửi (${unsent.join(', ')}). Bản ghi chỉ tính khi đã bấm 📤 Gửi.`);
-  if (!g.t) w.push('Phần G: em chưa soạn bài nói.');
-  else if (!g.C.checks) w.push('Phần G: em chưa bấm Kiểm tra ngữ pháp.');
-  else if (g.words < 40) w.push(`Phần G: bài nói mới ${g.words}/40 từ.`);
+  if (!g.t) w.push('Phần E: em chưa soạn bài nói.');
+  else if (!g.C.checks) w.push('Phần E: em chưa bấm Kiểm tra ngữ pháp.');
+  else if (g.words < 40) w.push(`Phần E: bài nói mới ${g.words}/40 từ.`);
   return w;
 }
 function submitPayload() {
   const r = resultText(), g = gInfo(), C = g.C, rows = [];
   Object.keys(LABEL).forEach(k => { const v = S.sc && S.sc[k]; rows.push({ part: 'Bài tập - ' + LABEL[k], question: LABEL[k], answer: v ? `${v[0]}/${v[1]}` : 'chưa làm', correct: v ? String(v[1]) : '', result: v ? (v[0] / v[1] >= 0.7 ? 'tốt' : 'cần ôn') : 'chưa làm' }); });
-  rows.push({ part: 'Bài tập - G Nói', question: 'Đề: ' + (C.topic != null ? PROMPTS_G[C.topic] : '(chưa chọn)'), answer: 'Bản soạn đã chốt: ' + g.t, correct: 'Bản gõ lần kiểm tra đầu: ' + (C.firstText || ''), result: `kiểm tra ${C.checks || 0} lần · lần đầu ${C.firstIssues == null ? '?' : C.firstIssues} gợi ý · đã áp dụng ${C.applied || 0} · còn ${g.left} gợi ý · ${g.words} từ · /l/ ${g.st.l.length} · blend ${g.st.blend.length} · cụm cuối ${g.st.fin.length} · ghi âm ${S.rc && S.rc.G ? 'đã gửi' : 'chưa gửi'}` });
-  return { summary: { recordings: r.rc, avg: null, full: g.t ? `G: ${g.words} từ` : 'G: chưa soạn', writes: `G: ${C.checks || 0} lần kiểm tra ngữ pháp, còn ${g.left} gợi ý`, quiz: r.lines.join(' · ') + ` · Tổng ${r.f}/${r.t}` }, details: rows };
+  rows.push({ part: 'Bài tập - E Nói', question: 'Đề: ' + (C.topic != null ? PROMPTS_G[C.topic] : '(chưa chọn)'), answer: 'Bản soạn đã chốt: ' + g.t, correct: 'Bản gõ lần kiểm tra đầu: ' + (C.firstText || ''), result: `kiểm tra ${C.checks || 0} lần · lần đầu ${C.firstIssues == null ? '?' : C.firstIssues} gợi ý · đã áp dụng ${C.applied || 0} · còn ${g.left} gợi ý · ${g.words} từ · /l/ ${g.st.l.length} · blend ${g.st.blend.length} · cụm cuối ${g.st.fin.length} · ghi âm ${S.rc && S.rc.G ? 'đã gửi' : 'chưa gửi'}` });
+  return { summary: { recordings: r.rc, avg: null, full: g.t ? `Nói: ${g.words} từ` : "Nói: chưa soạn", writes: `Nói: ${C.checks || 0} lần kiểm tra ngữ pháp, còn ${g.left} gợi ý`, quiz: r.lines.join(' · ') + ` · Tổng ${r.f}/${r.t}` }, details: rows };
 }
 function go(i) { cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
 function render() {
@@ -750,7 +701,7 @@ function render() {
     const w = warnList(), g = gInfo();
     $('#rs').innerHTML = `<table><tr><th>Phần</th><th>Đúng ngay lần đầu</th></tr>${Object.keys(LABEL).map(k => `<tr><td>${LABEL[k]}</td><td>${S.sc && S.sc[k] ? S.sc[k][0] + '/' + S.sc[k][1] : '—'}</td></tr>`).join('')}</table>
     <p class="big"><b>Tổng: ${r.f}/${r.t}</b> · Bản ghi đã gửi: ${r.rc}/${REC_IDS.length}</p>
-    <p>Phần G: ${g.t ? `${g.words} từ, đã kiểm tra ngữ pháp ${g.C.checks || 0} lần, còn ${g.left} gợi ý` : 'chưa soạn'}.</p>
+    <p>Phần E: ${g.t ? `${g.words} từ, đã kiểm tra ngữ pháp ${g.C.checks || 0} lần, còn ${g.left} gợi ý` : 'chưa soạn'}.</p>
     ${w.length ? `<div class="warn"><b>Còn thiếu:</b><ul>${w.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '<div class="tip">✅ Em đã làm đủ. Bấm Nộp bài.</div>'}
     ${weak.length ? `<div class="tip"><b>Cần ôn lại:</b><ul>${weak.map(k => `<li>${TIPS[k]}</li>`).join('')}</ul></div>` : ''}`;
     submitFlow($('#sub'), { S: () => S, save, warns: warnList, payload: submitPayload, text: () => r.txt });
