@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerund trong IELTS · Speaking và Writing</title>
+<style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px 96px}
+.hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;padding:20px 16px 16px;border-radius:0 0 22px 22px;margin:0 -12px 10px}
+.hero h1{margin:0 0 4px;font-size:22px;line-height:1.25}
+.hero .sub{margin:0;opacity:.92;font-size:14px}
+.stamp{display:inline-block;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px;font-size:12px;margin-bottom:8px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.pbar{height:8px;background:var(--pri2);border-radius:99px;overflow:hidden}
+.pbar>i{display:block;height:100%;width:0;background:var(--pri);transition:width .3s}
+.ptxt{font-size:12px;color:var(--mut);margin:3px 0 6px;display:flex;justify-content:space-between}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.chip.done::after{content:" ✅"}
+.chip.lock{opacity:.55}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.card h2{margin:0 0 8px;font-size:19px}
+.card h3{margin:14px 0 6px;font-size:16px}
+p{margin:.45em 0}
+ul,ol{margin:.4em 0;padding-left:1.25em}
+li{margin:.2em 0}
+.tip{background:var(--pri2);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+.warn{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--pri2)}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--pri);border:1px solid var(--pri)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:5px 11px;font-size:13px;border-radius:10px}
+.w{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:3px 9px;margin:2px 3px 2px 0;font-size:15px;cursor:pointer}
+.w i{font-style:normal;color:var(--mut);font-size:12.5px}
+.w:before{content:"🔊";font-size:12px}
+.w:active{background:var(--pri2)}
+.qz{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.q{margin:10px 0}
+.q .qt{font-weight:600;margin-bottom:5px}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;margin:5px 0;font-size:15px;cursor:pointer}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt[disabled]{cursor:default}
+.x{font-size:14px;color:var(--mut);margin:4px 0 0}
+.tick{display:flex;gap:8px;align-items:flex-start;background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:12px 0;font-size:15px}
+.tick input{margin-top:4px;width:18px;height:18px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:14px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal>div{background:var(--card);color:var(--ink);border-radius:16px;padding:16px;max-width:420px;width:100%;max-height:85vh;overflow:auto}
+.modal h3{margin:0 0 8px}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.modal input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);font-size:16px;background:var(--bg);color:var(--ink)}
+.rec{border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}
+.rec .rt{font-weight:600;margin-bottom:6px}
+.rec .rrow{display:flex;gap:6px;flex-wrap:wrap}
+.rec .rst{font-size:13px;color:var(--mut);margin:6px 0}
+.rec label{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:4px 0}
+.rec label input{margin-top:3px}
+.rec.ok{border-color:var(--ok);background:var(--okbg)}
+.score{display:inline-block;background:var(--pri2);border-radius:10px;padding:2px 9px;font-size:13px;font-weight:600}
+.big{font-size:17px}
+.hl{background:var(--hl);border-radius:4px;padding:0 2px}
+.tw{font-size:17px;line-height:1.9}
+.tw span{cursor:pointer;border-radius:5px;padding:0 1px}
+.tw span.sel{background:var(--hl)}
+.tw span.good{background:var(--okbg);color:var(--ok)}
+.tw span.miss{outline:2px dashed var(--bad)}
+.tw span.wrongsel{background:var(--badbg);color:var(--bad)}
+.sortrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.sortrow .wd{min-width:92px}
+.sortrow .ob{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:5px 9px;font-size:14px;cursor:pointer}
+.sortrow .ob.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.sortrow .ob.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.sortrow .fb{font-size:13px;color:var(--mut);flex-basis:100%}
+.blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
+a{color:var(--pri)}
+select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
+details.card summary{cursor:pointer}
+textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);min-height:150px;resize:vertical}
+input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:15px;background:var(--card);color:var(--ink);width:150px}
+.iss{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:6px 0}
+.iss .fx{font-size:15px}.iss .fx s{color:var(--bad)}.iss .fx b{color:var(--ok)}
+.need{display:inline-block;border-radius:999px;padding:3px 10px;font-size:13px;margin:2px 4px 2px 0;background:var(--pri2)}
+.need.ok{background:var(--okbg);color:var(--ok)}
+.vc{border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0;background:var(--card)}
+.vc .vh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.vc .vw{font-size:19px;font-weight:700}.vc .vp{font-size:12px;background:var(--pri2);border-radius:8px;padding:1px 7px}
+.vc .vi{color:var(--mut)}.vc .vm{font-weight:600;margin:3px 0}.vc .vn{font-size:13px;color:var(--mut)}
+.vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
+</style></head><body>
+<div class="wrap">
+<header class="hero"><span class="stamp">Gerund · Ứng dụng IELTS</span><h1>Gerund trong IELTS Speaking và Writing</h1><p class="sub">Dùng gerund để câu nói và câu viết tự nhiên, học thuật hơn. Học cấu trúc, luyện bài tập, rồi soạn bài nói và bài viết, kiểm tra ngữ pháp và nộp cho cô.</p></header>
+<div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
+<details class="card" id="vp"><summary><b>🔊 Chọn người đọc (giọng đọc mẫu)</b></summary>
+<p class="x">Chọn giọng cho phần nghe từ và câu mẫu. Danh sách tuỳ theo máy của em (thường có giọng Mỹ, Anh, nam, nữ).</p>
+<select id="vsel"></select> <select id="vspd"><option value="0.8">Chậm</option><option value="1">Vừa</option><option value="1.15">Nhanh</option></select> <button class="btn sm" id="vtry">Nghe thử</button></details>
+<main id="main"></main>
+<div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
+<p class="foot">Dùng Chrome hoặc Safari để nghe mẫu và ghi âm. Bản ghi chỉ nằm trên máy em, trừ khi em bấm tải về hoặc gửi.</p>
+</div>
+<script>/* ===== shared helpers ===== */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng nhận bài (Apps Script) của cô: ghi âm về Drive, kết quả về Sheet "Kết quả Speaking"
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let VOICE = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    VOICE = vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (e) {}
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const PREF = (() => { try { return JSON.parse(localStorage.getItem('lpage:voice')) || {}; } catch (e) { return {}; } })();
+function savePref() { try { localStorage.setItem('lpage:voice', JSON.stringify(PREF)); } catch (e) {} }
+function currentVoice() {
+  try { const vs = speechSynthesis.getVoices(); return (PREF.voice && vs.find(v => v.name === PREF.voice)) || VOICE; } catch (e) { return VOICE; }
+}
+function speak(t, rate) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    const v = currentVoice();
+    u.lang = v ? v.lang : 'en-US'; if (v) u.voice = v; u.rate = (rate || 0.85) * (PREF.mult || 1);
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+const Store = {
+  key: 'l-x',
+  load() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch (e) { return {}; } },
+  save(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }
+};
+function W(word, ipa) { return `<button class="w" data-s="${esc(word)}">${esc(word)}${ipa ? ' <i>' + esc(ipa) + '</i>' : ''}</button>`; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-s]');
+  if (b) speak(b.dataset.s, +b.dataset.r || 0.85);
+});
+function modal(title, html, buttons) {
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.innerHTML = `<div><h3>${title}</h3><div>${html}</div><div class="row"></div></div>`;
+  const row = $('.row', m);
+  (buttons || [{ t: 'Đã hiểu' }]).forEach(b => {
+    const x = document.createElement('button');
+    x.className = 'btn' + (b.ghost ? ' ghost' : '');
+    x.textContent = b.t;
+    x.onclick = () => { m.remove(); b.f && b.f(); };
+    row.appendChild(x);
+  });
+  document.body.appendChild(m);
+  return m;
+}
+function gate(cb) {
+  const st = Store.load();
+  if (st.name) { cb(st); return; }
+  const m = modal('Chào em! 👋', '<p>Em gõ tên để lưu tiến độ học nhé:</p><input type="text" id="gname" placeholder="Tên của em" autocomplete="name">', [{ t: 'Bắt đầu', f: () => { } }]);
+  const inp = $('#gname', m), btn = $('.row .btn', m);
+  btn.onclick = () => {
+    const v = inp.value.trim().slice(0, 40);
+    if (!v) { inp.focus(); return; }
+    const s = Store.load(); s.name = v; Store.save(s); m.remove(); cb(s);
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+  setTimeout(() => inp.focus(), 50);
+}
+/* Quiz: items [{q,o:[],a,x,say}] ; first-try scoring ; done when all correct */
+function Quiz(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const d = document.createElement('div');
+    d.className = 'q';
+    d.innerHTML = `<div class="qt">${i + 1}. ${it.say ? `<button class="btn sm ghost" data-s="${esc(it.say)}" data-r="0.8">🔊 Nghe</button> ` : ''}${esc(it.q)}</div>` +
+      it.o.map((o, j) => `<button class="opt" data-j="${j}">${esc(o)}</button>`).join('') + '<div class="x" hidden></div>';
+    host.appendChild(d);
+    $$('.opt', d).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const j = +b.dataset.j, x = $('.x', d);
+      if (j === it.a) {
+        b.classList.add('ok');
+        $$('.opt', d).forEach(z => z.disabled = true);
+        if (!st.tried[i]) st.first++;
+        st.ok++;
+        if (it.x) { x.hidden = false; x.textContent = it.x; }
+        if (it.say2) speak(it.say2);
+        onChange && onChange(st);
+      } else {
+        b.classList.add('bad'); b.disabled = true; st.tried[i] = true;
+        x.hidden = false; x.textContent = 'Chưa đúng, thử lại nhé.';
+      }
+    });
+  });
+  st.done = () => st.ok === st.total;
+  return st;
+}
+/* Recorder */
+function Recorder(host, opt, onChange) {
+  const checks = opt.checks || [];
+  const st = { rec: false, checked: checks.map(() => false), sent: false };
+  host.className = 'rec';
+  host.innerHTML = `<div class="rt">${opt.target}</div>
+    <div class="rrow"><button class="btn rb">🎙 Ghi âm</button><button class="btn ghost rp" disabled>▶ Nghe lại</button>
+    ${opt.sample ? `<button class="btn ghost" data-s="${esc(opt.sample)}" data-r="0.8">🔊 Nghe mẫu</button>` : ''}
+    <a class="btn ghost rd" hidden>⬇ Tải</a>${SCRIPT_URL ? '<button class="btn ghost rs" disabled>📤 Gửi cho cô</button>' : ''}</div>
+    <div class="rst">Bấm 🎙, đọc to, bấm lần nữa để dừng. Cho phép micro nếu trình duyệt hỏi.</div>
+    ${checks.map((c, i) => `<label><input type="checkbox" data-c="${i}"> ${esc(c)}</label>`).join('')}`;
+  const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
+  let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
+  const upd = () => {
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent);
+    host.classList.toggle('ok', st.done);
+    onChange && onChange(st);
+  };
+  rb.onclick = async () => {
+    if (mr && mr.state === 'recording') { mr.stop(); return; }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) { rst.textContent = '⚠️ Chưa có micro. Em bấm "Cho phép" micro cho trang này rồi thử lại nhé.'; return; }
+    const mt = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+    chunks = [];
+    mr = new MediaRecorder(stream, mt ? { mimeType: mt } : undefined);
+    mr.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+    mr.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const dur = Math.round((Date.now() - t0) / 1000);
+      blob = new Blob(chunks, { type: mr.mimeType || 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      audio = new Audio(url);
+      rp.disabled = false; rd.hidden = false; rd.href = url;
+      rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
+      if (rs) rs.disabled = false;
+      rb.textContent = '🎙 Ghi lại';
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại, tự chấm bên dưới${SCRIPT_URL ? ', rồi bấm 📤 Gửi cho cô' : ''}.`;
+      st.rec = true; st.sent = false; st.dur = dur; upd();
+    };
+    t0 = Date.now(); mr.start();
+    rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
+  };
+  rp.onclick = () => audio && audio.play();
+  if (rs) rs.onclick = async () => {
+    if (!blob) return;
+    rs.disabled = true; rst.textContent = 'Đang gửi…';
+    try {
+      const b64 = await new Promise(r => { const f = new FileReader(); f.onload = () => r(String(f.result).split(',')[1]); f.readAsDataURL(blob); });
+      await sendGateway({ type: 'audio', name: Store.load().name || 'Không tên', lesson: LESSON, file: (opt.id || 'GhiAm') + '_01.' + (/mp4/.test(blob.type) ? 'm4a' : 'webm'), mime: blob.type, audio: b64, label: opt.label || '', dur: st.dur || '', target: opt.sample || '' });
+      st.sent = true; rst.textContent = '✅ Đã gửi cho cô'; upd();
+    } catch (e) { rs.disabled = false; rst.textContent = '⚠️ Chưa gửi được, thử lại nhé.'; }
+  };
+  $$('input[data-c]', host).forEach(c => c.onchange = () => { st.checked[+c.dataset.c] = c.checked; upd(); });
+  st.done = false;
+  return st;
+}
+async function sendGateway(payload) {
+  if (!SCRIPT_URL) return { ok: false };
+  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+
+function voicePanel() {
+  const sel = $('#vsel'), spd = $('#vspd'); if (!sel) return;
+  const fill = () => {
+    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
+    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
+    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  };
+  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
+  spd.value = String(PREF.mult || 1);
+  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
+  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
+  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
+}
+
+/* Nộp bài: kiểm tra, cảnh báo thiếu, gửi về cổng của cô */
+function submitFlow(host, o) {
+  host.innerHTML = '<p><button class="btn" id="sbtn">📨 Nộp bài cho cô</button> <button class="btn ghost sm" id="copy2">📋 Chép kết quả</button></p><p class="x" id="smsg"></p>';
+  const msg = $('#smsg', host);
+  const S = () => o.S();
+  async function doSend() {
+    const p = o.payload(), s = S(), ign = s.ign || 0;
+    p.summary.writes = [p.summary.writes, ign ? `đã bỏ qua cảnh báo ${ign} lần` : ''].filter(Boolean).join(' · ');
+    msg.textContent = 'Đang nộp bài…';
+    try {
+      const r = await sendGateway({ type: 'submit', name: s.name || 'Không tên', lesson: LESSON, summary: p.summary, details: p.details });
+      if (r && r.ok) { s.submitted = Date.now(); o.save(); msg.innerHTML = '✅ <b>Đã nộp bài cho cô.</b> Em có thể đóng trang. Cô sẽ xem bài và nhận xét.'; }
+      else msg.textContent = '⚠️ Chưa nộp được. Em kiểm tra mạng rồi bấm Nộp bài lại nhé.';
+    } catch (e) { msg.textContent = '⚠️ Chưa nộp được (mất mạng?). Bấm Nộp bài lại nhé.'; }
+  }
+  $('#sbtn', host).onclick = () => {
+    const w = o.warns();
+    if (!w.length) { doSend(); return; }
+    modal('Em chưa làm xong', '<ul>' + w.map(x => `<li>${esc(x)}</li>`).join('') + '</ul><p>Em muốn làm tiếp hay vẫn nộp?</p>', [
+      { t: 'Quay lại làm tiếp', ghost: true },
+      { t: 'Vẫn nộp', f: () => { const s = S(); s.ign = (s.ign || 0) + 1; o.save(); doSend(); } }]);
+  };
+  $('#copy2', host).onclick = () => { const t = o.text(); try { navigator.clipboard.writeText(t); msg.textContent = 'Đã chép. Em có thể dán vào Zalo gửi cô.'; } catch (e) { msg.textContent = t; } };
+  if (S().submitted) msg.innerHTML = '✅ Em đã nộp bài trước đó. Bấm Nộp bài lần nữa nếu em muốn nộp bản mới.';
+}
+</script>
+<script>/* ===== Kiểm tra ngữ pháp theo luật (lỗi phổ biến của học sinh A2-B1) ===== */
+const G_VERBS = new Set(('reduce invest manage improve create protect develop solve save waste increase go like have play live love want need eat drink read study work watch make take come see know think enjoy help use walk run speak write listen sleep wake cook visit swim learn teach buy meet say tell find leave feel get give do travel talk start finish open close call ask answer dance sing draw paint shop stay arrive look try wear drive ride fly sit stand win lose bring keep pay spend hope miss move clean brush wash carry cry laugh smile relax practise practice cycle fall grow build choose forget remember sell send show wait worry plan join invite dream decide change follow happen hear hold jump lend climb prefer hate').split(' '));
+const G_AMBIG = new Set(['read']);
+const G_IRR = { go: 'went', see: 'saw', eat: 'ate', come: 'came', have: 'had', make: 'made', take: 'took', give: 'gave', get: 'got', drink: 'drank', write: 'wrote', run: 'ran', buy: 'bought', meet: 'met', say: 'said', tell: 'told', find: 'found', leave: 'left', feel: 'felt', think: 'thought', know: 'knew', speak: 'spoke', sleep: 'slept', do: 'did', bring: 'brought', keep: 'kept', pay: 'paid', spend: 'spent', teach: 'taught', drive: 'drove', ride: 'rode', fly: 'flew', sit: 'sat', stand: 'stood', win: 'won', lose: 'lost', wear: 'wore', swim: 'swam', sing: 'sang', fall: 'fell', grow: 'grew', build: 'built', choose: 'chose', forget: 'forgot', sell: 'sold', send: 'sent', hear: 'heard', hold: 'held', lend: 'lent', wake: 'woke', draw: 'drew' };
+const G_P2B = {}; Object.keys(G_IRR).forEach(k => { G_P2B[G_IRR[k]] = k; });
+const G_DBL = new Set(['stop', 'plan', 'shop', 'drop', 'chat', 'jog', 'hug', 'clap', 'grab', 'skip']);
+const G_DBL_ING = new Set(['swim', 'run', 'sit', 'get', 'stop', 'plan', 'shop', 'chat', 'jog', 'cut', 'hug', 'clap', 'grab', 'skip', 'win']);
+const G_ADJ = new Set('big small tall short fast slow cheap old young new long high low hot cold warm cool nice easy happy busy noisy quiet clean near close safe late early hard strong weak thin fat sad wet dry rich poor kind lovely funny friendly healthy heavy light'.split(' '));
+function g_s3(v) { if (v === 'have') return 'has'; if (v === 'go') return 'goes'; if (v === 'do') return 'does'; if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + 'ies'; if (/(s|sh|ch|x|z)$/.test(v)) return v + 'es'; return v + 's'; }
+function g_baseFromS(w) {
+  if (w === 'has') return 'have'; if (w === 'goes') return 'go'; if (w === 'does') return 'do';
+  const c = []; if (/ies$/.test(w)) c.push(w.slice(0, -3) + 'y'); if (/es$/.test(w)) c.push(w.slice(0, -2)); if (/s$/.test(w)) c.push(w.slice(0, -1));
+  return c.find(x => G_VERBS.has(x)) || null;
+}
+function g_past(v) { if (G_IRR[v]) return G_IRR[v]; if (/e$/.test(v)) return v + 'd'; if (/[^aeiou]y$/.test(v)) return v.slice(0, -1) + 'ied'; if (G_DBL.has(v)) return v + v.slice(-1) + 'ed'; return v + 'ed'; }
+function g_basePast(w) {
+  if (G_P2B[w]) return G_P2B[w];
+  const c = []; if (/ied$/.test(w)) c.push(w.slice(0, -3) + 'y'); if (/ed$/.test(w)) { c.push(w.slice(0, -2)); c.push(w.slice(0, -1)); if (/(.)\1ed$/.test(w)) c.push(w.slice(0, -3)); }
+  return c.find(x => G_VERBS.has(x)) || null;
+}
+function g_ing(v) { if (/ie$/.test(v)) return v.slice(0, -2) + 'ying'; if (/[^aeoy]e$/.test(v)) return v.slice(0, -1) + 'ing'; if (G_DBL_ING.has(v)) return v + v.slice(-1) + 'ing'; return v + 'ing'; }
+function g_comp(a) { if (a === 'good') return 'better'; if (a === 'bad') return 'worse'; if (/[^aeiou]y$/.test(a)) return a.slice(0, -1) + 'ier'; if (/e$/.test(a)) return a + 'r'; if (['big', 'hot', 'thin', 'fat', 'sad', 'wet'].includes(a)) return a + a.slice(-1) + 'er'; return a + 'er'; }
+const G_COMPS = new Set([...G_ADJ].map(g_comp).concat(['better', 'worse']));
+function g_cap(orig, fix) { return /^[A-Z]/.test(orig) && /^[a-z]/.test(fix) ? fix[0].toUpperCase() + fix.slice(1) : fix; }
+const G_PM = /\b(yesterday|ago|last\s+(night|week|weekend|month|year|summer|winter|spring|monday|tuesday|wednesday|thursday|friday|saturday|sunday)|when i was)\b/i;
+const G_CONTR = { dont: "don't", cant: "can't", im: "I'm", ive: "I've", didnt: "didn't", doesnt: "doesn't", isnt: "isn't", wont: "won't", arent: "aren't", wasnt: "wasn't", havent: "haven't", hasnt: "hasn't", couldnt: "couldn't", wouldnt: "wouldn't", shouldnt: "shouldn't" };
+const G_OVER = { goed: 'went', eated: 'ate', buyed: 'bought', maked: 'made', taked: 'took', gived: 'gave', comed: 'came', writed: 'wrote', runned: 'ran', drinked: 'drank', sleeped: 'slept', thinked: 'thought', knowed: 'knew', speaked: 'spoke', feeled: 'felt', finded: 'found', leaved: 'left', meeted: 'met', teached: 'taught', getted: 'got', haved: 'had', doed: 'did', sayed: 'said', payed: 'paid', telled: 'told' };
+const G_SPELL = { recieve: 'receive', beleive: 'believe', freind: 'friend', becuase: 'because', definately: 'definitely', seperate: 'separate', tommorow: 'tomorrow', tomorow: 'tomorrow', wich: 'which', teh: 'the', adress: 'address', libary: 'library', intresting: 'interesting', diffrent: 'different', beautifull: 'beautiful' };
+const G_PLU = { peoples: 'people', informations: 'information', advices: 'advice', homeworks: 'homework', furnitures: 'furniture', childrens: 'children' };
+const G_DAYS = 'monday|tuesday|wednesday|thursday|friday|saturday|sunday';
+const G_PHRASES = [
+  [/\blisten (music|songs?|radio|podcasts?)\b/gi, m => 'listen to ' + m[1], 'Nói "listen to + danh từ" (thêm "to").'],
+  [/\bdiscuss about\b/gi, () => 'discuss', '"discuss" không đi với "about".'],
+  [/\bam agree\b/gi, () => 'agree', 'Nói "I agree", không dùng "am" trước agree.'],
+  [new RegExp('\\bin (' + G_DAYS + ')s?\\b', 'gi'), m => 'on ' + m[1], 'Với thứ trong tuần dùng "on" (on Monday).'],
+  [/\b(?:on|at) (?:the )?(morning|afternoon|evening)\b(?! of)/gi, m => 'in the ' + m[1], 'Dùng "in the morning/afternoon/evening".'],
+  [/\bon (\d{1,2}(?::\d\d)?\s?(?:o'clock|am|pm))/gi, m => 'at ' + m[1], 'Với giờ cụ thể dùng "at" (at 7 o\'clock).'],
+  [/\bby foot\b/gi, () => 'on foot', 'Nói "on foot" (đi bộ).'],
+  [/\bvery (like|love|enjoy|hate)\b/gi, m => 'really ' + m[1], 'Nói "really like/love", không dùng "very" trước động từ.'],
+  [/\b(peoples|informations|advices|homeworks|furnitures|childrens)\b/gi, m => G_PLU[m[1].toLowerCase()], 'Từ này không thêm -s (hoặc là dạng số nhiều khác).'],
+  [/\bthere is (many|several|two|three|four|five|six|seven|eight|nine|ten)\b/gi, m => 'there are ' + m[1], 'Danh từ số nhiều dùng "there are".'],
+  [/\binteresting in\b/gi, () => 'interested in', 'Nói "interested in" (quan tâm đến).'],
+  [/\bmuch (people|friends|students|books|things|cars|children|flowers|trees)\b/gi, m => 'many ' + m[1], 'Danh từ đếm được số nhiều dùng "many".'],
+  [/\balot\b/gi, () => 'a lot', 'Viết tách: "a lot".'],
+  [/\b(dont|cant|im|ive|didnt|doesnt|isnt|wont|arent|wasnt|havent|hasnt|couldnt|wouldnt|shouldnt)\b/gi, m => G_CONTR[m[1].toLowerCase()], 'Thiếu dấu nháy đơn (apostrophe).'],
+  [/\b(goed|eated|buyed|maked|taked|gived|comed|writed|runned|drinked|sleeped|thinked|knowed|speaked|feeled|finded|leaved|meeted|teached|getted|haved|doed|sayed|payed|telled)\b/gi, m => G_OVER[m[1].toLowerCase()], 'Động từ bất quy tắc có dạng quá khứ riêng.'],
+  [/\b(recieve|beleive|freind|becuase|definately|seperate|tommorow|tomorow|wich|teh|adress|libary|intresting|diffrent|beautifull)\b/gi, m => G_SPELL[m[1].toLowerCase()], 'Sai chính tả.'],
+  [/\b(like|love|enjoy|hate|prefer) (swim|run|read|play|go|cook|dance|sing|walk|shop|travel|watch|listen|draw|paint|learn|study|eat|sleep|write|speak|talk|help|cycle|climb)\b(?! to\b)/gi, m => m[1] + ' ' + g_ing(m[2].toLowerCase()), 'Sau like/love/enjoy/hate dùng V-ing (hoặc to + V).'],
+  [/\b(avoid|finish|mind|practise|suggest|imagine|miss|give up|keep) to (\w+)\b/gi, m => { const v = m[2].toLowerCase(); return (G_VERBS.has(v) && !G_AMBIG.has(v)) ? m[1] + ' ' + g_ing(v) : m[0]; }, 'Sau avoid/finish/mind/practise/suggest/imagine/miss/give up/keep dùng V-ing, không dùng "to".'],
+  [/\b(good at|interested in|afraid of|tired of|keen on|fond of|worried about|instead of|without|how about|what about|thank you for|thanks for|apologise for|apologize for|capable of|responsible for|committed to|contribute to|contributes to|contributed to|lead to|leads to|focus on|focuses on|benefit from|look forward to|looking forward to|looks forward to|prevent \w+ from|difficulty in|difficulty|by|before|after) (?!to\b)(\w+)\b/gi, m => { const v = m[2].toLowerCase(); return (G_VERBS.has(v) && !G_AMBIG.has(v) && !/^(by|before|after)$/i.test(m[1]) ) ? m[1] + ' ' + g_ing(v) : (/^(by|before|after)$/i.test(m[1]) && G_VERBS.has(v) && !G_AMBIG.has(v) && !/^(bus|train|car)$/.test(v)) ? m[1] + ' ' + g_ing(v) : m[0]; }, 'Sau giới từ (at, of, in, about, for, without, by, before, after, to trong look forward to...) dùng V-ing (gerund).'],
+  [/\benjoy to (\w+)\b/gi, m => 'enjoy ' + g_ing(m[1].toLowerCase()), 'Sau enjoy dùng V-ing, không dùng "to".'],
+  [/\b(it|he|she) were\b/gi, m => m[1] + ' was', 'Với it/he/she dùng "was".'],
+  [/\b(weather|food|music|homework|information|advice|traffic|pollution) are\b/gi, m => m[1] + ' is', '"' + 'weather, food, music, information…' + '" là danh từ không đếm được, dùng "is".'],
+  [/\b(last|next|every|on) (monday|tuesday|wednesday|thursday|friday|saturday|sunday|january|february|march|april|june|july|august|september|october|november|december)\b/gi, m => m[1] + ' ' + m[2][0].toUpperCase() + m[2].slice(1), 'Thứ và tháng trong tiếng Anh luôn viết hoa chữ cái đầu.'],
+  [/\b(i|he|she|we|they|you) have (\d{1,2}) years old\b/gi, m => { const s = m[1].toLowerCase(); return m[1] + ' ' + (s === 'i' ? 'am' : (s === 'he' || s === 'she') ? 'is' : 'are') + ' ' + m[2] + ' years old'; }, 'Nói tuổi dùng "am/is/are ... years old", không dùng "have".'],
+  [/\b(am|are|is) (live|go|study|work|play|want|need|eat|come|watch|listen)\b/gi, m => (m[1].toLowerCase() === 'is' ? g_s3(m[2].toLowerCase()) : m[2].toLowerCase()), 'Không dùng am/is/are trước động từ thường.'],
+  [/\b(?!had\b|that\b)(\w+) \1\b/gi, m => m[1], 'Lặp từ.']
+];
+function toksOf(text) {
+  const re = /[A-Za-z]+(?:['’][A-Za-z]+)*/g, out = []; let m;
+  while ((m = re.exec(text))) out.push({ w: m[0], lw: m[0].toLowerCase().replace(/’/g, "'"), s: m.index, e: m.index + m[0].length });
+  return out;
+}
+function grammarCheck(text) {
+  const issues = [], T = toksOf(text);
+  const segs = []; { const re = /[^.!?]+[.!?]*/g; let m; while ((m = re.exec(text))) segs.push({ s: m.index, e: m.index + m[0].length, pm: G_PM.test(m[0]) }); }
+  T.forEach(t => {
+    const sg = segs.find(x => t.s >= x.s && t.s < x.e); t.pm = !!(sg && sg.pm);
+    const b = text.slice(0, t.s).replace(/\s+$/, ''); t.first = !b.length || /[.!?]$/.test(b);
+  });
+  const adj = (a, b) => b && /^\s+$/.test(text.slice(a.e, b.s));
+  const push = (s, e, fix, msg) => { const found = text.slice(s, e); if (fix !== found) issues.push({ s, e, found, fix, msg }); };
+  T.forEach((t, i) => {
+    const n = T[i + 1], nn = T[i + 2];
+    let capDone = false;
+    if (t.lw === 'i' || /^i'(m|ll|ve|d)$/.test(t.lw)) { if (t.w[0] === 'i') { push(t.s, t.e, 'I' + t.w.slice(1), 'Chữ "I" (tôi) luôn viết hoa.'); capDone = true; } }
+    if (t.first && !capDone && /^[a-z]/.test(t.w)) push(t.s, t.e, t.w[0].toUpperCase() + t.w.slice(1), 'Đầu câu phải viết hoa.');
+    if ((t.lw === 'a' || t.lw === 'an') && adj(t, n) && !/^[A-Z]{2,}/.test(n.w)) {
+      const nw = n.lw; const vowel = /^(hour|honest|honou?r|heir)/.test(nw) ? true : /^(uni|use|usu|uten|eu|one|once|ubi)/.test(nw) ? false : /^[aeiou]/.test(nw);
+      if (t.lw === 'a' && vowel) push(t.s, t.e, g_cap(t.w, 'an'), 'Trước từ bắt đầu bằng âm nguyên âm dùng "an".');
+      if (t.lw === 'an' && !vowel) push(t.s, t.e, g_cap(t.w, 'a'), 'Trước từ bắt đầu bằng âm phụ âm dùng "a".');
+    }
+    if (!n || !adj(t, n)) return;
+    const S3 = ['he', 'she', 'it'], PL = ['i', 'you', 'we', 'they'];
+    if (t.pm && (S3.includes(t.lw) || PL.includes(t.lw))) {
+      if (n.lw === 'am' || n.lw === 'is' || n.lw === 'are') push(n.s, n.e, g_cap(n.w, (t.lw === 'i' || S3.includes(t.lw)) ? 'was' : 'were'), 'Câu kể chuyện quá khứ: dùng was/were.');
+      else if (!(n.lw === 'have' && nn && nn.lw === 'been')) {
+        let b = null; if (G_VERBS.has(n.lw) && !G_AMBIG.has(n.lw)) b = n.lw; else if (!G_AMBIG.has(n.lw)) b = g_baseFromS(n.lw);
+        if (b) push(n.s, n.e, g_cap(n.w, g_past(b)), 'Câu có dấu hiệu quá khứ (yesterday, last…, ago): động từ chia quá khứ.');
+      }
+    } else if (!t.pm) {
+      if (t.lw === 'i' && (n.lw === 'is' || n.lw === 'are')) push(n.s, n.e, 'am', 'Với "I" dùng "am".');
+      if (S3.includes(t.lw) && (n.lw === 'are' || n.lw === 'am')) push(n.s, n.e, 'is', 'Với he/she/it dùng "is".');
+      if ((t.lw === 'you' || t.lw === 'we' || t.lw === 'they') && (n.lw === 'is' || n.lw === 'am')) push(n.s, n.e, 'are', 'Với you/we/they dùng "are".');
+      if (S3.includes(t.lw) && G_VERBS.has(n.lw) && !G_AMBIG.has(n.lw)) push(n.s, n.e, g_cap(n.w, g_s3(n.lw)), 'Với he/she/it, động từ thêm -s/-es.');
+      if (PL.includes(t.lw) && /s$/.test(n.lw) && !G_AMBIG.has(n.lw)) { const b = g_baseFromS(n.lw); if (b) push(n.s, n.e, g_cap(n.w, b), 'Với I/you/we/they, động từ không thêm -s.'); }
+    }
+    if (['you', 'we', 'they'].includes(t.lw) && n.lw === 'was') push(n.s, n.e, 'were', 'Với you/we/they dùng "were".');
+    if (['he', 'she', 'it'].includes(t.lw) && (n.lw === 'dont' || n.lw === "don't")) push(n.s, n.e, "doesn't", 'Với he/she/it dùng "doesn\'t".');
+    if (['i', 'you', 'we', 'they'].includes(t.lw) && (n.lw === 'doesnt' || n.lw === "doesn't")) push(n.s, n.e, "don't", 'Với I/you/we/they dùng "don\'t".');
+    if (t.lw === 'more') {
+      if (G_ADJ.has(n.lw)) push(t.s, n.e, g_comp(n.lw), 'Tính từ ngắn: thêm -er, không dùng "more".');
+      else if (G_COMPS.has(n.lw)) push(t.s, n.e, n.w, 'Không dùng "more" cùng dạng so sánh -er.');
+    }
+    const AUX = ['did', "didn't", 'didnt', 'does', "doesn't", 'doesnt', 'do', "don't", 'dont', 'can', "can't", 'cannot', 'could', "couldn't", 'will', "won't", 'would', "wouldn't", 'should', "shouldn't", 'must', 'may', 'might'];
+    if (AUX.includes(t.lw)) {
+      let v = n, vi = i + 1; if (v.lw === 'not' && T[i + 2] && adj(v, T[i + 2])) { v = T[i + 2]; vi = i + 2; }
+      if (v.lw === 'to' && !['do', 'does', 'did', "don't", "doesn't", "didn't", 'dont', 'doesnt', 'didnt'].includes(t.lw) && !['will'].includes(t.lw) || (v.lw === 'to' && ['will', 'can', 'could', 'must', 'may', 'might', 'should', 'would'].includes(t.lw))) {
+        if (['can', "can't", 'could', "couldn't", 'will', "won't", 'would', "wouldn't", 'should', "shouldn't", 'must', 'may', 'might'].includes(t.lw)) push(t.s, v.e, t.w, 'Sau can/could/will/should/must không dùng "to".');
+      } else {
+        let b = null;
+        if (!G_AMBIG.has(v.lw) && !G_VERBS.has(v.lw)) b = g_basePast(v.lw) || g_baseFromS(v.lw);
+        if (b && b !== v.lw) push(v.s, v.e, g_cap(v.w, b), 'Sau did/does/do/can/will… dùng động từ nguyên mẫu (không -s, không quá khứ).');
+      }
+    }
+  });
+  G_PHRASES.forEach(([re, f, msg]) => { re.lastIndex = 0; let m; while ((m = re.exec(text))) { push(m.index, m.index + m[0].length, g_cap(m[0], f(m)), msg); if (m[0].length === 0) re.lastIndex++; } });
+  issues.sort((a, b) => a.s - b.s || b.e - a.e);
+  const out = []; let last = -1;
+  issues.forEach(x => { if (x.s >= last) { out.push(x); last = x.e; } });
+  return out;
+}
+function applyIssues(text, list) {
+  return [...list].filter(x => x.fix != null).sort((a, b) => b.s - a.s).reduce((t, x) => t.slice(0, x.s) + x.fix + t.slice(x.e), text);
+}
+const G_SILENT = new Set(['walk', 'talk', 'chalk', 'half', 'calm', 'palm', 'salmon', 'folk', 'yolk', 'would', 'could', 'should', 'calf', 'behalf']);
+function speakStats(text) {
+  const ws = (text.toLowerCase().match(/[a-z]+(?:'[a-z]+)*/g) || []);
+  const u = [...new Set(ws)];
+  return {
+    words: ws.length,
+    l: u.filter(w => /l/.test(w) && !G_SILENT.has(w)),
+    blend: u.filter(w => /^(bl|cl|fl|gl|pl|sl|spl)/.test(w)),
+    fin: u.filter(w => /(lk|lp|lt|ld|lf|lm|lv|lth|lch|lge|lve)s?$/.test(w) && !G_SILENT.has(w))
+  };
+}
+
+/* ===== Composer: chọn đề -> soạn bài -> kiểm tra ngữ pháp -> (ghi âm) ===== */
+function Composer(host, o) {
+  const S0 = o.S(); S0.comp = S0.comp || {};
+  const C = S0.comp[o.id] = S0.comp[o.id] || { checks: 0, applied: 0 };
+  const MIN = o.min || 40, id = o.id;
+  host.innerHTML = `<h3>① Chọn đề</h3><div class="cpr">${o.prompts.map((p, i) => `<label class="tick" style="background:var(--pri2);color:var(--ink)"><input type="radio" name="cp-${id}" value="${i}"${C.topic === i ? ' checked' : ''}> <span>${esc(p)}</span></label>`).join('')}</div>
+  <h3>② Soạn bài (ít nhất ${MIN} từ)</h3><textarea class="cta" placeholder="${esc(o.placeholder || 'Viết bài của em ở đây…')}"></textarea>
+  <div class="x cmeta"></div><div class="cneeds"></div>
+  <h3>③ Kiểm tra ngữ pháp</h3><p><button class="btn cchk">✅ Kiểm tra ngữ pháp</button> <button class="btn ghost sm cfix" hidden>Sửa tất cả gợi ý tự động</button></p><div class="cres"></div>
+  ${o.record ? '<h3>④ Ghi âm đọc đúng bài em đã soạn</h3><div class="clock warn"></div><div class="crec"></div>' : ''}`;
+  const ta = $('.cta', host), res = $('.cres', host), fixBtn = $('.cfix', host);
+  ta.value = C.text || '';
+  const words = t => (t.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || []).length;
+  const cur = () => ta.value.trim();
+  const save = () => o.save && o.save();
+  let issues = [];
+  function meta() {
+    const st = speakStats(ta.value);
+    $('.cmeta', host).textContent = `${st.words} từ · cần ít nhất ${MIN} từ`;
+    if (o.needs) $('.cneeds', host).innerHTML = o.needs(ta.value, st).map(n => `<span class="need${n.ok ? ' ok' : ''}">${n.ok ? '✅' : '⬜'} ${esc(n.t)}</span>`).join('');
+  }
+  function reason() {
+    const t = cur();
+    if (C.topic == null) return 'Em chọn đề ở bước ① trước.';
+    if (words(t) < MIN) return `Bài còn ngắn (${words(t)}/${MIN} từ). Em viết thêm rồi bấm Kiểm tra ngữ pháp.`;
+    if (!C.checkedText) return 'Em bấm "Kiểm tra ngữ pháp" ở bước ③ để mở phần ghi âm.';
+    if (C.checkedText !== t) return 'Em vừa sửa bài. Bấm "Kiểm tra ngữ pháp" lại để ghi âm bản mới.';
+    return '';
+  }
+  function unlock() {
+    if (!o.record) { o.onChange && o.onChange(); return; }
+    const lock = $('.clock', host), rec = $('.crec', host), why = reason(), t = cur();
+    if (why) {
+      lock.hidden = false; lock.textContent = why;
+      if (rec.dataset.t) { rec.dataset.t = ''; rec.innerHTML = ''; C.recDone = false; o.onRec && o.onRec({ done: false }); }
+    } else {
+      lock.hidden = false; lock.className = 'tip clock';
+      lock.textContent = issues.length ? `Còn ${issues.length} gợi ý chưa sửa. Em có thể sửa rồi kiểm tra lại, hoặc ghi âm luôn bản này.` : 'Bài đã kiểm tra. Em đọc to và ghi âm bài của mình nhé.';
+      if (rec.dataset.t !== t) {
+        rec.dataset.t = t; rec.innerHTML = '';
+        const dd = document.createElement('div'); rec.appendChild(dd);
+        Recorder(dd, { id, target: esc(t).replace(/\n/g, '<br>'), sample: t, checks: o.recChecks, label: o.label }, st => { C.recDone = st.done; C.sent = st.sent; save(); o.onRec && o.onRec(st); o.onChange && o.onChange(); });
+      }
+    }
+    if (why) lock.className = 'warn clock';
+    o.onChange && o.onChange();
+  }
+  function render() {
+    if (!issues.length) { res.innerHTML = '<div class="tip">✅ Máy không thấy lỗi ngữ pháp phổ biến. Máy chỉ bắt được các lỗi thường gặp, nên em vẫn đọc lại bài của mình thêm một lần nữa nhé.</div>'; fixBtn.hidden = true; return; }
+    res.innerHTML = `<p><b>Máy tìm thấy ${issues.length} chỗ có thể sửa:</b></p>` + issues.map((x, i) => `<div class="iss"><div class="fx"><s>${esc(x.found)}</s> → <b>${esc(x.fix)}</b></div><div class="x">${esc(x.msg)}</div><button class="btn sm ghost" data-i="${i}">Áp dụng</button></div>`).join('');
+    fixBtn.hidden = false;
+    $$('.iss .btn', res).forEach(b => b.onclick = () => { ta.value = applyIssues(cur(), [issues[+b.dataset.i]]); C.applied++; C.text = ta.value; run(false); });
+  }
+  function run(manual) {
+    const t = cur();
+    if (!t) { res.innerHTML = '<div class="warn">Em chưa viết gì. Hãy soạn bài trước.</div>'; return; }
+    issues = grammarCheck(t);
+    if (manual) { C.checks++; if (C.firstIssues == null) { C.firstText = t; C.firstIssues = issues.length; } }
+    C.lastIssues = issues.length; C.checkedText = t; C.text = ta.value;
+    render(); meta(); unlock(); save();
+  }
+  $('.cchk', host).onclick = () => run(true);
+  fixBtn.onclick = () => { ta.value = applyIssues(cur(), issues); C.applied += issues.length; C.text = ta.value; run(false); };
+  ta.oninput = () => { C.text = ta.value; meta(); if (C.checkedText !== cur()) { res.innerHTML = C.checkedText ? '<div class="x">Bài đã thay đổi. Bấm "Kiểm tra ngữ pháp" để máy xem lại.</div>' : ''; } unlock(); save(); };
+  $$('input[type=radio]', host).forEach(r => r.onchange = () => { C.topic = +r.value; save(); unlock(); });
+  meta(); if (C.checkedText && C.checkedText === cur()) { issues = grammarCheck(cur()); render(); }
+  unlock();
+  return { C, done: () => o.record ? !!(C.recDone && C.checkedText === cur()) : !!(C.checkedText && C.checkedText === cur() && words(cur()) >= MIN), words: () => words(cur()), text: () => cur() };
+}
+</script>
+<script>const LESSON = 'Gerund 4 - IELTS';
+Store.key = 'lpage:' + LESSON;
+let S = {}, cur = 0; const live = {};
+function save() { Store.save(S); chrome(); }
+function setScore(k, first, total) { S.sc = S.sc || {}; if (!S.sc[k]) S.sc[k] = [first, total]; save(); }
+function recFlag(id, st) { S.rc = S.rc || {}; if (!!S.rc[id] !== !!st.done) { S.rc[id] = !!st.done; save(); } }
+const say = s => `<button class="btn sm ghost" data-s="${esc(s)}" data-r="0.85">🔊</button> ${esc(s)}`;
+const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+function mk(i, q, right, wrong, extra) { const o = wrong.slice(); const pos = i % (wrong.length + 1); o.splice(pos, 0, right); return Object.assign({ q, o, a: pos }, extra || {}); }
+const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
+function Typed(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false), done: () => st.ok === st.total };
+  host.innerHTML = '';
+  items.forEach((it, n) => {
+    const d = document.createElement('div'); d.className = 'q';
+    d.innerHTML = `<div class="qt">${n + 1}. ${esc(it.q)}</div><input type="text" class="ti" autocomplete="off" autocapitalize="none" spellcheck="false"> <button class="btn sm">Kiểm tra</button><div class="x fb" hidden></div>`;
+    host.appendChild(d);
+    const inp = $('input', d), btn = $('.btn', d), fb = $('.fb', d);
+    const chk = () => {
+      if (inp.disabled) return; const a = norm(inp.value); if (!a) return; fb.hidden = false;
+      if (it.a.includes(a)) { inp.disabled = true; btn.disabled = true; inp.classList.add('ok'); if (!st.tried[n]) st.first++; st.ok++; fb.textContent = '✅ Đúng. ' + it.x; speak(it.q.replace('___', it.a[0]).replace(/\s*\(.*?\)/, '')); onChange && onChange(st); }
+      else { st.tried[n] = true; fb.textContent = 'Chưa đúng, em xem lại quy tắc rồi thử lại nhé.'; }
+    };
+    btn.onclick = chk; inp.addEventListener('keydown', e => { if (e.key === 'Enter') chk(); });
+  });
+  return st;
+}
+/* ---------- nhận biết gerund trong bài soạn ---------- */
+const NOT_ING = new Set('during morning evening thing something anything everything nothing king bring spring string ring sing swing wing ceiling sing being? seeing?'.split(' '));
+function gerundsOf(text) {
+  const set = new Set(), bad = w => w.length < 5 || NOT_ING.has(w);
+  const re1 = /\b(enjoy|enjoys|enjoyed|like|likes|love|loves|hate|hates|mind|avoid|avoids|finish|finished|keep|keeps|practise|practice|suggest|suggests|imagine|miss|stop|waste|wasted|stand|used to|used|good at|interested in|afraid of|tired of|keen on|fond of|worried about|responsible for|capable of|committed to|contribute to|contributes to|contributed to|lead to|leads to|focus on|focuses on|benefit from|difficulty in|difficulty|forward to|about|of|in|at|on|for|by|without|before|after|instead of|from)\s+(?:(?:not|never|also|really|regularly|always|often|usually|only)\s+)?([a-z]+ing)\b/gi;
+  let m; while ((m = re1.exec(text))) { const w = m[2].toLowerCase(); if (!bad(w)) set.add(w); }
+  const re2 = /\b(?:spend|spent|spends|waste|wasted)\b[^.!?]{0,30}?\b([a-z]+ing)\b/gi;
+  while ((m = re2.exec(text))) { const w = m[1].toLowerCase(); if (!bad(w)) set.add(w); }
+  const re3 = /(?:^|[.!?]\s+)(?:Not\s+)?([A-Z][a-z]+ing)\b/g; let subj = 0;
+  while ((m = re3.exec(text))) { const w = m[1].toLowerCase(); if (!bad(w)) { set.add(w); subj++; } }
+  const conn = (text.match(/\b(by|after|before|without|instead of)\s+(?:not\s+)?[a-z]{3,}ing\b/gi) || []).filter(x => !NOT_ING.has(x.split(/\s+/).pop().toLowerCase())).length;
+  return { list: [...set], subj, conn };
+}
+/* ---------- dữ liệu ---------- */
+const Q1 = [
+  ['___ air pollution is a priority for many governments.', 'Reducing', 'Reduce', 'Reduces', 'Gerund làm chủ ngữ, trang trọng, dùng nhiều trong Writing Task 2.'],
+  ['By ___ in public transport, cities can cut traffic.', 'investing', 'invest', 'to invest', 'By + V-ing: bằng cách làm gì (nối ý nguyên nhân, cách làm).'],
+  ['Many students have difficulty ___ their time.', 'managing', 'manage', 'to manage', 'have difficulty (in) + V-ing.'],
+  ['Technology has contributed to ___ the way we work.', 'changing', 'change', 'to change', 'contribute to + V-ing: "to" là giới từ.'],
+  ['Instead of ___ more roads, governments should improve buses.', 'building', 'build', 'to build', 'instead of + V-ing.'],
+  ["I'm really looking forward to ___ abroad.", 'studying', 'study', 'to study', 'look forward to + V-ing: "to" là giới từ (Speaking Part 2, 3).'],
+  ["I can't stand ___ in traffic jams.", 'sitting', 'sit', 'sat', "can't stand + V-ing (Speaking: nói điều mình ghét)."],
+  ['Regular exercise helps prevent people from ___ ill.', 'becoming', 'become', 'to become', 'prevent sb from + V-ing.'],
+  ['She is responsible for ___ the project.', 'leading', 'lead', 'to lead', 'be responsible for + V-ing.'],
+  ['Without ___ enough sleep, students cannot concentrate.', 'getting', 'get', 'to get', 'without + V-ing.'],
+  ["I'm used to ___ up early.", 'getting', 'get', 'got', 'be used to + V-ing (đã quen với việc gì).'],
+  ['I used to ___ football every weekend.', 'play', 'playing', 'played', 'used to + V nguyên mẫu (từng làm gì trong quá khứ). Khác với be used to + V-ing.']
+];
+const Q2 = [
+  ['Learning new skills can improve your career.', 'Learn new skills can improve your career.', 'Learning new skills can improves your career.'],
+  ['Many people are interested in working abroad.', 'Many people are interested in work abroad.', 'Many people are interested to working abroad.'],
+  ['I enjoy meeting new people.', 'I enjoy to meet new people.', 'I enjoy meet new people.'],
+  ['Governments should focus on reducing waste.', 'Governments should focus on reduce waste.', 'Governments should focus to reducing waste.'],
+  ['Not exercising regularly can lead to health problems.', 'No exercising regularly can lead to health problems.', 'Not exercise regularly can lead to health problems.'],
+  ['I look forward to hearing from you.', 'I look forward to hear from you.', 'I look forward hearing from you.'],
+  ['Spending too much time online is harmful.', 'Spend too much time online is harmful.', 'Spending too much time online are harmful.'],
+  ['He apologised for being late.', 'He apologised for be late.', 'He apologised for to be late.']
+];
+const Q3 = [
+  ["___ (spend) too much time online can harm students' health.", ['spending'], 'Gerund làm chủ ngữ.'],
+  ['By ___ (use) public transport, people can reduce pollution.', ['using'], 'by + V-ing; bỏ e rồi thêm -ing.'],
+  ['The government should focus on ___ (create) more jobs.', ['creating'], 'focus on + V-ing.'],
+  ['Many young people have difficulty ___ (find) a stable job.', ['finding'], 'have difficulty + V-ing.'],
+  ['Technology has contributed to ___ (improve) education.', ['improving'], 'contribute to + V-ing.'],
+  ['I am keen on ___ (travel) to new countries.', ['travelling', 'traveling'], 'keen on + V-ing (Anh: travelling, Mỹ: traveling).'],
+  ['After ___ (finish) school, I want to study abroad.', ['finishing'], 'after + V-ing.'],
+  ['It is important to avoid ___ (waste) energy.', ['wasting'], 'avoid + V-ing.']
+];
+const PS = ['Part 1: Do you enjoy learning English? Why or why not?', 'Part 2: Describe a hobby you enjoy. Say what it is, how often you do it, and why you like it.', 'Part 3: How can technology help people learn new skills?'];
+const PW = ['Task 2: Some people think governments should focus on reducing pollution rather than other problems. Give your opinion in one paragraph.', 'Task 2: Many students spend too much time online. What problems does this cause, and what can be done? (Viết 1 đoạn)', 'Task 2: More people now work from home. Do the advantages outweigh the disadvantages? (Viết 1 đoạn)'];
+const MINS = 60, MINW = 90;
+const PARTS = [
+ { id: 'V', t: '1. Học', html: `<h2>Gerund giúp câu IELTS tự nhiên và học thuật</h2>
+  <p class="x">Em đã học gerund ở các bài trước. Bài này dùng gerund để <b>nói và viết tốt hơn</b>.</p>
+  <div class="card"><h3>① Gerund làm chủ ngữ (Writing Task 2)</h3>
+  <p>Thay cho câu dài "It is important to…", dùng gerund làm chủ ngữ cho câu gọn, trang trọng:</p>
+  <p>${say('Reducing air pollution is a priority for many governments.')}<br>${say('Learning a second language opens many doors.')}</p>
+  <div class="tip">Chủ ngữ là gerund thì động từ chia <b>số ít</b>: <i>Spending too much time online is harmful.</i> Phủ định: <i>Not exercising can lead to health problems.</i></div></div>
+  <div class="card"><h3>② Giới từ + V-ing để nối ý (Writing)</h3>
+  ${T([['By + V-ing', 'bằng cách', 'By investing in buses, cities can cut traffic.'], ['After / Before + V-ing', 'sau / trước khi', 'After graduating, many students look for a job.'], ['Without + V-ing', 'mà không', 'Without getting enough sleep, students cannot concentrate.'], ['Instead of + V-ing', 'thay vì', 'Instead of building roads, governments should improve buses.']], ['Cấu trúc', 'Nghĩa', 'Ví dụ'])}
+  <div class="tip">Dùng các cụm này giúp <b>gộp hai câu ngắn thành một câu dài</b> (Grammatical Range and Accuracy).</div></div>
+  <div class="card"><h3>③ Cụm học thuật + V-ing</h3>
+  ${T([['contribute to', 'góp phần', 'Technology has contributed to improving education.'], ['lead to', 'dẫn đến', 'Stress can lead to losing sleep.'], ['focus on', 'tập trung vào', 'Governments should focus on creating jobs.'], ['benefit from', 'hưởng lợi từ', 'Students benefit from learning online.'], ['be responsible for', 'chịu trách nhiệm về', 'Parents are responsible for teaching good habits.'], ['prevent sb from', 'ngăn ai làm gì', 'Exercise prevents people from becoming ill.'], ['have difficulty (in)', 'gặp khó khăn khi', 'Many people have difficulty finding a job.']], ['Cấu trúc', 'Nghĩa', 'Ví dụ'])}
+  <div class="tip">Ở tất cả các cụm này "to" là <b>giới từ</b> nên sau nó là V-ing, không phải V nguyên mẫu.</div></div>
+  <div class="card"><h3>④ Gerund trong Speaking</h3>
+  <p>${say('I really enjoy playing badminton with my friends.')}<br>${say("I'm keen on learning new languages.")}<br>${say("I can't stand sitting in traffic jams.")}<br>${say('I spend a lot of time practising English online.')}<br>${say("I'm looking forward to studying abroad.")}</p>
+  <div class="tip"><b>Cẩn thận:</b> <i>I used to play football</i> (từng chơi, + V nguyên mẫu) khác <i>I'm used to getting up early</i> (đã quen với, + V-ing). <i>I'd love to travel</i> dùng to V, còn <i>I love travelling</i> dùng V-ing.</div></div>`,
+   init() { S.seen = true; save(); } },
+ { id: 'Q1', t: '2. Quiz chọn dạng', html: '<h2>Quiz 1. Chọn dạng đúng</h2><p class="x">Chọn dạng đúng của động từ cho câu IELTS.</p><div id="q1"></div>',
+   init() { live.Q1 = Quiz($('#q1'), Q1.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]) })), st => { if (st.done()) setScore('Q1', st.first, st.total); }); } },
+ { id: 'Q2', t: '3. Quiz chọn câu đúng', html: '<h2>Quiz 2. Chọn câu đúng</h2><p class="x">Chỉ một câu có gerund đúng.</p><div id="q2"></div>',
+   init() { live.Q2 = Quiz($('#q2'), Q2.map((r, i) => mk(i, 'Chọn câu đúng:', r[0], [r[1], r[2]], { x: 'Câu đúng: ' + r[0], say2: r[0] })), st => { if (st.done()) setScore('Q2', st.first, st.total); }); } },
+ { id: 'Q3', t: '4. Điền gerund', html: '<h2>Quiz 3. Điền dạng đúng</h2><p class="x">Gõ dạng đúng của động từ trong ngoặc.</p><div id="q3"></div>',
+   init() { live.Q3 = Typed($('#q3'), Q3.map(r => ({ q: r[0], a: r[1], x: r[2] })), st => { if (st.done()) setScore('Q3', st.first, st.total); }); } },
+ { id: 'S', t: '5. Nói', html: `<h2>Soạn bài nói IELTS rồi ghi âm</h2><p>Soạn bài nói (ít nhất ${MINS} từ) có <b>ít nhất 4 gerund</b>, bấm <b>Kiểm tra ngữ pháp</b>, rồi ghi âm đọc bài của mình.</p><div id="sp"></div>`,
+   init() {
+     live.S = Composer($('#sp'), { id: 'S', S: () => S, save, min: MINS, prompts: PS, record: true, label: 'Gerund IELTS - Nói', placeholder: 'Ví dụ: I really enjoy learning English because…',
+       needs: t => { const g = gerundsOf(t); return [{ t: `${g.list.length}/4 gerund${g.list.length ? ' (' + g.list.join(', ') + ')' : ''}`, ok: g.list.length >= 4 }]; },
+       recChecks: ['Em đọc đúng bài mình đã soạn', 'Đuôi -ing rõ, không nuốt âm /ŋ/', 'Nối âm tự nhiên (enjoy playing, looking forward to studying)'],
+       onRec: st => recFlag('S', st), onChange: chrome });
+   } },
+ { id: 'W', t: '6. Viết', html: `<h2>Viết một đoạn IELTS Task 2</h2><p>Viết ít nhất ${MINW} từ, có <b>5 gerund</b>, <b>1 câu mở đầu bằng gerund</b> và <b>1 cụm By/After/Before/Without/Instead of + V-ing</b>. Rồi bấm <b>Kiểm tra ngữ pháp</b>.</p><div id="wr"></div>`,
+   init() {
+     live.W = Composer($('#wr'), { id: 'W', S: () => S, save, min: MINW, prompts: PW, record: false, placeholder: 'Viết bài của em ở đây…',
+       needs: t => { const g = gerundsOf(t); return [{ t: `${g.list.length}/5 gerund${g.list.length ? ' (' + g.list.join(', ') + ')' : ''}`, ok: g.list.length >= 5 }, { t: `${Math.min(g.subj, 1)}/1 câu mở đầu bằng gerund`, ok: g.subj >= 1 }, { t: `${Math.min(g.conn, 1)}/1 cụm By/After/Before/Without + V-ing`, ok: g.conn >= 1 }]; },
+       onChange: chrome });
+   } },
+ { id: 'R', t: '7. Nộp bài', result: true, html: '<h2>Nộp bài cho cô</h2><div id="rs"></div><div id="sub"></div>' }
+];
+const LABEL = { Q1: 'Quiz 1 (chọn dạng)', Q2: 'Quiz 2 (chọn câu đúng)', Q3: 'Quiz 3 (điền)' };
+const donePart = id => {
+  if (id === 'V') return !!S.seen;
+  if (LABEL[id]) return !!(S.sc && S.sc[id]);
+  if (id === 'S') return !!(S.rc && S.rc.S);
+  if (id === 'W') return !!(live.W ? live.W.done() : (S.comp && S.comp.W && S.comp.W.checkedText && S.comp.W.checkedText === (S.comp.W.text || '').trim()));
+  return false;
+};
+function chrome() {
+  const ids = PARTS.filter(p => !p.result).map(p => p.id), n = ids.filter(donePart).length, pct = Math.round(n / ids.length * 100);
+  $('#pb').style.width = pct + '%'; $('#pt').textContent = `Tiến độ ${pct}% (${n}/${ids.length} phần)`;
+  $('#who').textContent = S.name ? '👤 ' + S.name : '';
+  $('#chips').innerHTML = PARTS.map((p, i) => `<button class="chip${i === cur ? ' on' : ''}${donePart(p.id) ? ' done' : ''}" data-i="${i}">${p.t}</button>`).join('');
+  $$('#chips .chip').forEach(b => b.onclick = () => go(+b.dataset.i));
+  $('#prev').disabled = cur === 0; $('#next').style.display = cur === PARTS.length - 1 ? 'none' : '';
+}
+function info(id) {
+  const C = (S.comp && S.comp[id]) || {}, t = C.text || '', words = (t.match(/[A-Za-z]+(?:['’][A-Za-z]+)*/g) || []).length, g = gerundsOf(t);
+  return { C, t, words, left: t ? grammarCheck(t).length : 0, g };
+}
+function warnList() {
+  const w = [], miss = Object.keys(LABEL).filter(k => !(S.sc && S.sc[k]));
+  if (miss.length) w.push('Chưa làm xong: ' + miss.map(k => LABEL[k]).join(', ') + '.');
+  const s = info('S'), x = info('W');
+  if (!s.t) w.push('Phần Nói: em chưa soạn bài.');
+  else { if (!s.C.checks) w.push('Phần Nói: em chưa bấm Kiểm tra ngữ pháp.'); if (s.words < MINS) w.push(`Phần Nói: mới ${s.words}/${MINS} từ.`); if (s.g.list.length < 4) w.push(`Phần Nói: mới có ${s.g.list.length}/4 gerund.`); }
+  if (!(S.rc && S.rc.S)) w.push('Phần Nói: bản ghi âm chưa ghi hoặc chưa gửi (bấm 📤 Gửi).');
+  if (!x.t) w.push('Phần Viết: em chưa viết bài.');
+  else { if (!x.C.checks) w.push('Phần Viết: em chưa bấm Kiểm tra ngữ pháp.'); if (x.words < MINW) w.push(`Phần Viết: mới ${x.words}/${MINW} từ.`); if (x.g.list.length < 5) w.push(`Phần Viết: mới có ${x.g.list.length}/5 gerund.`); if (x.g.subj < 1) w.push('Phần Viết: chưa có câu mở đầu bằng gerund.'); if (x.g.conn < 1) w.push('Phần Viết: chưa có cụm By/After/Before/Without + V-ing.'); }
+  return w;
+}
+const scoreLines = () => Object.keys(LABEL).filter(k => S.sc && S.sc[k]).map(k => `${LABEL[k]}: ${S.sc[k][0]}/${S.sc[k][1]}`);
+function submitPayload() {
+  const rows = [], sp = info('S'), wr = info('W');
+  Object.keys(LABEL).forEach(k => { const v = S.sc && S.sc[k]; rows.push({ part: 'Gerund IELTS - ' + LABEL[k], question: LABEL[k], answer: v ? `${v[0]}/${v[1]}` : 'chưa làm', correct: v ? String(v[1]) : '', result: v ? (v[0] / v[1] >= 0.7 ? 'tốt' : 'cần ôn') : 'chưa làm' }); });
+  [['Nói', 'S', sp, PS], ['Viết', 'W', wr, PW]].forEach(([nm, id, g, P]) => {
+    const C = g.C;
+    rows.push({ part: 'Gerund IELTS - ' + nm, question: 'Đề: ' + (C.topic != null ? P[C.topic] : '(chưa chọn)'), answer: 'Bản đã chốt: ' + g.t, correct: 'Bản gõ lần kiểm tra đầu: ' + (C.firstText || ''), result: `kiểm tra ${C.checks || 0} lần · lần đầu ${C.firstIssues == null ? '?' : C.firstIssues} gợi ý · đã áp dụng ${C.applied || 0} · còn ${g.left} gợi ý · ${g.words} từ · gerund ${g.g.list.length} (${g.g.list.join(', ')})${id === 'S' ? ' · ghi âm ' + (S.rc && S.rc.S ? 'đã gửi' : 'chưa gửi') : ''}` });
+  });
+  return { summary: { recordings: S.rc && S.rc.S ? 1 : 0, avg: null, full: `Nói ${sp.words} từ`, writes: `Viết ${wr.words} từ; kiểm tra ngữ pháp: Nói ${sp.C.checks || 0} lần, Viết ${wr.C.checks || 0} lần`, quiz: scoreLines().join(' · ') }, details: rows };
+}
+function go(i) { cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function render() {
+  const p = PARTS[cur];
+  $('#main').innerHTML = `<section class="card">${p.html}</section>`;
+  if (p.init) p.init();
+  if (p.result) {
+    const w = warnList(), sp = info('S'), wr = info('W'), L = scoreLines();
+    $('#rs').innerHTML = `<table><tr><th>Phần</th><th>Kết quả</th></tr>${Object.keys(LABEL).map(k => `<tr><td>${LABEL[k]}</td><td>${S.sc && S.sc[k] ? S.sc[k][0] + '/' + S.sc[k][1] : '—'}</td></tr>`).join('')}
+    <tr><td>Nói</td><td>${sp.t ? `${sp.words} từ · ${sp.g.list.length} gerund · ${S.rc && S.rc.S ? 'đã gửi ghi âm' : 'chưa gửi ghi âm'}` : '—'}</td></tr>
+    <tr><td>Viết</td><td>${wr.t ? `${wr.words} từ · ${wr.g.list.length} gerund · còn ${wr.left} gợi ý` : '—'}</td></tr></table>
+    ${w.length ? `<div class="warn"><b>Còn thiếu:</b><ul>${w.map(x => `<li>${esc(x)}</li>`).join('')}</ul></div>` : '<div class="tip">✅ Em đã làm đủ. Bấm Nộp bài.</div>'}`;
+    submitFlow($('#sub'), { S: () => S, save, warns: warnList, payload: submitPayload, text: () => `Gerund IELTS - ${S.name || ''}\n${L.join('\n')}\nNói: ${sp.words} từ; Viết: ${wr.words} từ` });
+  }
+}
+$('#next').onclick = () => go(cur + 1);
+$('#prev').onclick = () => go(cur - 1);
+gate(st => { voicePanel(); S = st; cur = 0; render(); chrome(); });
+</script>
+</body></html>
