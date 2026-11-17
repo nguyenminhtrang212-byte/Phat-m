@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gerund (V-ing) · Bài học cơ bản</title>
+<title>Gerund nâng cao</title>
 <style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
 @media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
 *{box-sizing:border-box}
@@ -93,7 +93,7 @@ input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 
 .vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
 </style></head><body>
 <div class="wrap">
-<header class="hero"><span class="stamp">Ngữ pháp · Lớp 6-9</span><h1>Gerund (V-ing): từ gốc đến ngọn</h1><p class="sub">3 mục: (1) Gerund là gì, (2) Gerund sau động từ, (3) Giới từ + gerund. Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi mới sang bước tiếp theo.</p></header>
+<header class="hero"><span class="stamp">Ngữ pháp · Lớp 8-9 · Nâng cao</span><h1>Gerund nâng cao</h1><p class="sub">Làm sau bài Gerund dễ: tự gõ đáp án, cụm cố định, stop/remember/try, tìm câu sai và điền tổng hợp.</p></header>
 <div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
 <main id="main"></main>
 <div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
@@ -297,7 +297,8 @@ function submitFlow(host, o) {
   if (S().submitted) msg.innerHTML = '✅ Em đã nộp bài trước đó. Bấm Nộp bài lần nữa nếu em muốn nộp bản mới.';
 }
 </script>
-<script>const LESSON = 'Gerund co ban';
+<script>const MODE='nc';
+const LESSON = MODE === 'de' ? 'Gerund - De' : 'Gerund - Nang cao';
 Store.key = 'lpage:' + LESSON;
 const say = s => `<button class="btn sm ghost" data-s="${esc(s)}" data-r="0.85">🔊</button> ${esc(s)}`;
 function seeded(n) { let x = n * 9301 + 49297; return () => { x = (x * 9301 + 49297) % 233280; return x / 233280; }; }
@@ -371,6 +372,49 @@ const PFILL = [
   ['I am looking forward to ___ (see) you.', ['seeing'], 'look forward to + V-ing.'],
   ['They left without ___ (say) goodbye.', ['saying'], 'without + V-ing.']
 ];
+
+const ADV1G = [
+  ['We often go ___ on Sundays. (shop)', 'shopping', 'to shop', 'shop', 'go + V-ing: go shopping.'],
+  ['He is busy ___ his homework.', 'doing', 'to do', 'do', 'be busy + V-ing.'],
+  ['It is worth ___ this museum.', 'visiting', 'to visit', 'visit', 'be worth + V-ing.'],
+  ['She spends a lot of money ___ clothes.', 'buying', 'to buy', 'buy', 'spend money/time + V-ing.'],
+  ['___ breakfast is bad for your health.', 'Not eating', "Don't eating", 'Not eat', 'Phủ định của gerund: not + V-ing.'],
+  ["I can't stand ___ in long queues.", 'waiting', 'to wait', 'wait', "can't stand + V-ing."],
+  ["It's no use ___ about the past.", 'worrying', 'to worry', 'worry', "It's no use + V-ing."],
+  ['They went ___ last summer. (camp)', 'camping', 'to camp', 'camp', 'go + V-ing: go camping.'],
+  ['He wasted time ___ video games.', 'playing', 'to play', 'play', 'waste time + V-ing.'],
+  ["I can't help ___ when I see that video.", 'laughing', 'to laugh', 'laugh', "can't help + V-ing: không nhịn được."]
+];
+const ADV2G = [
+  ['She stopped ___ when the teacher came in. (dừng việc nói chuyện)', 'talking', 'to talk', 'talk', 'stop + V-ing: dừng hẳn việc đang làm.'],
+  ['We stopped ___ some water on the way. (dừng lại để mua)', 'to buy', 'buying', 'buy', 'stop + to V: dừng lại để làm việc khác.'],
+  ['I forgot ___ my homework, so the teacher was angry. (quên mang bài)', 'to bring', 'bringing', 'bring', 'forget + to V: quên làm việc cần làm.'],
+  ['I remember ___ this film when I was a child. (nhớ là đã xem)', 'seeing', 'to see', 'see', 'remember + V-ing: nhớ việc đã xảy ra.'],
+  ['Please remember ___ me when you arrive. (nhớ gọi)', 'to call', 'calling', 'call', 'remember + to V: nhớ làm việc cần làm.'],
+  ['Try ___ the computer. Maybe it will work. (thử khởi động lại)', 'restarting', 'to restart', 'restart', 'try + V-ing: thử làm xem kết quả.'],
+  ["He tried ___ the heavy box but he couldn't. (cố gắng)", 'to lift', 'lifting', 'lift', 'try + to V: cố gắng làm.'],
+  ['I will never forget ___ the sea for the first time. (không quên việc đã xảy ra)', 'seeing', 'to see', 'see', 'forget + V-ing: quên/không quên việc đã xảy ra.']
+];
+const ADV3 = [
+  ['She is good at to swim.', 'She is good at swimming.', 'He enjoys swimming.', 'good at + V-ing, không dùng to V.'],
+  ['I look forward to see you.', 'I enjoy meeting new friends.', 'He avoids making noise.', 'look forward to + V-ing (to là giới từ).'],
+  ['They decided going home.', 'We finished cleaning.', 'She keeps asking questions.', 'decide + to V: They decided to go home.'],
+  ['Thanks for help me.', 'I am thinking about moving.', 'She apologised for being late.', 'for + V-ing: Thanks for helping me.'],
+  ['He wants learning French.', 'He enjoys learning French.', 'He is interested in learning French.', 'want + to V: He wants to learn French.'],
+  ['Do you mind to open the window?', 'Do you mind opening the window?', 'Would you like to open it?', 'mind + V-ing: Do you mind opening...?'],
+  ['He left without say goodbye.', 'He left without saying goodbye.', 'She went out without taking an umbrella.', 'without + V-ing.'],
+  ['We went to swim yesterday.', 'We went swimming yesterday.', 'We go fishing every weekend.', 'go + V-ing: We went swimming.']
+];
+const ADV4 = [
+  ['She decided ___ (study) abroad.', ['to study'], 'decide + to V.'],
+  ['He is busy ___ (prepare) for the exam.', ['preparing'], 'be busy + V-ing.'],
+  ["I can't stand ___ (wait) in the rain.", ['waiting'], "can't stand + V-ing."],
+  ['We hope ___ (visit) Hue next year.', ['to visit'], 'hope + to V.'],
+  ['___ (not / eat) breakfast is bad for your health.', ['not eating'], 'Phủ định của gerund: not + V-ing.'],
+  ['Remember ___ (turn) off the lights before you leave.', ['to turn'], 'remember + to V: nhớ làm việc cần làm.'],
+  ['They went ___ (fish) at the lake.', ['fishing'], 'go + V-ing.'],
+  ['Thank you for ___ (invite) me to your party.', ['inviting'], 'for + V-ing.']
+];
 const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
 /* bài gõ: items [{q, a:[...], x, hint}] */
 function Typed(host, items, onChange) {
@@ -391,7 +435,7 @@ function Typed(host, items, onChange) {
   return st;
 }
 
-const STEPS = [
+const ALL = [
  { id: 'what', t: '1. Gerund là gì?', read: true,
    html: `<h2>MỤC 1 · Gerund là gì?</h2>
    <p>Thử so sánh hai câu:</p>
@@ -458,18 +502,58 @@ const STEPS = [
    html: `<h2>Chọn dạng đúng sau giới từ</h2><p class="x">Nhớ: giới từ + V-ing. Cẩn thận với "look forward to".</p><div id="qb"></div>` },
  { id: 'pfill', t: '10. Điền sau giới từ', typed: true,
    html: `<h2>Điền dạng đúng của động từ trong ngoặc</h2><p class="x">Mỗi câu có một giới từ. Dùng V-ing sau giới từ.</p><div id="qb"></div>` },
- { id: 'done', t: '11. Tổng kết', end: true,
+
+ { id: 'adv1', t: 'Gerund trong cụm cố định', read: true,
+   html: `<h2>Cụm cố định với gerund</h2>
+   ${T([['go + V-ing', 'đi làm hoạt động', 'We go swimming / shopping / fishing / camping.'], ['spend / waste time + V-ing', 'dành / lãng phí thời gian', 'I spend an hour reading every night.'], ['be busy + V-ing', 'bận làm gì', 'He is busy doing his homework.'], ['be worth + V-ing', 'đáng làm gì', 'This museum is worth visiting.'], ["It's no use + V-ing", 'vô ích khi làm gì', "It's no use worrying."], ["can't stand / can't help + V-ing", 'không chịu nổi / không nhịn được', "I can't stand waiting. I can't help laughing."]], ['Cụm', 'Nghĩa', 'Ví dụ'])}
+   <h3>Gerund phủ định</h3>
+   <div class="tip">Phủ định của gerund: <b>not + V-ing</b>. ${say('Not eating breakfast is bad for your health.')}</div>`,
+   quiz: [
+     mk(0, 'Câu nào đúng?', 'We go swimming every Sunday.', ['We go to swim every Sunday.', 'We go swim every Sunday.'], { x: 'go + V-ing.' }),
+     mk(1, 'Câu nào đúng?', 'She spends two hours studying English.', ['She spends two hours to study English.', 'She spends two hours study English.'], { x: 'spend time + V-ing.' }),
+     mk(2, 'Dạng phủ định của gerund là gì?', 'not + V-ing', ['V-ing + not', "don't + V-ing"], { x: 'Not eating breakfast is bad.' }),
+     mk(0, 'Câu nào đúng?', "I can't stand waiting in line.", ["I can't stand to waiting in line.", "I can't stand wait in line."], { x: "can't stand + V-ing." })
+   ] },
+ { id: 'adv1g', t: 'Chọn dạng đúng', game: true,
+   html: `<h2>Chọn dạng đúng (cụm cố định)</h2><p class="x">Dùng các cụm vừa học: go, spend, busy, worth, no use, can't stand, can't help, not + V-ing.</p><div id="qb"></div>` },
+ { id: 'adv2', t: 'Stop, remember, try', read: true,
+   html: `<h2>Cùng động từ, nghĩa khác nhau</h2>
+   <p>Một số động từ đi được với cả V-ing và to V, nhưng <b>nghĩa khác nhau</b>:</p>
+   ${T([['stop', 'stop + V-ing: bỏ hẳn việc đang làm<br>stop + to V: dừng lại để làm việc khác', say('He stopped smoking.') + '<br>' + say('He stopped to smoke.')], ['remember / forget', '+ V-ing: nhớ / quên việc <b>đã xảy ra</b><br>+ to V: nhớ / quên việc <b>cần làm</b>', say('I remember locking the door.') + '<br>' + say('Remember to lock the door.')], ['try', '+ V-ing: thử làm xem kết quả<br>+ to V: cố gắng làm', say('Try turning it off and on.') + '<br>' + say('I tried to open the door.')]], ['Động từ', 'Hai nghĩa', 'Ví dụ'])}
+   <div class="tip">Mẹo: <b>V-ing = việc đã xảy ra / đang có thật</b>, <b>to V = việc sắp làm / mục đích</b>.</div>`,
+   quiz: [
+     mk(0, '"He stopped smoking." nghĩa là gì?', 'Anh ấy bỏ hút thuốc', ['Anh ấy dừng lại để hút thuốc', 'Anh ấy bắt đầu hút thuốc'], { x: 'stop + V-ing: bỏ hẳn việc đang làm.' }),
+     mk(1, '"I stopped to buy some bread." nghĩa là gì?', 'Tôi dừng lại để mua bánh mì', ['Tôi bỏ việc mua bánh mì', 'Tôi mua bánh mì khi đang đứng yên'], { x: 'stop + to V: dừng lại để làm việc khác.' }),
+     mk(2, 'Câu nào nghĩa là "Nhớ khóa cửa khi đi nhé"?', 'Remember to lock the door.', ['Remember locking the door.', 'Remember lock the door.'], { x: 'remember + to V: nhớ làm việc cần làm.' }),
+     mk(0, '"I tried to open the window but it was stuck." nghĩa là gì?', 'Tôi cố gắng mở cửa sổ nhưng nó bị kẹt', ['Tôi thử mở cửa sổ xem sao', 'Tôi đã mở xong cửa sổ'], { x: 'try + to V: cố gắng làm.' })
+   ] },
+ { id: 'adv2g', t: 'Chọn theo nghĩa', game: true,
+   html: `<h2>Chọn dạng đúng theo nghĩa</h2><p class="x">Đọc nghĩa trong ngoặc để quyết định V-ing hay to V.</p><div id="qb"></div>` },
+ { id: 'adv3', t: 'Tìm câu sai', game: true,
+   html: `<h2>Tìm câu sai</h2><p class="x">Mỗi câu hỏi có 3 câu, chỉ một câu sai. Chọn câu sai.</p><div id="qb"></div>` },
+ { id: 'adv4', t: 'Điền tổng hợp', typed: true,
+   html: `<h2>Điền tổng hợp</h2><p class="x">Có câu dùng V-ing, có câu dùng to V. Với "to V", em gõ cả "to" (ví dụ: to study). Câu phủ định gõ "not + V-ing".</p><div id="qb"></div>` },
+ { id: 'done', t: 'Tổng kết', end: true,
    html: `<h2>Tổng kết</h2><div id="sum"></div><div id="sub"></div>` }
 ];
+const SETS = {
+  de: ['what', 'form', 'spot', 'verb', 'vch', 'prep', 'prepid', 'pch', 'done'],
+  nc: ['adv1', 'adv1g', 'vfill', 'pfill', 'adv2', 'adv2g', 'adv3', 'adv4', 'done']
+};
+const STEPS = SETS[MODE].map(id => ALL.find(x => x.id === id)).map((s, k) => Object.assign({}, s, { t: `${k + 1}. ${s.t.replace(/^\d+\.\s*/, '')}` }));
 const GAME = {
   spot: () => RECOG.map((r, i) => mk(i, r[0], r[2] === 0 ? GER : PRG, [r[2] === 0 ? PRG : GER], { say: r[1], x: r[3] })),
   vch: () => VCH.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]) })),
   prepid: () => PREP.map((r, i) => mk(i, `${r[0]}  Giới từ trong câu là từ nào?`, r[2], [r[1], r[3]], { say: r[0], x: `"${r[2]}" là giới từ, sau nó là gerund "${r[3]}".` })),
+  adv1g: () => ADV1G.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]).replace(/\s*\(.*?\)/, '') })),
+  adv2g: () => ADV2G.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]).replace(/\s*\(.*?\)/, '') })),
+  adv3: () => ADV3.map((r, i) => mk(i, 'Câu nào SAI?', r[0], [r[1], r[2]], { x: 'Câu sai: ' + r[0] + ' → ' + r[3] })),
   pch: () => PCH.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]) }))
 };
 const TYPED = {
   form: () => ING_SET.map(r => ({ q: `${r[0]} → ?`, a: [r[1]], x: `${r[0]} → ${r[1]}. ${r[2]}`, say: r[1] })),
   vfill: () => VFILL.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') })),
+  adv4: () => ADV4.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') })),
   pfill: () => PFILL.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') }))
 };
 let S = {}, cur = 0;
@@ -523,7 +607,7 @@ function render() {
   else if (s.end) {
     const sc = STEPS.filter(x => S.score && S.score[x.id]), line = x => `${x.t.replace(/^\d+\.\s*/, '')}: ${S.score[x.id][0]}/${S.score[x.id][1]}`;
     $('#sum').innerHTML = `<p>Em đã hoàn thành <b>${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1}</b> bước.</p><table><tr><th>Bước</th><th>Đúng ngay lần đầu</th></tr>${sc.map(x => `<tr><td>${esc(x.t)}</td><td>${S.score[x.id][0]}/${S.score[x.id][1]}</td></tr>`).join('')}</table>
-    <div class="tip"><b>Nhớ 3 ý chính:</b><ul><li>Gerund = V-ing, dịch là danh động từ, dùng như danh từ.</li><li>enjoy, mind, finish, stop, avoid, keep, practise, suggest... + V-ing; want, hope, decide, would like... + to V.</li><li>Sau giới từ luôn dùng V-ing (kể cả look forward to).</li></ul></div>`;
+${MODE === 'de' ? `<div class="tip"><b>Nhớ 3 ý chính:</b><ul><li>Gerund = V-ing, dịch là danh động từ, dùng như danh từ.</li><li>enjoy, mind, finish, stop, avoid, keep, practise, suggest... + V-ing; want, hope, decide, would like... + to V.</li><li>Sau giới từ luôn dùng V-ing (kể cả look forward to).</li></ul></div><div class="tip">Bước tiếp theo: làm bài <a href="../gerund-nang-cao/">Gerund nâng cao</a>.</div>` : `<div class="tip"><b>Nhớ lại:</b><ul><li>go / spend time / be busy / be worth / can't stand / can't help + V-ing; phủ định: not + V-ing.</li><li>stop, remember, forget, try: V-ing nói về việc đã xảy ra, to V nói về việc cần làm hoặc mục đích.</li></ul></div>`}`;
     const txt = `Gerund co ban - ${S.name || ''}\n` + sc.map(line).join('\n');
     submitFlow($('#sub'), { S: () => S, save: () => Store.save(S), text: () => txt,
       warns: () => { const m = STEPS.map((x, i) => (!x.end && !isDone(i)) ? x.t : null).filter(Boolean); return m.length ? ['Chưa hoàn thành: ' + m.join('; ') + '.'] : []; },
