@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gerund trung bình</title>
+<style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
+@media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);-webkit-text-size-adjust:100%}
+.wrap{max-width:780px;margin:0 auto;padding:0 12px 96px}
+.hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;padding:20px 16px 16px;border-radius:0 0 22px 22px;margin:0 -12px 10px}
+.hero h1{margin:0 0 4px;font-size:22px;line-height:1.25}
+.hero .sub{margin:0;opacity:.92;font-size:14px}
+.stamp{display:inline-block;background:rgba(255,255,255,.2);border-radius:999px;padding:2px 10px;font-size:12px;margin-bottom:8px}
+.top{position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0 6px;border-bottom:1px solid var(--line)}
+.pbar{height:8px;background:var(--pri2);border-radius:99px;overflow:hidden}
+.pbar>i{display:block;height:100%;width:0;background:var(--pri);transition:width .3s}
+.ptxt{font-size:12px;color:var(--mut);margin:3px 0 6px;display:flex;justify-content:space-between}
+.chips{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;scrollbar-width:thin}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer;white-space:nowrap}
+.chip.on{background:var(--pri);color:#fff;border-color:var(--pri)}
+.chip.done::after{content:" ✅"}
+.chip.lock{opacity:.55}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:14px;margin:12px 0}
+.card h2{margin:0 0 8px;font-size:19px}
+.card h3{margin:14px 0 6px;font-size:16px}
+p{margin:.45em 0}
+ul,ol{margin:.4em 0;padding-left:1.25em}
+li{margin:.2em 0}
+.tip{background:var(--pri2);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+.warn{background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:10px 0;font-size:15px}
+table{width:100%;border-collapse:collapse;font-size:14.5px;margin:8px 0;display:block;overflow-x:auto}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:var(--pri2)}
+.btn{border:0;background:var(--pri);color:#fff;border-radius:12px;padding:10px 16px;font-size:15px;cursor:pointer;font-weight:600}
+.btn.ghost{background:transparent;color:var(--pri);border:1px solid var(--pri)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn.sm{padding:5px 11px;font-size:13px;border-radius:10px}
+.w{display:inline-flex;align-items:center;gap:4px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:3px 9px;margin:2px 3px 2px 0;font-size:15px;cursor:pointer}
+.w i{font-style:normal;color:var(--mut);font-size:12.5px}
+.w:before{content:"🔊";font-size:12px}
+.w:active{background:var(--pri2)}
+.qz{border-top:1px dashed var(--line);margin-top:10px;padding-top:6px}
+.q{margin:10px 0}
+.q .qt{font-weight:600;margin-bottom:5px}
+.opt{display:block;width:100%;text-align:left;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:9px 12px;margin:5px 0;font-size:15px;cursor:pointer}
+.opt.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.opt.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.opt[disabled]{cursor:default}
+.x{font-size:14px;color:var(--mut);margin:4px 0 0}
+.tick{display:flex;gap:8px;align-items:flex-start;background:var(--warnbg);color:var(--warn);border-radius:12px;padding:9px 12px;margin:12px 0;font-size:15px}
+.tick input{margin-top:4px;width:18px;height:18px}
+.nav{display:flex;justify-content:space-between;gap:10px;margin:14px 0}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal>div{background:var(--card);color:var(--ink);border-radius:16px;padding:16px;max-width:420px;width:100%;max-height:85vh;overflow:auto}
+.modal h3{margin:0 0 8px}
+.modal .row{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.modal input[type=text]{width:100%;padding:10px;border-radius:10px;border:1px solid var(--line);font-size:16px;background:var(--bg);color:var(--ink)}
+.rec{border:1px solid var(--line);border-radius:14px;padding:10px;margin:10px 0}
+.rec .rt{font-weight:600;margin-bottom:6px}
+.rec .rrow{display:flex;gap:6px;flex-wrap:wrap}
+.rec .rst{font-size:13px;color:var(--mut);margin:6px 0}
+.rec label{display:flex;gap:8px;align-items:flex-start;font-size:14px;margin:4px 0}
+.rec label input{margin-top:3px}
+.rec.ok{border-color:var(--ok);background:var(--okbg)}
+.score{display:inline-block;background:var(--pri2);border-radius:10px;padding:2px 9px;font-size:13px;font-weight:600}
+.big{font-size:17px}
+.hl{background:var(--hl);border-radius:4px;padding:0 2px}
+.tw{font-size:17px;line-height:1.9}
+.tw span{cursor:pointer;border-radius:5px;padding:0 1px}
+.tw span.sel{background:var(--hl)}
+.tw span.good{background:var(--okbg);color:var(--ok)}
+.tw span.miss{outline:2px dashed var(--bad)}
+.tw span.wrongsel{background:var(--badbg);color:var(--bad)}
+.sortrow{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin:6px 0}
+.sortrow .wd{min-width:92px}
+.sortrow .ob{border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;padding:5px 9px;font-size:14px;cursor:pointer}
+.sortrow .ob.ok{background:var(--okbg);border-color:var(--ok);color:var(--ok)}
+.sortrow .ob.bad{background:var(--badbg);border-color:var(--bad);color:var(--bad);text-decoration:line-through}
+.sortrow .fb{font-size:13px;color:var(--mut);flex-basis:100%}
+.blank{display:inline-block;min-width:44px;border-bottom:2px solid var(--pri);text-align:center;font-weight:700;color:var(--pri)}
+.foot{color:var(--mut);font-size:12px;text-align:center;margin:20px 0}
+a{color:var(--pri)}
+select{padding:7px 8px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);font-size:14px;max-width:100%;margin:3px 4px 3px 0}
+details.card summary{cursor:pointer}
+textarea{width:100%;border:1px solid var(--line);border-radius:12px;padding:10px;font:inherit;background:var(--card);color:var(--ink);min-height:150px;resize:vertical}
+input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 10px;font-size:15px;background:var(--card);color:var(--ink);width:150px}
+.iss{border:1px solid var(--line);border-radius:12px;padding:8px 10px;margin:6px 0}
+.iss .fx{font-size:15px}.iss .fx s{color:var(--bad)}.iss .fx b{color:var(--ok)}
+.need{display:inline-block;border-radius:999px;padding:3px 10px;font-size:13px;margin:2px 4px 2px 0;background:var(--pri2)}
+.need.ok{background:var(--okbg);color:var(--ok)}
+.vc{border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:10px 0;background:var(--card)}
+.vc .vh{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}.vc .vw{font-size:19px;font-weight:700}.vc .vp{font-size:12px;background:var(--pri2);border-radius:8px;padding:1px 7px}
+.vc .vi{color:var(--mut)}.vc .vm{font-weight:600;margin:3px 0}.vc .vn{font-size:13px;color:var(--mut)}
+.vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
+</style></head><body>
+<div class="wrap">
+<header class="hero"><span class="stamp">Ngữ pháp · Lớp 7-8 · Trung bình</span><h1>Gerund trung bình: sau động từ và sau giới từ</h1><p class="sub">Mục 2 và Mục 3: gerund đi sau các động từ, nhận diện giới từ và gerund đi sau nó. Làm sau bài Gerund dễ.</p></header>
+<div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
+<main id="main"></main>
+<div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
+<p class="foot">Tiến độ lưu trên trình duyệt này. Dùng Chrome hoặc Safari để nghe câu mẫu.</p>
+</div>
+<script>/* ===== shared helpers ===== */
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwnf8X3_Xfk9F_8HQtBwSFU_s28sRjxKb0aFaHCA4ybmMJvgaztBAbdvaFzITdbVXBt/exec'; // cổng nhận bài (Apps Script) của cô: ghi âm về Drive, kết quả về Sheet "Kết quả Speaking"
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+let VOICE = null;
+function pickVoice() {
+  try {
+    const vs = speechSynthesis.getVoices();
+    VOICE = vs.find(v => /en[-_]US/i.test(v.lang)) || vs.find(v => /^en/i.test(v.lang)) || null;
+  } catch (e) {}
+}
+if ('speechSynthesis' in window) { pickVoice(); speechSynthesis.onvoiceschanged = pickVoice; }
+const PREF = (() => { try { return JSON.parse(localStorage.getItem('lpage:voice')) || {}; } catch (e) { return {}; } })();
+function savePref() { try { localStorage.setItem('lpage:voice', JSON.stringify(PREF)); } catch (e) {} }
+function currentVoice() {
+  try { const vs = speechSynthesis.getVoices(); return (PREF.voice && vs.find(v => v.name === PREF.voice)) || VOICE; } catch (e) { return VOICE; }
+}
+function speak(t, rate) {
+  try {
+    speechSynthesis.cancel();
+    const u = new SpeechSynthesisUtterance(t);
+    const v = currentVoice();
+    u.lang = v ? v.lang : 'en-US'; if (v) u.voice = v; u.rate = (rate || 0.85) * (PREF.mult || 1);
+    speechSynthesis.speak(u);
+  } catch (e) {}
+}
+const Store = {
+  key: 'l-x',
+  load() { try { return JSON.parse(localStorage.getItem(this.key)) || {}; } catch (e) { return {}; } },
+  save(o) { try { localStorage.setItem(this.key, JSON.stringify(o)); } catch (e) {} }
+};
+function W(word, ipa) { return `<button class="w" data-s="${esc(word)}">${esc(word)}${ipa ? ' <i>' + esc(ipa) + '</i>' : ''}</button>`; }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-s]');
+  if (b) speak(b.dataset.s, +b.dataset.r || 0.85);
+});
+function modal(title, html, buttons) {
+  const m = document.createElement('div');
+  m.className = 'modal';
+  m.innerHTML = `<div><h3>${title}</h3><div>${html}</div><div class="row"></div></div>`;
+  const row = $('.row', m);
+  (buttons || [{ t: 'Đã hiểu' }]).forEach(b => {
+    const x = document.createElement('button');
+    x.className = 'btn' + (b.ghost ? ' ghost' : '');
+    x.textContent = b.t;
+    x.onclick = () => { m.remove(); b.f && b.f(); };
+    row.appendChild(x);
+  });
+  document.body.appendChild(m);
+  return m;
+}
+function gate(cb) {
+  const st = Store.load();
+  if (st.name) { cb(st); return; }
+  const m = modal('Chào em! 👋', '<p>Em gõ tên để lưu tiến độ học nhé:</p><input type="text" id="gname" placeholder="Tên của em" autocomplete="name">', [{ t: 'Bắt đầu', f: () => { } }]);
+  const inp = $('#gname', m), btn = $('.row .btn', m);
+  btn.onclick = () => {
+    const v = inp.value.trim().slice(0, 40);
+    if (!v) { inp.focus(); return; }
+    const s = Store.load(); s.name = v; Store.save(s); m.remove(); cb(s);
+  };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') btn.click(); });
+  setTimeout(() => inp.focus(), 50);
+}
+/* Quiz: items [{q,o:[],a,x,say}] ; first-try scoring ; done when all correct */
+function Quiz(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false) };
+  host.innerHTML = '';
+  items.forEach((it, i) => {
+    const d = document.createElement('div');
+    d.className = 'q';
+    d.innerHTML = `<div class="qt">${i + 1}. ${it.say ? `<button class="btn sm ghost" data-s="${esc(it.say)}" data-r="0.8">🔊 Nghe</button> ` : ''}${esc(it.q)}</div>` +
+      it.o.map((o, j) => `<button class="opt" data-j="${j}">${esc(o)}</button>`).join('') + '<div class="x" hidden></div>';
+    host.appendChild(d);
+    $$('.opt', d).forEach(b => b.onclick = () => {
+      if (b.disabled) return;
+      const j = +b.dataset.j, x = $('.x', d);
+      if (j === it.a) {
+        b.classList.add('ok');
+        $$('.opt', d).forEach(z => z.disabled = true);
+        if (!st.tried[i]) st.first++;
+        st.ok++;
+        if (it.x) { x.hidden = false; x.textContent = it.x; }
+        if (it.say2) speak(it.say2);
+        onChange && onChange(st);
+      } else {
+        b.classList.add('bad'); b.disabled = true; st.tried[i] = true;
+        x.hidden = false; x.textContent = 'Chưa đúng, thử lại nhé.';
+      }
+    });
+  });
+  st.done = () => st.ok === st.total;
+  return st;
+}
+/* Recorder */
+function Recorder(host, opt, onChange) {
+  const checks = opt.checks || [];
+  const st = { rec: false, checked: checks.map(() => false), sent: false };
+  host.className = 'rec';
+  host.innerHTML = `<div class="rt">${opt.target}</div>
+    <div class="rrow"><button class="btn rb">🎙 Ghi âm</button><button class="btn ghost rp" disabled>▶ Nghe lại</button>
+    ${opt.sample ? `<button class="btn ghost" data-s="${esc(opt.sample)}" data-r="0.8">🔊 Nghe mẫu</button>` : ''}
+    <a class="btn ghost rd" hidden>⬇ Tải</a>${SCRIPT_URL ? '<button class="btn ghost rs" disabled>📤 Gửi cho cô</button>' : ''}</div>
+    <div class="rst">Bấm 🎙, đọc to, bấm lần nữa để dừng. Cho phép micro nếu trình duyệt hỏi.</div>
+    ${checks.map((c, i) => `<label><input type="checkbox" data-c="${i}"> ${esc(c)}</label>`).join('')}`;
+  const rb = $('.rb', host), rp = $('.rp', host), rd = $('.rd', host), rs = $('.rs', host), rst = $('.rst', host);
+  let mr = null, chunks = [], blob = null, audio = null, t0 = 0, stream = null;
+  const upd = () => {
+    st.done = st.rec && st.checked.every(Boolean) && (!SCRIPT_URL || st.sent);
+    host.classList.toggle('ok', st.done);
+    onChange && onChange(st);
+  };
+  rb.onclick = async () => {
+    if (mr && mr.state === 'recording') { mr.stop(); return; }
+    try {
+      stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    } catch (e) { rst.textContent = '⚠️ Chưa có micro. Em bấm "Cho phép" micro cho trang này rồi thử lại nhé.'; return; }
+    const mt = ['audio/webm;codecs=opus', 'audio/webm', 'audio/mp4'].find(t => window.MediaRecorder && MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(t)) || '';
+    chunks = [];
+    mr = new MediaRecorder(stream, mt ? { mimeType: mt } : undefined);
+    mr.ondataavailable = e => e.data && e.data.size && chunks.push(e.data);
+    mr.onstop = () => {
+      stream.getTracks().forEach(t => t.stop());
+      const dur = Math.round((Date.now() - t0) / 1000);
+      blob = new Blob(chunks, { type: mr.mimeType || 'audio/webm' });
+      const url = URL.createObjectURL(blob);
+      audio = new Audio(url);
+      rp.disabled = false; rd.hidden = false; rd.href = url;
+      rd.download = (opt.id || 'ghi_am') + (/mp4/.test(blob.type) ? '.m4a' : '.webm');
+      if (rs) rs.disabled = false;
+      rb.textContent = '🎙 Ghi lại';
+      rst.textContent = `✅ Đã ghi ${dur} giây. Nghe lại, tự chấm bên dưới${SCRIPT_URL ? ', rồi bấm 📤 Gửi cho cô' : ''}.`;
+      st.rec = true; st.sent = false; st.dur = dur; upd();
+    };
+    t0 = Date.now(); mr.start();
+    rb.textContent = '⏹ Dừng'; rst.textContent = '🔴 Đang ghi âm…';
+  };
+  rp.onclick = () => audio && audio.play();
+  if (rs) rs.onclick = async () => {
+    if (!blob) return;
+    rs.disabled = true; rst.textContent = 'Đang gửi…';
+    try {
+      const b64 = await new Promise(r => { const f = new FileReader(); f.onload = () => r(String(f.result).split(',')[1]); f.readAsDataURL(blob); });
+      await sendGateway({ type: 'audio', name: Store.load().name || 'Không tên', lesson: LESSON, file: (opt.id || 'GhiAm') + '_01.' + (/mp4/.test(blob.type) ? 'm4a' : 'webm'), mime: blob.type, audio: b64, label: opt.label || '', dur: st.dur || '', target: opt.sample || '' });
+      st.sent = true; rst.textContent = '✅ Đã gửi cho cô'; upd();
+    } catch (e) { rs.disabled = false; rst.textContent = '⚠️ Chưa gửi được, thử lại nhé.'; }
+  };
+  $$('input[data-c]', host).forEach(c => c.onchange = () => { st.checked[+c.dataset.c] = c.checked; upd(); });
+  st.done = false;
+  return st;
+}
+async function sendGateway(payload) {
+  if (!SCRIPT_URL) return { ok: false };
+  const r = await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) });
+  return r.json();
+}
+
+function voicePanel() {
+  const sel = $('#vsel'), spd = $('#vspd'); if (!sel) return;
+  const fill = () => {
+    let vs = []; try { vs = speechSynthesis.getVoices().filter(v => /^en/i.test(v.lang)); } catch (e) {}
+    if (!vs.length) { sel.innerHTML = '<option value="">Giọng mặc định của máy</option>'; return; }
+    sel.innerHTML = '<option value="">Tự động (mặc định)</option>' + vs.map(v => `<option value="${esc(v.name)}"${PREF.voice === v.name ? ' selected' : ''}>${esc(v.name)} (${esc(v.lang)})</option>`).join('');
+  };
+  fill(); try { speechSynthesis.addEventListener('voiceschanged', fill); } catch (e) {}
+  spd.value = String(PREF.mult || 1);
+  sel.onchange = () => { PREF.voice = sel.value; savePref(); };
+  spd.onchange = () => { PREF.mult = +spd.value; savePref(); };
+  $('#vtry').onclick = () => speak('The clean blue glass is full of cold milk.');
+}
+
+/* Nộp bài: kiểm tra, cảnh báo thiếu, gửi về cổng của cô */
+function submitFlow(host, o) {
+  host.innerHTML = '<p><button class="btn" id="sbtn">📨 Nộp bài cho cô</button> <button class="btn ghost sm" id="copy2">📋 Chép kết quả</button></p><p class="x" id="smsg"></p>';
+  const msg = $('#smsg', host);
+  const S = () => o.S();
+  async function doSend() {
+    const p = o.payload(), s = S(), ign = s.ign || 0;
+    p.summary.writes = [p.summary.writes, ign ? `đã bỏ qua cảnh báo ${ign} lần` : ''].filter(Boolean).join(' · ');
+    msg.textContent = 'Đang nộp bài…';
+    try {
+      const r = await sendGateway({ type: 'submit', name: s.name || 'Không tên', lesson: LESSON, summary: p.summary, details: p.details });
+      if (r && r.ok) { s.submitted = Date.now(); o.save(); msg.innerHTML = '✅ <b>Đã nộp bài cho cô.</b> Em có thể đóng trang. Cô sẽ xem bài và nhận xét.'; }
+      else msg.textContent = '⚠️ Chưa nộp được. Em kiểm tra mạng rồi bấm Nộp bài lại nhé.';
+    } catch (e) { msg.textContent = '⚠️ Chưa nộp được (mất mạng?). Bấm Nộp bài lại nhé.'; }
+  }
+  $('#sbtn', host).onclick = () => {
+    const w = o.warns();
+    if (!w.length) { doSend(); return; }
+    modal('Em chưa làm xong', '<ul>' + w.map(x => `<li>${esc(x)}</li>`).join('') + '</ul><p>Em muốn làm tiếp hay vẫn nộp?</p>', [
+      { t: 'Quay lại làm tiếp', ghost: true },
+      { t: 'Vẫn nộp', f: () => { const s = S(); s.ign = (s.ign || 0) + 1; o.save(); doSend(); } }]);
+  };
+  $('#copy2', host).onclick = () => { const t = o.text(); try { navigator.clipboard.writeText(t); msg.textContent = 'Đã chép. Em có thể dán vào Zalo gửi cô.'; } catch (e) { msg.textContent = t; } };
+  if (S().submitted) msg.innerHTML = '✅ Em đã nộp bài trước đó. Bấm Nộp bài lần nữa nếu em muốn nộp bản mới.';
+}
+</script>
+<script>const MODE='tb';
+const LESSON = { de: 'Gerund - De', tb: 'Gerund - Trung binh', nc: 'Gerund - Nang cao' }[MODE];
+Store.key = 'lpage:' + LESSON;
+const say = s => `<button class="btn sm ghost" data-s="${esc(s)}" data-r="0.85">🔊</button> ${esc(s)}`;
+function seeded(n) { let x = n * 9301 + 49297; return () => { x = (x * 9301 + 49297) % 233280; return x / 233280; }; }
+/* tạo câu hỏi chọn: đáp án đúng đặt ở vị trí xoay vòng */
+function mk(i, q, right, wrong, extra) { const o = wrong.slice(); const pos = i % (wrong.length + 1); o.splice(pos, 0, right); return Object.assign({ q, o, a: pos }, extra || {}); }
+const T = (rows, head) => `<table><tr>${head.map(h => `<th>${h}</th>`).join('')}</tr>${rows.map(r => `<tr>${r.map(c => `<td>${c}</td>`).join('')}</tr>`).join('')}</table>`;
+
+/* ---------- Dữ liệu bài tập ---------- */
+const GER = 'Gerund (dùng như danh từ)', PRG = 'V-ing của thì tiếp diễn (is/are/was + V-ing)';
+const RECOG = [
+  ['SWIMMING is good for your health.', 'Swimming is good for your health.', 0, 'Đứng đầu câu làm chủ ngữ, như một danh từ: "Việc bơi lội".'],
+  ['I enjoy READING comic books.', 'I enjoy reading comic books.', 0, 'Đứng sau động từ enjoy, làm tân ngữ: "thích việc đọc".'],
+  ['She is READING a book now.', 'She is reading a book now.', 1, 'is + V-ing = hiện tại tiếp diễn (đang làm). Đây không phải gerund.'],
+  ['My hobby is COLLECTING stamps.', 'My hobby is collecting stamps.', 0, '"Collecting stamps" nói về sở thích, dùng như danh từ.'],
+  ['DANCING makes me happy.', 'Dancing makes me happy.', 0, 'Làm chủ ngữ: "Việc nhảy múa".'],
+  ['They are PLAYING football in the yard.', 'They are playing football in the yard.', 1, 'are + V-ing = đang diễn ra, thì tiếp diễn.'],
+  ['He is good at DRAWING.', 'He is good at drawing.', 0, 'Đứng sau giới từ at, dùng như danh từ: "giỏi việc vẽ".'],
+  ['Mom is COOKING dinner.', 'Mom is cooking dinner.', 1, 'is + V-ing = mẹ đang nấu ăn (thì tiếp diễn).'],
+  ['I do not mind WAITING for you.', 'I do not mind waiting for you.', 0, 'Sau mind dùng gerund: "không phiền việc chờ".'],
+  ['We were WATCHING TV when you called.', 'We were watching TV when you called.', 1, 'were + V-ing = quá khứ tiếp diễn, không phải gerund.'],
+  ['LEARNING English is not easy.', 'Learning English is not easy.', 0, 'Làm chủ ngữ: "Việc học tiếng Anh".'],
+  ['STOP TALKING, please!', 'Stop talking, please!', 0, 'Sau stop dùng gerund: "dừng việc nói chuyện".']
+];
+const ING_SET = [['make', 'making', 'Bỏ e rồi thêm -ing.'], ['run', 'running', 'Từ 1 âm tiết, tận cùng nguyên âm + phụ âm: gấp đôi phụ âm.'], ['play', 'playing', 'Tận cùng y sau nguyên âm: chỉ thêm -ing.'], ['write', 'writing', 'Bỏ e rồi thêm -ing.'], ['swim', 'swimming', 'Gấp đôi m rồi thêm -ing.'], ['lie', 'lying', 'Tận cùng ie: đổi ie thành y rồi thêm -ing.'], ['dance', 'dancing', 'Bỏ e rồi thêm -ing.'], ['sit', 'sitting', 'Gấp đôi t rồi thêm -ing.'], ['study', 'studying', 'Tận cùng y sau phụ âm: vẫn giữ y, thêm -ing.'], ['read', 'reading', 'Chỉ thêm -ing.']];
+const VCH = [
+  ['I enjoy ___ (listen) to music.', 'listening', 'to listen', 'listen', 'enjoy + V-ing'],
+  ['She finished ___ her homework at nine.', 'doing', 'to do', 'do', 'finish + V-ing'],
+  ['We want ___ a new bike.', 'to buy', 'buying', 'buy', 'want + to V'],
+  ['He avoids ___ fast food.', 'eating', 'to eat', 'eat', 'avoid + V-ing'],
+  ['Do you mind ___ the window?', 'opening', 'to open', 'open', 'mind + V-ing'],
+  ['They decided ___ to the beach.', 'to go', 'going', 'go', 'decide + to V'],
+  ['My brother keeps ___ video games.', 'playing', 'to play', 'play', 'keep + V-ing'],
+  ["I'd like ___ a cup of tea.", 'to have', 'having', 'have', "would like + to V"],
+  ['Stop ___ noise!', 'making', 'to make', 'make', 'stop + V-ing (dừng việc đang làm)'],
+  ['She hopes ___ a good job.', 'to find', 'finding', 'find', 'hope + to V']
+];
+const VFILL = [
+  ['Tom hates ___ (get) up early.', ['getting'], 'hate + V-ing; get gấp đôi t: getting.'],
+  ['We practise ___ (speak) English every day.', ['speaking'], 'practise + V-ing.'],
+  ['She suggested ___ (go) to the park.', ['going'], 'suggest + V-ing.'],
+  ['I gave up ___ (eat) sweets.', ['eating'], 'give up + V-ing.'],
+  ['He imagines ___ (be) a pilot.', ['being'], 'imagine + V-ing.'],
+  ['My mother loves ___ (cook) for us.', ['cooking'], 'love + V-ing.'],
+  ['They finished ___ (clean) the room.', ['cleaning'], 'finish + V-ing.'],
+  ['I miss ___ (play) with my old friends.', ['playing'], 'miss + V-ing.']
+];
+const PREP = [
+  ['She is good at singing.', 'good', 'at', 'singing', 'at'], ['I am interested in learning French.', 'interested', 'in', 'learning', 'in'], ['Thank you for helping me.', 'Thank', 'for', 'helping', 'for'],
+  ['He left without saying goodbye.', 'left', 'without', 'saying', 'without'], ['We talked about travelling.', 'talked', 'about', 'travelling', 'about'], ['Wash your hands before eating.', 'hands', 'before', 'eating', 'before'],
+  ['She is afraid of flying.', 'afraid', 'of', 'flying', 'of'], ['He improved his English by watching films.', 'improved', 'by', 'watching', 'by']
+];
+const PCH = [
+  ['I am tired of ___ the same food.', 'eating', 'to eat', 'eat', 'tired of + V-ing'],
+  ['She is good at ___ pictures.', 'drawing', 'to draw', 'draw', 'good at + V-ing'],
+  ['Thanks for ___ me.', 'helping', 'to help', 'help', 'for + V-ing'],
+  ['He went out without ___ his coat.', 'wearing', 'to wear', 'wear', 'without + V-ing'],
+  ['We are looking forward to ___ you.', 'seeing', 'see', 'to see', 'look forward to + V-ing (to là giới từ)'],
+  ['How about ___ to the cinema?', 'going', 'to go', 'go', 'How about + V-ing'],
+  ['She is afraid of ___ alone.', 'staying', 'to stay', 'stay', 'afraid of + V-ing'],
+  ['Brush your teeth before ___ to bed.', 'going', 'to go', 'go', 'before + V-ing'],
+  ['They are keen on ___ football.', 'playing', 'to play', 'play', 'keen on + V-ing'],
+  ['You can improve your English by ___ books in English.', 'reading', 'to read', 'read', 'by + V-ing (bằng cách)']
+];
+const PFILL = [
+  ['I am interested in ___ (learn) Japanese.', ['learning'], 'interested in + V-ing.'],
+  ['He apologised for ___ (be) late.', ['being'], 'apologise for + V-ing.'],
+  ['She is fond of ___ (swim).', ['swimming'], 'fond of + V-ing; swim gấp đôi m.'],
+  ['We talked about ___ (travel) around Vietnam.', ['travelling', 'traveling'], 'about + V-ing (Anh: travelling, Mỹ: traveling).'],
+  ['He is tired of ___ (wait).', ['waiting'], 'tired of + V-ing.'],
+  ['Instead of ___ (watch) TV, she read a book.', ['watching'], 'instead of + V-ing.'],
+  ['I am looking forward to ___ (see) you.', ['seeing'], 'look forward to + V-ing.'],
+  ['They left without ___ (say) goodbye.', ['saying'], 'without + V-ing.']
+];
+
+const ADV1G = [
+  ['We often go ___ on Sundays. (shop)', 'shopping', 'to shop', 'shop', 'go + V-ing: go shopping.'],
+  ['He is busy ___ his homework.', 'doing', 'to do', 'do', 'be busy + V-ing.'],
+  ['It is worth ___ this museum.', 'visiting', 'to visit', 'visit', 'be worth + V-ing.'],
+  ['She spends a lot of money ___ clothes.', 'buying', 'to buy', 'buy', 'spend money/time + V-ing.'],
+  ['___ breakfast is bad for your health.', 'Not eating', "Don't eating", 'Not eat', 'Phủ định của gerund: not + V-ing.'],
+  ["I can't stand ___ in long queues.", 'waiting', 'to wait', 'wait', "can't stand + V-ing."],
+  ["It's no use ___ about the past.", 'worrying', 'to worry', 'worry', "It's no use + V-ing."],
+  ['They went ___ last summer. (camp)', 'camping', 'to camp', 'camp', 'go + V-ing: go camping.'],
+  ['He wasted time ___ video games.', 'playing', 'to play', 'play', 'waste time + V-ing.'],
+  ["I can't help ___ when I see that video.", 'laughing', 'to laugh', 'laugh', "can't help + V-ing: không nhịn được."]
+];
+const ADV2G = [
+  ['She stopped ___ when the teacher came in. (dừng việc nói chuyện)', 'talking', 'to talk', 'talk', 'stop + V-ing: dừng hẳn việc đang làm.'],
+  ['We stopped ___ some water on the way. (dừng lại để mua)', 'to buy', 'buying', 'buy', 'stop + to V: dừng lại để làm việc khác.'],
+  ['I forgot ___ my homework, so the teacher was angry. (quên mang bài)', 'to bring', 'bringing', 'bring', 'forget + to V: quên làm việc cần làm.'],
+  ['I remember ___ this film when I was a child. (nhớ là đã xem)', 'seeing', 'to see', 'see', 'remember + V-ing: nhớ việc đã xảy ra.'],
+  ['Please remember ___ me when you arrive. (nhớ gọi)', 'to call', 'calling', 'call', 'remember + to V: nhớ làm việc cần làm.'],
+  ['Try ___ the computer. Maybe it will work. (thử khởi động lại)', 'restarting', 'to restart', 'restart', 'try + V-ing: thử làm xem kết quả.'],
+  ["He tried ___ the heavy box but he couldn't. (cố gắng)", 'to lift', 'lifting', 'lift', 'try + to V: cố gắng làm.'],
+  ['I will never forget ___ the sea for the first time. (không quên việc đã xảy ra)', 'seeing', 'to see', 'see', 'forget + V-ing: quên/không quên việc đã xảy ra.']
+];
+const ADV3 = [
+  ['She is good at to swim.', 'She is good at swimming.', 'He enjoys swimming.', 'good at + V-ing, không dùng to V.'],
+  ['I look forward to see you.', 'I enjoy meeting new friends.', 'He avoids making noise.', 'look forward to + V-ing (to là giới từ).'],
+  ['They decided going home.', 'We finished cleaning.', 'She keeps asking questions.', 'decide + to V: They decided to go home.'],
+  ['Thanks for help me.', 'I am thinking about moving.', 'She apologised for being late.', 'for + V-ing: Thanks for helping me.'],
+  ['He wants learning French.', 'He enjoys learning French.', 'He is interested in learning French.', 'want + to V: He wants to learn French.'],
+  ['Do you mind to open the window?', 'Do you mind opening the window?', 'Would you like to open it?', 'mind + V-ing: Do you mind opening...?'],
+  ['He left without say goodbye.', 'He left without saying goodbye.', 'She went out without taking an umbrella.', 'without + V-ing.'],
+  ['We went to swim yesterday.', 'We went swimming yesterday.', 'We go fishing every weekend.', 'go + V-ing: We went swimming.']
+];
+const ADV4 = [
+  ['She decided ___ (study) abroad.', ['to study'], 'decide + to V.'],
+  ['He is busy ___ (prepare) for the exam.', ['preparing'], 'be busy + V-ing.'],
+  ["I can't stand ___ (wait) in the rain.", ['waiting'], "can't stand + V-ing."],
+  ['We hope ___ (visit) Hue next year.', ['to visit'], 'hope + to V.'],
+  ['___ (not / eat) breakfast is bad for your health.', ['not eating'], 'Phủ định của gerund: not + V-ing.'],
+  ['Remember ___ (turn) off the lights before you leave.', ['to turn'], 'remember + to V: nhớ làm việc cần làm.'],
+  ['They went ___ (fish) at the lake.', ['fishing'], 'go + V-ing.'],
+  ['Thank you for ___ (invite) me to your party.', ['inviting'], 'for + V-ing.']
+];
+const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
+/* bài gõ: items [{q, a:[...], x, hint}] */
+function Typed(host, items, onChange) {
+  const st = { first: 0, total: items.length, ok: 0, tried: items.map(() => false), done: () => st.ok === st.total };
+  host.innerHTML = '';
+  items.forEach((it, n) => {
+    const d = document.createElement('div'); d.className = 'q';
+    d.innerHTML = `<div class="qt">${n + 1}. ${esc(it.q)}</div>${it.hint ? `<div class="x">Gợi ý: ${esc(it.hint)}</div>` : ''}<input type="text" class="ti" autocomplete="off" autocapitalize="none" spellcheck="false"> <button class="btn sm">Kiểm tra</button><div class="x fb" hidden></div>`;
+    host.appendChild(d);
+    const inp = $('input', d), btn = $('.btn', d), fb = $('.fb', d);
+    const chk = () => {
+      if (inp.disabled) return; const a = norm(inp.value); if (!a) return; fb.hidden = false;
+      if (it.a.includes(a)) { inp.disabled = true; btn.disabled = true; inp.classList.add('ok'); if (!st.tried[n]) st.first++; st.ok++; fb.textContent = '✅ Đúng. ' + (it.x || ''); if (it.say) speak(it.say); onChange && onChange(st); }
+      else { st.tried[n] = true; fb.textContent = 'Chưa đúng, em xem lại quy tắc rồi thử lại nhé.'; }
+    };
+    btn.onclick = chk; inp.addEventListener('keydown', e => { if (e.key === 'Enter') chk(); });
+  });
+  return st;
+}
+
+const ALL = [
+ { id: 'what', t: '1. Gerund là gì?', read: true,
+   html: `<h2>MỤC 1 · Gerund là gì?</h2>
+   <p>Thử so sánh hai câu:</p>
+   <p>${say('I like music.')}<br>${say('I like listening to music.')}</p>
+   <p>Ở câu 1, "music" là <b>danh từ</b>. Ở câu 2, "listening" là một động từ có thêm <b>-ing</b> nhưng đứng ở chỗ của danh từ. Từ như "listening" ở đây gọi là <b>gerund</b>.</p>
+   <h3>① Gerund dịch ra tiếng Việt là gì?</h3>
+   <div class="tip"><b>Gerund = Danh động từ</b>: "danh" (như danh từ) + "động từ" (có gốc là động từ). Nghĩa là "việc + động từ": swimming = việc bơi lội, reading = việc đọc sách.</div>
+   <h3>② Hình thức của gerund</h3>
+   <div class="tip"><b>Gerund = V + -ing</b> (động từ nguyên mẫu thêm -ing): swim → swimming, read → reading, play → playing.</div>
+   <h3>③ Gerund là động từ, tính từ hay danh từ?</h3>
+   <p>Gerund là <b>hình thức -ing của động từ</b>, nhưng trong câu nó <b>làm việc như một danh từ</b>. Danh từ có thể làm chủ ngữ, làm tân ngữ (đứng sau động từ), đứng sau giới từ. Gerund cũng vậy:</p>
+   ${T([['Chủ ngữ', say('Swimming is fun.'), 'Việc bơi lội thì vui.'], ['Sau động từ', say('I enjoy swimming.'), 'Tôi thích bơi.'], ['Sau giới từ', say('She is good at swimming.'), 'Cô ấy giỏi bơi.']], ['Vị trí', 'Ví dụ', 'Nghĩa'])}
+   <h3>④ Phân biệt với V-ing ở thì tiếp diễn</h3>
+   <div class="tip"><b>Gerund</b>: V-ing dùng như danh từ (việc làm gì). <b>Thì tiếp diễn</b>: <i>am/is/are/was/were + V-ing</i> (đang làm gì). Ví dụ: ${say('She is reading a book.')} (đang đọc: tiếp diễn) và ${say('Reading is fun.')} (việc đọc: gerund).</div>`,
+   quiz: [
+     mk(0, 'Gerund dịch sang tiếng Việt là gì?', 'Danh động từ', ['Tính từ', 'Trạng từ'], { x: 'Danh động từ: có gốc động từ nhưng dùng như danh từ.' }),
+     mk(1, 'Hình thức của gerund là gì?', 'V + -ing', ['to + V', 'V + -ed'], { x: 'Gerund luôn có đuôi -ing.' }),
+     mk(2, 'Gerund là hình thức của loại từ nào?', 'Hình thức -ing của động từ, dùng như danh từ', ['Tính từ chỉ tính chất', 'Một danh từ không liên quan đến động từ'], { x: 'Gốc là động từ, nhưng chức năng trong câu là danh từ.' }),
+     mk(0, 'Trong câu "Reading is fun", gerund "reading" làm gì?', 'Làm chủ ngữ', ['Là động từ chính', 'Là trạng từ'], { x: '"Reading" đứng ở vị trí chủ ngữ, giống một danh từ.' })
+   ] },
+ { id: 'form', t: '2. Thêm -ing', typed: true,
+   html: `<h2>Cách thêm -ing</h2>
+   ${T([['Thường', 'Chỉ thêm -ing', 'play → playing, read → reading'], ['Tận cùng -e', 'Bỏ e, thêm -ing', 'make → making, dance → dancing'], ['1 âm tiết: phụ âm + nguyên âm + phụ âm', 'Gấp đôi phụ âm cuối', 'run → running, sit → sitting, swim → swimming'], ['Tận cùng -ie', 'Đổi ie thành y', 'lie → lying'], ['Tận cùng -y', 'Giữ y, thêm -ing', 'study → studying']], ['Trường hợp', 'Cách làm', 'Ví dụ'])}
+   <h3>Bài tập: gõ dạng V-ing</h3><div id="qb"></div>` },
+ { id: 'spot', t: '3. Nhận diện', game: true,
+   html: `<h2>Nhận diện gerund trong câu</h2><p class="x">Từ viết HOA trong mỗi câu là gerund hay V-ing của thì tiếp diễn? Mẹo: có <i>am/is/are/was/were</i> ngay trước V-ing để diễn tả đang làm thì là thì tiếp diễn; còn đứng làm chủ ngữ, sau động từ hay sau giới từ thì là gerund.</p><div id="qb"></div>` },
+ { id: 'verb', t: '4. Gerund sau động từ', read: true,
+   html: `<h2>MỤC 2 · Gerund đi sau các động từ</h2>
+   <p>Một số động từ phải đi với <b>V-ing</b>. Em hãy học thuộc nhóm này:</p>
+   ${T([['enjoy', 'thích, tận hưởng', 'I enjoy dancing.'], ['like / love / hate', 'thích / yêu / ghét', 'She loves cooking.'], ['mind', 'phiền, ngại', 'Do you mind waiting?'], ['finish', 'hoàn thành', 'We finished cleaning.'], ['stop', 'dừng', 'Stop talking!'], ['avoid', 'tránh', 'He avoids eating fast food.'], ['keep', 'cứ tiếp tục', 'Keep trying!'], ['practise', 'luyện tập', 'I practise speaking.'], ['suggest', 'gợi ý', 'She suggested going out.'], ['imagine', 'tưởng tượng', 'Imagine flying!'], ['give up', 'từ bỏ', 'He gave up smoking.'], ['miss', 'nhớ, bỏ lỡ', 'I miss playing with you.']], ['Động từ + V-ing', 'Nghĩa', 'Ví dụ'])}
+   <div class="tip"><b>Cách nhớ:</b> V-ing là "việc đang có thật, quen thuộc". Các động từ trên nói về việc em <b>thích, ghét, tiếp tục, tránh, dừng</b> một việc.</div>
+   <h3>Đừng nhầm với nhóm + to V</h3>
+   <p>Nhóm này nói về <b>kế hoạch, mong muốn, quyết định</b> nên đi với <b>to + V</b>: <b>want, hope, decide, plan, need, learn, agree, promise, would like</b>.</p>
+   <p>${say('I want to buy a bike.')}<br>${say("I'd like to have a cup of tea.")}<br>${say('They decided to go to the beach.')}</p>`,
+   quiz: [
+     mk(0, 'Sau động từ "enjoy" dùng dạng nào?', 'V-ing', ['to V', 'V nguyên mẫu'], { x: 'enjoy + V-ing: I enjoy swimming.' }),
+     mk(1, 'Sau động từ "want" dùng dạng nào?', 'to V', ['V-ing', 'V-ed'], { x: 'want + to V: I want to swim.' }),
+     mk(2, 'Câu nào đúng?', 'He avoids eating fast food.', ['He avoids to eat fast food.', 'He avoids eat fast food.'], { x: 'avoid + V-ing.' }),
+     mk(0, 'Sau "would like" dùng dạng nào?', 'to V', ['V-ing', 'V nguyên mẫu'], { x: "would like + to V: I'd like to have tea." })
+   ] },
+ { id: 'vch', t: '5. Chọn sau động từ', game: true,
+   html: `<h2>Chọn dạng đúng của động từ</h2><p class="x">V-ing, to V hay V nguyên mẫu? Nhớ nhóm động từ vừa học.</p><div id="qb"></div>` },
+ { id: 'vfill', t: '6. Điền sau động từ', typed: true,
+   html: `<h2>Điền dạng đúng của động từ trong ngoặc</h2><p class="x">Tất cả các câu dưới đây đều dùng gerund. Chú ý quy tắc thêm -ing.</p><div id="qb"></div>` },
+ { id: 'prep', t: '7. Giới từ + gerund', read: true,
+   html: `<h2>MỤC 3 · Giới từ và gerund đi sau nó</h2>
+   <h3>① Giới từ là gì?</h3>
+   <p>Giới từ là những từ nhỏ như <b>in, on, at, about, of, for, by, with, without, from, before, after, to</b>. Chúng thường đứng trước danh từ: <i>in the room, at school</i>.</p>
+   <h3>② Quy tắc vàng</h3>
+   <div class="tip"><b>Sau giới từ, động từ luôn ở dạng V-ing</b> (gerund), không dùng to V và không dùng V nguyên mẫu.</div>
+   ${T([['be good at', 'giỏi', 'She is good at singing.'], ['be interested in', 'quan tâm', 'I am interested in learning French.'], ['be afraid of', 'sợ', 'She is afraid of flying.'], ['be tired of', 'chán', 'I am tired of waiting.'], ['be keen on / fond of', 'thích', 'They are keen on playing football.'], ['think / talk about', 'nghĩ / nói về', 'We talked about travelling.'], ['thank (sb) for', 'cảm ơn vì', 'Thank you for helping me.'], ['apologise for', 'xin lỗi vì', 'He apologised for being late.'], ['instead of', 'thay vì', 'Instead of watching TV, read a book.'], ['before / after', 'trước / sau khi', 'Wash your hands before eating.'], ['without', 'mà không', 'He left without saying goodbye.'], ['by', 'bằng cách', 'Improve English by reading books.'], ['How / What about', 'còn việc … thì sao', 'How about going out?']], ['Cấu trúc', 'Nghĩa', 'Ví dụ'])}
+   <h3>③ Cẩn thận với "to"</h3>
+   <p>Sau <b>look forward to</b>, "to" là <b>giới từ</b>, nên dùng V-ing: ${say('I am looking forward to seeing you.')}</p>
+   <div class="tip">Cách kiểm tra: nếu thay được bằng một danh từ ("I look forward to <i>your visit</i>") thì "to" là giới từ → dùng V-ing.</div>`,
+   quiz: [
+     mk(0, 'Sau giới từ, động từ có dạng nào?', 'V-ing', ['to V', 'V nguyên mẫu'], { x: 'giới từ + V-ing (gerund).' }),
+     mk(1, 'Câu nào đúng?', 'She is good at drawing.', ['She is good at draw.', 'She is good at to draw.'], { x: 'good at là giới từ at, sau đó dùng V-ing.' }),
+     mk(2, 'Trong "I look forward to seeing you", từ "to" là gì?', 'Giới từ, nên sau nó dùng V-ing', ['to của to V, nên dùng V nguyên mẫu', 'Một trạng từ'], { x: 'look forward to + V-ing, vì to là giới từ.' }),
+     mk(0, '"by + V-ing" trong "by reading books" có nghĩa là gì?', 'bằng cách đọc sách', ['trước khi đọc sách', 'mà không đọc sách'], { x: 'by + V-ing: bằng cách làm gì.' })
+   ] },
+ { id: 'prepid', t: '8. Tìm giới từ', game: true,
+   html: `<h2>Nhận diện giới từ</h2><p class="x">Chọn giới từ trong mỗi câu. Từ đứng ngay sau giới từ là gerund.</p><div id="qb"></div>` },
+ { id: 'pch', t: '9. Chọn sau giới từ', game: true,
+   html: `<h2>Chọn dạng đúng sau giới từ</h2><p class="x">Nhớ: giới từ + V-ing. Cẩn thận với "look forward to".</p><div id="qb"></div>` },
+ { id: 'pfill', t: '10. Điền sau giới từ', typed: true,
+   html: `<h2>Điền dạng đúng của động từ trong ngoặc</h2><p class="x">Mỗi câu có một giới từ. Dùng V-ing sau giới từ.</p><div id="qb"></div>` },
+
+ { id: 'adv1', t: 'Gerund trong cụm cố định', read: true,
+   html: `<h2>Cụm cố định với gerund</h2>
+   ${T([['go + V-ing', 'đi làm hoạt động', 'We go swimming / shopping / fishing / camping.'], ['spend / waste time + V-ing', 'dành / lãng phí thời gian', 'I spend an hour reading every night.'], ['be busy + V-ing', 'bận làm gì', 'He is busy doing his homework.'], ['be worth + V-ing', 'đáng làm gì', 'This museum is worth visiting.'], ["It's no use + V-ing", 'vô ích khi làm gì', "It's no use worrying."], ["can't stand / can't help + V-ing", 'không chịu nổi / không nhịn được', "I can't stand waiting. I can't help laughing."]], ['Cụm', 'Nghĩa', 'Ví dụ'])}
+   <h3>Gerund phủ định</h3>
+   <div class="tip">Phủ định của gerund: <b>not + V-ing</b>. ${say('Not eating breakfast is bad for your health.')}</div>`,
+   quiz: [
+     mk(0, 'Câu nào đúng?', 'We go swimming every Sunday.', ['We go to swim every Sunday.', 'We go swim every Sunday.'], { x: 'go + V-ing.' }),
+     mk(1, 'Câu nào đúng?', 'She spends two hours studying English.', ['She spends two hours to study English.', 'She spends two hours study English.'], { x: 'spend time + V-ing.' }),
+     mk(2, 'Dạng phủ định của gerund là gì?', 'not + V-ing', ['V-ing + not', "don't + V-ing"], { x: 'Not eating breakfast is bad.' }),
+     mk(0, 'Câu nào đúng?', "I can't stand waiting in line.", ["I can't stand to waiting in line.", "I can't stand wait in line."], { x: "can't stand + V-ing." })
+   ] },
+ { id: 'adv1g', t: 'Chọn dạng đúng', game: true,
+   html: `<h2>Chọn dạng đúng (cụm cố định)</h2><p class="x">Dùng các cụm vừa học: go, spend, busy, worth, no use, can't stand, can't help, not + V-ing.</p><div id="qb"></div>` },
+ { id: 'adv2', t: 'Stop, remember, try', read: true,
+   html: `<h2>Cùng động từ, nghĩa khác nhau</h2>
+   <p>Một số động từ đi được với cả V-ing và to V, nhưng <b>nghĩa khác nhau</b>:</p>
+   ${T([['stop', 'stop + V-ing: bỏ hẳn việc đang làm<br>stop + to V: dừng lại để làm việc khác', say('He stopped smoking.') + '<br>' + say('He stopped to smoke.')], ['remember / forget', '+ V-ing: nhớ / quên việc <b>đã xảy ra</b><br>+ to V: nhớ / quên việc <b>cần làm</b>', say('I remember locking the door.') + '<br>' + say('Remember to lock the door.')], ['try', '+ V-ing: thử làm xem kết quả<br>+ to V: cố gắng làm', say('Try turning it off and on.') + '<br>' + say('I tried to open the door.')]], ['Động từ', 'Hai nghĩa', 'Ví dụ'])}
+   <div class="tip">Mẹo: <b>V-ing = việc đã xảy ra / đang có thật</b>, <b>to V = việc sắp làm / mục đích</b>.</div>`,
+   quiz: [
+     mk(0, '"He stopped smoking." nghĩa là gì?', 'Anh ấy bỏ hút thuốc', ['Anh ấy dừng lại để hút thuốc', 'Anh ấy bắt đầu hút thuốc'], { x: 'stop + V-ing: bỏ hẳn việc đang làm.' }),
+     mk(1, '"I stopped to buy some bread." nghĩa là gì?', 'Tôi dừng lại để mua bánh mì', ['Tôi bỏ việc mua bánh mì', 'Tôi mua bánh mì khi đang đứng yên'], { x: 'stop + to V: dừng lại để làm việc khác.' }),
+     mk(2, 'Câu nào nghĩa là "Nhớ khóa cửa khi đi nhé"?', 'Remember to lock the door.', ['Remember locking the door.', 'Remember lock the door.'], { x: 'remember + to V: nhớ làm việc cần làm.' }),
+     mk(0, '"I tried to open the window but it was stuck." nghĩa là gì?', 'Tôi cố gắng mở cửa sổ nhưng nó bị kẹt', ['Tôi thử mở cửa sổ xem sao', 'Tôi đã mở xong cửa sổ'], { x: 'try + to V: cố gắng làm.' })
+   ] },
+ { id: 'adv2g', t: 'Chọn theo nghĩa', game: true,
+   html: `<h2>Chọn dạng đúng theo nghĩa</h2><p class="x">Đọc nghĩa trong ngoặc để quyết định V-ing hay to V.</p><div id="qb"></div>` },
+ { id: 'adv3', t: 'Tìm câu sai', game: true,
+   html: `<h2>Tìm câu sai</h2><p class="x">Mỗi câu hỏi có 3 câu, chỉ một câu sai. Chọn câu sai.</p><div id="qb"></div>` },
+ { id: 'adv4', t: 'Điền tổng hợp', typed: true,
+   html: `<h2>Điền tổng hợp</h2><p class="x">Có câu dùng V-ing, có câu dùng to V. Với "to V", em gõ cả "to" (ví dụ: to study). Câu phủ định gõ "not + V-ing".</p><div id="qb"></div>` },
+ { id: 'done', t: 'Tổng kết', end: true,
+   html: `<h2>Tổng kết</h2><div id="sum"></div><div id="sub"></div>` }
+];
+const SETS = {
+  de: ['what', 'form', 'spot', 'done'],
+  tb: ['verb', 'vch', 'vfill', 'prep', 'prepid', 'pch', 'pfill', 'done'],
+  nc: ['adv1', 'adv1g', 'adv2', 'adv2g', 'adv3', 'adv4', 'done']
+};
+const RECAP = {
+  de: [['Gerund = V-ing, dịch là danh động từ, dùng như danh từ.', 'Gerund làm chủ ngữ, đứng sau động từ, đứng sau giới từ.', 'am/is/are/was/were + V-ing là thì tiếp diễn, không phải gerund.'], ['../gerund-trung-binh/', 'Gerund trung bình: gerund sau động từ và sau giới từ']],
+  tb: [['enjoy, mind, finish, stop, avoid, keep, practise, suggest... + V-ing; want, hope, decide, would like... + to V.', 'Sau giới từ luôn dùng V-ing (kể cả look forward to).'], ['../gerund-nang-cao/', 'Gerund nâng cao: cụm cố định, stop/remember/try, tìm câu sai']],
+  nc: [["go / spend time / be busy / be worth / can't stand / can't help + V-ing; phủ định: not + V-ing.", 'stop, remember, forget, try: V-ing nói về việc đã xảy ra, to V nói về việc cần làm hoặc mục đích.'], null]
+};
+const STEPS = SETS[MODE].map(id => ALL.find(x => x.id === id)).map((s, k) => Object.assign({}, s, { t: `${k + 1}. ${s.t.replace(/^\d+\.\s*/, '')}` }));
+const GAME = {
+  spot: () => RECOG.map((r, i) => mk(i, r[0], r[2] === 0 ? GER : PRG, [r[2] === 0 ? PRG : GER], { say: r[1], x: r[3] })),
+  vch: () => VCH.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]) })),
+  prepid: () => PREP.map((r, i) => mk(i, `${r[0]}  Giới từ trong câu là từ nào?`, r[2], [r[1], r[3]], { say: r[0], x: `"${r[2]}" là giới từ, sau nó là gerund "${r[3]}".` })),
+  adv1g: () => ADV1G.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]).replace(/\s*\(.*?\)/, '') })),
+  adv2g: () => ADV2G.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]).replace(/\s*\(.*?\)/, '') })),
+  adv3: () => ADV3.map((r, i) => mk(i, 'Câu nào SAI?', r[0], [r[1], r[2]], { x: 'Câu sai: ' + r[0] + ' → ' + r[3] })),
+  pch: () => PCH.map((r, i) => mk(i, r[0], r[1], [r[2], r[3]], { x: r[4], say2: r[0].replace('___', r[1]) }))
+};
+const TYPED = {
+  form: () => ING_SET.map(r => ({ q: `${r[0]} → ?`, a: [r[1]], x: `${r[0]} → ${r[1]}. ${r[2]}`, say: r[1] })),
+  vfill: () => VFILL.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') })),
+  adv4: () => ADV4.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') })),
+  pfill: () => PFILL.map(r => ({ q: r[0], a: r[1], x: r[2], say: r[0].replace('___', r[1][0]).replace(/\s*\(.*?\)/, '') }))
+};
+let S = {}, cur = 0;
+const live = {};
+function isDone(i) { return !!(S.done && S.done[STEPS[i].id]); }
+function firstOpen() { for (let i = 0; i < STEPS.length; i++) if (!isDone(i)) return i; return STEPS.length - 1; }
+function maxOpen() { return Math.min(firstOpen(), STEPS.length - 1); }
+function setDone(i) { S.done = S.done || {}; S.done[STEPS[i].id] = true; Store.save(S); chrome(); }
+function chrome() {
+  const n = STEPS.filter((s, i) => isDone(i)).length, pct = Math.round(n / STEPS.length * 100);
+  $('#pb').style.width = pct + '%'; $('#pt').textContent = `Tiến độ ${pct}% (${n}/${STEPS.length} bước)`;
+  $('#who').textContent = S.name ? '👤 ' + S.name : '';
+  const mo = maxOpen();
+  $('#chips').innerHTML = STEPS.map((s, i) => `<button class="chip${i === cur ? ' on' : ''}${isDone(i) ? ' done' : ''}${i > mo ? ' lock' : ''}" data-i="${i}">${i > mo ? '🔒 ' : ''}${s.t}</button>`).join('');
+  $$('#chips .chip').forEach(b => b.onclick = () => go(+b.dataset.i));
+  $('#prev').disabled = cur === 0; $('#next').style.display = cur === STEPS.length - 1 ? 'none' : '';
+}
+function go(i) {
+  if (i > maxOpen()) { modal('Bước này đang khoá 🔒', `<p>Em hãy hoàn thành <b>${STEPS[maxOpen()].t}</b> trước nhé.</p>`); return; }
+  cur = i; render(); chrome(); window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function missing(i) {
+  const s = STEPS[i], out = []; if (s.end || isDone(i)) return out;
+  const L = live[s.id] || {};
+  if (s.read && !(S.ticks && S.ticks[s.id])) out.push('Em chưa tích "Em đã đọc kỹ phần lý thuyết".');
+  else if (L.quiz && !L.quiz.done()) out.push(`Còn ${L.quiz.total - L.quiz.ok} câu chưa trả lời đúng.`);
+  else if (!L.quiz && (s.read || s.game || s.typed)) out.push('Em hãy làm bài ở bên dưới trước.');
+  return out;
+}
+function checkDone(i) {
+  if (isDone(i)) return; const s = STEPS[i];
+  if (!missing(i).length && !s.end) {
+    const L = live[s.id]; if (L && L.quiz) { S.score = S.score || {}; S.score[s.id] = [L.quiz.first, L.quiz.total]; }
+    setDone(i); const st = $('#status'); if (st) st.innerHTML = '<div class="tip">✅ Em đã hoàn thành bước này. Bấm "Tiếp tục ▶".</div>';
+  }
+}
+function render() {
+  const s = STEPS[cur];
+  $('#main').innerHTML = `<section class="card">${s.html}<div id="quizhost"></div><div id="status"></div></section>`;
+  live[s.id] = live[s.id] || {}; const L = live[s.id];
+  const onCh = () => checkDone(cur);
+  if (s.read) {
+    const q = $('#quizhost'), tk = document.createElement('label');
+    tk.className = 'tick'; tk.innerHTML = `<input type="checkbox"${S.ticks && S.ticks[s.id] ? ' checked' : ''}> <span>Em đã đọc kỹ phần lý thuyết này</span>`;
+    q.parentNode.insertBefore(tk, q);
+    const show = () => { q.innerHTML = ''; if (S.ticks && S.ticks[s.id]) { q.innerHTML = '<div class="qz"><b>Câu hỏi kiểm tra</b><div id="qb"></div></div>'; L.quiz = Quiz($('#qb'), s.quiz, onCh); } };
+    $('input', tk).onchange = e => { S.ticks = S.ticks || {}; S.ticks[s.id] = e.target.checked; Store.save(S); show(); };
+    show();
+  } else if (s.game) { L.quiz = Quiz($('#qb'), GAME[s.id](), onCh); }
+  else if (s.typed) { L.quiz = Typed($('#qb'), TYPED[s.id](), onCh); }
+  else if (s.end) {
+    const sc = STEPS.filter(x => S.score && S.score[x.id]), line = x => `${x.t.replace(/^\d+\.\s*/, '')}: ${S.score[x.id][0]}/${S.score[x.id][1]}`;
+    $('#sum').innerHTML = `<p>Em đã hoàn thành <b>${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1}</b> bước.</p><table><tr><th>Bước</th><th>Đúng ngay lần đầu</th></tr>${sc.map(x => `<tr><td>${esc(x.t)}</td><td>${S.score[x.id][0]}/${S.score[x.id][1]}</td></tr>`).join('')}</table>
+<div class="tip"><b>Nhớ:</b><ul>${RECAP[MODE][0].map(x => `<li>${x}</li>`).join('')}</ul></div>${RECAP[MODE][1] ? `<div class="tip">Bước tiếp theo: làm bài <a href="${RECAP[MODE][1][0]}">${RECAP[MODE][1][1]}</a>.</div>` : ''}`;
+    const txt = `Gerund (${MODE}) - ${S.name || ''}\n` + sc.map(line).join('\n');
+    submitFlow($('#sub'), { S: () => S, save: () => Store.save(S), text: () => txt,
+      warns: () => { const m = STEPS.map((x, i) => (!x.end && !isDone(i)) ? x.t : null).filter(Boolean); return m.length ? ['Chưa hoàn thành: ' + m.join('; ') + '.'] : []; },
+      payload: () => ({ summary: { recordings: 0, avg: null, full: '', writes: `Hoàn thành ${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1} bước`, quiz: sc.map(line).join(' · ') },
+        details: sc.map(x => ({ part: 'Gerund', question: x.t, answer: `${S.score[x.id][0]}/${S.score[x.id][1]}`, correct: String(S.score[x.id][1]), result: S.score[x.id][0] / S.score[x.id][1] >= 0.7 ? 'tốt' : 'cần ôn' })) }) });
+    if (!isDone(cur)) setDone(cur);
+  }
+  if (isDone(cur) && !s.end) $('#status').innerHTML = '<div class="tip">✅ Bước này đã hoàn thành. Em có thể làm lại để luyện thêm.</div>';
+}
+$('#next').onclick = () => { const m = missing(cur); if (m.length) { modal('Em chưa xong bước này', '<ul>' + m.map(x => `<li>${x}</li>`).join('') + '</ul>'); return; } go(cur + 1); };
+$('#prev').onclick = () => go(cur - 1);
+gate(st => { S = st; if (!S.ticks) S.ticks = {}; cur = Math.min(firstOpen(), STEPS.length - 1); render(); chrome(); });
+</script>
+</body></html>

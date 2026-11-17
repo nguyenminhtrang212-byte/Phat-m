@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Gerund dễ · Bài học cơ bản</title>
+<title>Gerund dễ · Gerund là gì?</title>
 <style>:root{--bg:#f5faf9;--card:#fff;--ink:#16302d;--mut:#5b7471;--pri:#0f766e;--pri2:#d5f0ef;--ok:#15803d;--okbg:#dcfce7;--bad:#b91c1c;--badbg:#fee2e2;--warn:#92400e;--warnbg:#fef3c7;--line:#d6e5e3;--hl:#fde68a}
 @media(prefers-color-scheme:dark){:root{--bg:#0e1b1a;--card:#162826;--ink:#e6f2f0;--mut:#9bb5b1;--pri:#2dd4bf;--pri2:#173a37;--ok:#86efac;--okbg:#14331f;--bad:#fca5a5;--badbg:#3b1717;--warn:#fcd34d;--warnbg:#3b2f10;--line:#25403d;--hl:#5b4a12}}
 *{box-sizing:border-box}
@@ -93,7 +93,7 @@ input[type=text].ti{border:1px solid var(--line);border-radius:10px;padding:7px 
 .vc .ex{font-size:14.5px;margin:5px 0}.vc .ex b{color:var(--pri)}
 </style></head><body>
 <div class="wrap">
-<header class="hero"><span class="stamp">Ngữ pháp · Lớp 6-9 · Dễ</span><h1>Gerund (V-ing): từ gốc đến ngọn</h1><p class="sub">3 mục: (1) Gerund là gì, (2) Gerund sau động từ, (3) Giới từ + gerund. Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi sang bước tiếp theo.</p></header>
+<header class="hero"><span class="stamp">Ngữ pháp · Lớp 6-9 · Dễ</span><h1>Gerund dễ: Gerund là gì?</h1><p class="sub">Mục 1: gerund dịch là gì, hình thức, là loại từ nào, cách thêm -ing và nhận diện gerund trong câu. Học theo thứ tự: đọc lý thuyết, trả lời câu hỏi, rồi sang bước tiếp theo.</p></header>
 <div class="top"><div class="pbar"><i id="pb"></i></div><div class="ptxt"><span id="pt">0%</span><span id="who"></span></div><div class="chips" id="chips"></div></div>
 <main id="main"></main>
 <div class="nav"><button class="btn ghost" id="prev">◀ Quay lại</button><button class="btn" id="next">Tiếp tục ▶</button></div>
@@ -298,7 +298,7 @@ function submitFlow(host, o) {
 }
 </script>
 <script>const MODE='de';
-const LESSON = MODE === 'de' ? 'Gerund - De' : 'Gerund - Nang cao';
+const LESSON = { de: 'Gerund - De', tb: 'Gerund - Trung binh', nc: 'Gerund - Nang cao' }[MODE];
 Store.key = 'lpage:' + LESSON;
 const say = s => `<button class="btn sm ghost" data-s="${esc(s)}" data-r="0.85">🔊</button> ${esc(s)}`;
 function seeded(n) { let x = n * 9301 + 49297; return () => { x = (x * 9301 + 49297) % 233280; return x / 233280; }; }
@@ -537,8 +537,14 @@ const ALL = [
    html: `<h2>Tổng kết</h2><div id="sum"></div><div id="sub"></div>` }
 ];
 const SETS = {
-  de: ['what', 'form', 'spot', 'verb', 'vch', 'prep', 'prepid', 'pch', 'done'],
-  nc: ['adv1', 'adv1g', 'vfill', 'pfill', 'adv2', 'adv2g', 'adv3', 'adv4', 'done']
+  de: ['what', 'form', 'spot', 'done'],
+  tb: ['verb', 'vch', 'vfill', 'prep', 'prepid', 'pch', 'pfill', 'done'],
+  nc: ['adv1', 'adv1g', 'adv2', 'adv2g', 'adv3', 'adv4', 'done']
+};
+const RECAP = {
+  de: [['Gerund = V-ing, dịch là danh động từ, dùng như danh từ.', 'Gerund làm chủ ngữ, đứng sau động từ, đứng sau giới từ.', 'am/is/are/was/were + V-ing là thì tiếp diễn, không phải gerund.'], ['../gerund-trung-binh/', 'Gerund trung bình: gerund sau động từ và sau giới từ']],
+  tb: [['enjoy, mind, finish, stop, avoid, keep, practise, suggest... + V-ing; want, hope, decide, would like... + to V.', 'Sau giới từ luôn dùng V-ing (kể cả look forward to).'], ['../gerund-nang-cao/', 'Gerund nâng cao: cụm cố định, stop/remember/try, tìm câu sai']],
+  nc: [["go / spend time / be busy / be worth / can't stand / can't help + V-ing; phủ định: not + V-ing.", 'stop, remember, forget, try: V-ing nói về việc đã xảy ra, to V nói về việc cần làm hoặc mục đích.'], null]
 };
 const STEPS = SETS[MODE].map(id => ALL.find(x => x.id === id)).map((s, k) => Object.assign({}, s, { t: `${k + 1}. ${s.t.replace(/^\d+\.\s*/, '')}` }));
 const GAME = {
@@ -607,8 +613,8 @@ function render() {
   else if (s.end) {
     const sc = STEPS.filter(x => S.score && S.score[x.id]), line = x => `${x.t.replace(/^\d+\.\s*/, '')}: ${S.score[x.id][0]}/${S.score[x.id][1]}`;
     $('#sum').innerHTML = `<p>Em đã hoàn thành <b>${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1}</b> bước.</p><table><tr><th>Bước</th><th>Đúng ngay lần đầu</th></tr>${sc.map(x => `<tr><td>${esc(x.t)}</td><td>${S.score[x.id][0]}/${S.score[x.id][1]}</td></tr>`).join('')}</table>
-${MODE === 'de' ? `<div class="tip"><b>Nhớ 3 ý chính:</b><ul><li>Gerund = V-ing, dịch là danh động từ, dùng như danh từ.</li><li>enjoy, mind, finish, stop, avoid, keep, practise, suggest... + V-ing; want, hope, decide, would like... + to V.</li><li>Sau giới từ luôn dùng V-ing (kể cả look forward to).</li></ul></div><div class="tip">Bước tiếp theo: làm bài <a href="../gerund-nang-cao/">Gerund nâng cao</a>.</div>` : `<div class="tip"><b>Nhớ lại:</b><ul><li>go / spend time / be busy / be worth / can't stand / can't help + V-ing; phủ định: not + V-ing.</li><li>stop, remember, forget, try: V-ing nói về việc đã xảy ra, to V nói về việc cần làm hoặc mục đích.</li></ul></div>`}`;
-    const txt = `Gerund co ban - ${S.name || ''}\n` + sc.map(line).join('\n');
+<div class="tip"><b>Nhớ:</b><ul>${RECAP[MODE][0].map(x => `<li>${x}</li>`).join('')}</ul></div>${RECAP[MODE][1] ? `<div class="tip">Bước tiếp theo: làm bài <a href="${RECAP[MODE][1][0]}">${RECAP[MODE][1][1]}</a>.</div>` : ''}`;
+    const txt = `Gerund (${MODE}) - ${S.name || ''}\n` + sc.map(line).join('\n');
     submitFlow($('#sub'), { S: () => S, save: () => Store.save(S), text: () => txt,
       warns: () => { const m = STEPS.map((x, i) => (!x.end && !isDone(i)) ? x.t : null).filter(Boolean); return m.length ? ['Chưa hoàn thành: ' + m.join('; ') + '.'] : []; },
       payload: () => ({ summary: { recordings: 0, avg: null, full: '', writes: `Hoàn thành ${STEPS.filter((x, i) => !x.end && isDone(i)).length}/${STEPS.length - 1} bước`, quiz: sc.map(line).join(' · ') },
